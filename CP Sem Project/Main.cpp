@@ -5,7 +5,7 @@ using namespace std;
 
 void display_character_info(string character_name, string character_class, int character_health, int character_exp);
 void character_creation(string& character_name, string& character_class);
-void battle_system_mythical_creature_attack(int level);
+int battle_system_mythical_creature_attack(int attack_level);
 
 //Main
 int main()
@@ -48,13 +48,11 @@ void character_creation(string& character_name, string& character_class)
 		character_class = "Rogue";
 }
 //Battle System
-void battle_system_mythical_creature_attack(int level)
+int battle_system_mythical_creature_attack(int attack_level)
 {
 	int attack;
 	srand(time(0));
-	for (int i = 0; i < 100; i++)
-	{
-		attack = rand() % level;
+		attack = rand() % attack_level;
 		cout << attack<<endl;
-	}
+		return attack;
 }
