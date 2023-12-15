@@ -11,9 +11,13 @@ int battle_system_mythical_creature_attack(int attack_level);
 int main()
 {
 	string character_name, character_class;
-	int character_health = 100, character_exp=0,level;
+	int character_health = 100, character_exp=0,level,attack_level;
+	//Character creation
 	character_creation(character_name,character_class);
+	//Character info
 	display_character_info(character_name,character_class,character_health,character_exp);
+	//Quest
+	//Battle System
 }
 
 //Character Information
