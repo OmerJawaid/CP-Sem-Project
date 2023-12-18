@@ -7,15 +7,20 @@ void display_character_info(string character_name, string character_class, int c
 void character_creation(string& character_name, string& character_class);
 int battle_system_mythical_creature_attack(int attack_level);
 
+struct character {
+	string character_name, character_class;
+	int character_health = 1000, character_exp = 0, level = 0;
+};
+
 //Main
 int main()
 {
-	string character_name, character_class;
-	int character_health = 100, character_exp=0,level,attack_level;
+	//Structure copy
+	struct character character_1;
 	//Character creation
-	character_creation(character_name,character_class);
+	character_creation(character_1.character_name, character_1.character_class);
 	//Character info
-	display_character_info(character_name,character_class,character_health,character_exp);
+	display_character_info(character_1.character_name, character_1.character_class, character_1.character_health, character_1.character_exp);
 	//Quest
 	//Battle System
 }
