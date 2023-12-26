@@ -3,21 +3,21 @@
 #include<time.h>
 using namespace std;
 
-void display_character_info(string character_name, string character_class, int character_health, int character_exp);
-void character_creation();
-int battle_system_mythical_creature_attack(int attack_level);
-void quest();
 //structure for character creation
 struct {
-	string character_name, character_class;
-	int character_health = 400, character_exp=0, level=1;
-	string inventory[15];
-}character_1;
+	string name, catagory;
+	int health = 400, exp = 0, level = 1,attack;
+}character;
 
 struct {
 	string name;
-	int health, attack[2],combo;
+	int health, attack[2], combo;
 }creature[5];
+
+void display_character_info(string character_name, string character_catagory, int character_health, int character_exp);
+void character_creation();
+int mythical_creature_attack(int attack_level, int characterattack, int characternumber);
+inline int character_attack(int character_attack_level, int creatures_attack);
 
 //Main
 int main()
@@ -92,7 +92,7 @@ int main()
 					//Character creation
 					character_creation();
 					//Character info
-					display_character_info(character_1.character_name, character_1.character_class, character_1.character_health, character_1.character_exp);
+					display_character_info(character.name, character.catagory, character.health, character.exp);
 					cout << "Is the above information correct?(Y/N)";
 					cin >> choice;
 					if (choice != 'N' && choice != 'n' && choice != 'Y' && choice != 'y')
@@ -100,13 +100,10 @@ int main()
 						continue;
 				} while (choice=='N'|| choice == 'n');
 
-				character_1.inventory[0] = "Rope";
-				character_1.inventory[1] = "Health potion";
-
 				//Contiune the story
 				{
 					char entrancechoice;
-					cout << character_1.character_name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character_1.character_name << "  spotted three potential paths to infiltrate.";
+					cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate.";
 					//Quest
 					do {
 						cout << "a) The first option caught Jake's eye – the main gate.(Hard)" << endl
@@ -115,29 +112,78 @@ int main()
 							<< "Choose your path: ";
 						cin >> entrancechoice;
 						entrancechoice=tolower(entrancechoice);
+						//Path 1
 						if (entrancechoice == 'a')
 						{
 							cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom" << endl
 								<<system("pause")
 								<< creature[0].name << ": Who are you ? Go away otherwise you will have to face the circumstances!" << endl
-								<< character_1.character_name << ": Lets face the circumstances." << endl;
+								<< character.name << ": Lets face the circumstances." << endl;
 							system("pause");
-							while (creature[0].health != 0 || character_1.character_health != 0)
+							//Battle with all 5 guards
+							for (int i = 1; i <= 5; i++)
 							{
-								int characterattack = 0,creature_attack=0;
-
-								creature_attack=battle_system_mythical_creature_attack(15, characterattack, 1);
-								characterattack=character_attack(25, creature_attack);
+								int characterattack = 0, creature_attack = 0;
+								cout << "Guard " << i << endl;
+								creature[0].health = 100;
+								do{
+										creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
+										characterattack = character_attack(25, creature_attack);
+										if (creature[0].health < 1 || character.health < 1)
+										{
+											break;
+										}
+								}while (creature[0].health  >0|| character.health >0);
+								character.exp += 10;
+								if (character.exp == 50)
+									character.level++;
 							}
+							cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
 						}
+						//Path 2
 						else if (entrancechoice == 'b')
 						{
 							cout << "He came out of the bushes and moved slowly towards the watchtower of the kingdom." << endl;
 							system("pause");
+							cout << "There were 3 guards guarding the watchtower. The players check his inventory, he gets a rope out of his inventory and climbs the watch tower. He gets on top of the watchtower and pulls out one guard. " << endl;
+							for (int i = 1; i <= 2; i++)
+							{
+								int characterattack = 0, creature_attack = 0;
+								cout << "Guard" << i << endl;
+								creature[0].health = 100;
+								do {
+									creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
+									characterattack = character_attack(25, creature_attack);
+									if (creature[0].health < 1 || character.health < 1)
+									{
+										break;
+									}
+								} while (creature[0].health > 0 || character.health > 0);
+								character.exp += 10;
+								if (character.exp == 50)
+									character.level++;
+							}
+							cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
 						}
 						else if (entrancechoice == 'c')
 						{
-							
+							cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom.\nThere was 1 guard guarding the watchtower." << endl;
+							system("pause");
+							cout << "The player took the rope out of his inventory and climbed the watchtower. The guard watched him and started attacking";
+							int characterattack = 0, creature_attack = 0;
+							cout << "Guard" << 1 << endl;
+							creature[0].health = 100;
+							do {
+								creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
+								characterattack = character_attack(25, creature_attack);
+								if (creature[0].health < 1 || character.health < 1)
+								{
+									break;
+								}
+							} while (creature[0].health > 0 || character.health > 0);
+							character.exp += 10;
+							if (character.exp == 50)
+								character.level++;
 						}
 						else
 							cout << "Choose correct option.";
@@ -153,38 +199,41 @@ int main()
 }
 
 //Character Information
-void display_character_info(string character_name, string character_class, int character_health, int character_exp)
+void display_character_info(string character_name, string character_catagory, int character_health, int character_exp)
 {
 	cout << "Character Information" << endl
 		<< "Character Name: " << character_name << endl
-		<< "Character Class: " << character_class << endl
+		<< "Character catagory: " << character_catagory << endl
 		<< "Health: " << character_health << endl
 		<< "Experience Points: " << character_exp << endl;
 }
+
 //Character creation
 void character_creation()
 {
-	string choice,name;
+	string name;
+	char choice;
 	bool flag=true;
 	cout << "\nAccount Creation!" << endl;
+	
 	//Player Name
 	cout << "Enter the player name: ";
-	cin >> character_1.character_name;
-	//Player Class
+	cin >> character.name;
+	
+	//Player catagory
 	do {
-		cout << "Choose the player class " << endl
+		cout << "Choose the player catagory " << endl
 			<< "a) Warrior" << endl
 			<< "b) Mage" << endl
 			<< "c) Rogue" << endl
 			<< "Choose: ";
 		cin >> choice;
-		choice[0] = tolower(choice[0]);
-		if (choice == "a" || choice == "warrior" || choice == "Warrior")
-			character_1.character_class = "Warrior";
-		else if (choice == "b" || choice == "mage" || choice == "Mage")
-			character_1.character_class = "Mage";
-		else if (choice == "c" || choice == "rogue" || choice == "Rogue")
-			character_1.character_class = "Rogue";
+		if (choice == 'a' || choice == 'A')
+			character.catagory = "Warrior";
+		else if (choice == 'b' || choice == 'B')
+			character.catagory = "Mage";
+		else if (choice == 'c' || choice == 'C')
+			character.catagory = "Rogue";
 		else
 		{
 			cout << "Incorrect" << endl
@@ -192,24 +241,43 @@ void character_creation()
 			flag = false;
 		}
 	} while (flag == false);
-	character_1.character_exp = 0;
-	character_1.level = 0;
+	character.exp = 0;
+	character.level = 0;
 }
+
+
+
 //Battle System
-int battle_system_mythical_creature_attack(int attack_level, int characterattack,int characternumber)
+
+//Creatures Attacks
+int mythical_creature_attack(int creature_attack_level, int characterattack,int creature_number)
 {
+	creature[creature_number].health = creature[creature_number].health- characterattack;
+	cout <<"Creature Health" << creature[creature_number].health << endl;
 	int attack;
 	srand(time(0));
-		attack = rand() % attack_level;
-		cout << attack <<endl;
+		attack = rand() % creature_attack_level;
+		cout <<"Creatures Attack" << attack << endl;
 		return attack;
-		creature[characternumber].health -= characterattack;
 }
+
+
+//ATTACK CHOICES FOR BOSSES
+int attack_choice()
+{
+	int attack_number;
+	srand(time(0));
+	attack_number = rand() % 3;
+	return attack_number;
+}
+
+
 //Character Attacking
 inline int character_attack(int character_attack_level, int creatures_attack)
 {
 	char attack_choice;
 	do {
+		cout << "Health: " << character.health;
 		cout << "Attack Options: " << endl
 			<< "a) Attack" << endl
 			<< "b) Defend" << endl
@@ -219,7 +287,7 @@ inline int character_attack(int character_attack_level, int creatures_attack)
 		attack_choice = tolower(attack_choice);
 		if (attack_choice == 'a')
 		{
-			character_1.character_health = character_1.character_health - creatures_attack;
+			character.health = character.health - creatures_attack;
 			int attack;
 			srand(time(0));
 			attack = rand() % character_attack_level;
@@ -232,22 +300,12 @@ inline int character_attack(int character_attack_level, int creatures_attack)
 		}
 		else if (attack_choice == 'c')
 		{
-			character_1.character_health = character_1.character_health + 40;
-			character_1.character_health = character_1.character_health - creatures_attack;
+			character.health = character.health + 40;
+			character.health = character.health - creatures_attack;
 		}
 		else
 		{
 			cout << "Invalid input ";
 		}
 	}while(attack_choice!='a' && attack_choice != 'b'&& attack_choice != 'c');
-}
-//Quest Building
-inline void quest()
-{
-	//Quest Options
-	cout << "Quest: " << endl
-		<<"Beginner"<<endl
-		<<"Intermediate"<<endl
-		<<"Advanced"<<endl
-		<<"Choice: ";
 }
