@@ -14,10 +14,10 @@ struct {
 	int health, attack[2], combo;
 }creature[5];
 
-void display_character_info(string character_name, string character_catagory, int character_health, int character_exp);
+void display_character_info();
 void character_creation();
-int mythical_creature_attack(int attack_level, int characterattack, int characternumber);
-inline int character_attack(int character_attack_level, int creatures_attack);
+inline int mythical_creature_attack(int attack_level, int characterattack, int characternumber);
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number);
 
 //Main
 int main()
@@ -71,7 +71,7 @@ int main()
 		}
 	}
 	{
-		char choice;
+		string choice;
 		do {
 			//Main Page for start and quit
 			cout << "Welcome to the mythical land of Eldoria" << endl
@@ -80,29 +80,29 @@ int main()
 				<< "What do you want to do (a/b)?" << endl;
 			cin >> choice;
 
-			if (choice == 'a')
+			if (choice == "a")
 			{
 				//Storyline
 				cout << "On a calm winter day, Eldoria Kingdom got hit by a surprise snowstorm. Everything turned white as snow covered the kingdom. But then, weird creatures from the nearby jungle showed up and attacked Eldoria. They took the people hostage and took control of the kingdom." << endl;
 				system("pause");
 				cout << "There was a small village nestled beside Eldoria, There were three renowned warriors known for their exceptional fighting skills lived in that village. When they came to know that Eldoria is being attacked by some mythical creatures they decided to help the Eldoria kingdom and set them free from the hands of powerful magical mythical creatures" << endl;
 				//Character Creation with its verification
-				char choice;
+				string choice_creation;
 				do {
 					//Character creation
 					character_creation();
 					//Character info
-					display_character_info(character.name, character.catagory, character.health, character.exp);
+					display_character_info();
 					cout << "Is the above information correct?(Y/N)";
-					cin >> choice;
-					if (choice != 'N' && choice != 'n' && choice != 'Y' && choice != 'y')
+					cin >> choice_creation;
+					if (choice_creation != "N" && choice_creation != "n" && choice_creation != "Y" && choice_creation != "y")
 						cout << "Choose th corrent option.";
 						continue;
-				} while (choice=='N'|| choice == 'n');
+				} while (choice_creation == "N" || choice_creation == "n");
 
 				//Contiune the story
 				{
-					char entrancechoice;
+					string entrancechoice;
 					cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate.";
 					//Quest
 					do {
@@ -111,9 +111,9 @@ int main()
 							<< "c) His gaze then shifted to the third option – a tower on the opposite side (Easy)" << endl
 							<< "Choose your path: ";
 						cin >> entrancechoice;
-						entrancechoice=tolower(entrancechoice);
+						entrancechoice=tolower(entrancechoice[0]);
 						//Path 1
-						if (entrancechoice == 'a')
+						if (entrancechoice == "a")
 						{
 							cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom" << endl
 								<<system("pause")
@@ -128,7 +128,7 @@ int main()
 								creature[0].health = 100;
 								do{
 										creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-										characterattack = character_attack(25, creature_attack);
+										characterattack = character_attack(25, creature_attack,0);
 										if (creature[0].health < 1 || character.health < 1)
 										{
 											break;
@@ -141,7 +141,7 @@ int main()
 							cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
 						}
 						//Path 2
-						else if (entrancechoice == 'b')
+						else if (entrancechoice == "b")
 						{
 							cout << "He came out of the bushes and moved slowly towards the watchtower of the kingdom." << endl;
 							system("pause");
@@ -153,7 +153,7 @@ int main()
 								creature[0].health = 100;
 								do {
 									creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-									characterattack = character_attack(25, creature_attack);
+									characterattack = character_attack(25, creature_attack,0);
 									if (creature[0].health < 1 || character.health < 1)
 									{
 										break;
@@ -165,7 +165,7 @@ int main()
 							}
 							cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
 						}
-						else if (entrancechoice == 'c')
+						else if (entrancechoice == "c")
 						{
 							cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom.\nThere was 1 guard guarding the watchtower." << endl;
 							system("pause");
@@ -175,7 +175,7 @@ int main()
 							creature[0].health = 100;
 							do {
 								creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-								characterattack = character_attack(25, creature_attack);
+								characterattack = character_attack(25, creature_attack,0);
 								if (creature[0].health < 1 || character.health < 1)
 								{
 									break;
@@ -187,38 +187,39 @@ int main()
 						}
 						else
 							cout << "Choose correct option.";
-					} while (entrancechoice != 'a' && entrancechoice != 'b' && entrancechoice != 'c');
+					} while (entrancechoice != "a" && entrancechoice != "b" && entrancechoice != "c");
 				}
 			}
-			else if (choice == 'b')
+			else if (choice == "b")
 				exit(1);
 			else
 				cout << "Choose the correct option";
-		} while (choice != 'a' && choice != 'b');
+		} while (choice != "a" && choice != "b");
 	}
 }
 
 //Character Information
-void display_character_info(string character_name, string character_catagory, int character_health, int character_exp)
+void display_character_info()
 {
 	cout << "Character Information" << endl
-		<< "Character Name: " << character_name << endl
-		<< "Character catagory: " << character_catagory << endl
-		<< "Health: " << character_health << endl
-		<< "Experience Points: " << character_exp << endl;
+		<< "Character Name: " << character.name << endl
+		<< "Character catagory: " << character.catagory << endl
+		<< "Health: " << character.health << endl
+		<< "Experience Points: " << character.exp << endl;
 }
 
 //Character creation
 void character_creation()
 {
 	string name;
-	char choice;
+		string choice;
 	bool flag=true;
 	cout << "\nAccount Creation!" << endl;
 	
 	//Player Name
 	cout << "Enter the player name: ";
-	cin >> character.name;
+	cin.ignore();
+	getline(cin,character.name);
 	
 	//Player catagory
 	do {
@@ -228,11 +229,11 @@ void character_creation()
 			<< "c) Rogue" << endl
 			<< "Choose: ";
 		cin >> choice;
-		if (choice == 'a' || choice == 'A')
+		if (choice == "a" || choice == "A")
 			character.catagory = "Warrior";
-		else if (choice == 'b' || choice == 'B')
+		else if (choice == "b" || choice == "B")
 			character.catagory = "Mage";
-		else if (choice == 'c' || choice == 'C')
+		else if (choice == "c" || choice ==  "C")
 			character.catagory = "Rogue";
 		else
 		{
@@ -252,12 +253,12 @@ void character_creation()
 //Creatures Attacks
 int mythical_creature_attack(int creature_attack_level, int characterattack,int creature_number)
 {
-	creature[creature_number].health = creature[creature_number].health- characterattack;
-	cout <<"Creature Health" << creature[creature_number].health << endl;
+	
+	cout << "\nHealth: " << character.health<<endl;
 	int attack;
 	srand(time(0));
 		attack = rand() % creature_attack_level;
-		cout <<"Creatures Attack" << attack << endl;
+		cout <<creature[creature_number].name <<": " << attack << endl;
 		return attack;
 }
 
@@ -273,17 +274,20 @@ int attack_choice()
 
 
 //Character Attacking
-inline int character_attack(int character_attack_level, int creatures_attack)
+inline int character_attack(int character_attack_level, int creatures_attack,int creature_number)
 {
 	char attack_choice;
 	do {
-		cout << "Health: " << character.health;
+		
+		cout << "\nCreature Health" << creature[creature_number].health << endl;
 		cout << "Attack Options: " << endl
 			<< "a) Attack" << endl
 			<< "b) Defend" << endl
 			<< "c) Healing" << endl
 			<< "Choice: ";
-		cin >> attack_choice;
+
+
+cin >> attack_choice;
 		attack_choice = tolower(attack_choice);
 		if (attack_choice == 'a')
 		{
@@ -292,11 +296,12 @@ inline int character_attack(int character_attack_level, int creatures_attack)
 			srand(time(0));
 			attack = rand() % character_attack_level;
 			cout <<"Attack: " << attack << endl;
+			creature[creature_number].health = creature[creature_number].health - attack;
 			return attack;
 		}
 		else if (attack_choice == 'b')
 		{
-			cout << "Defended: " << creatures_attack;
+			cout << "Defended: " << creatures_attack<<endl;
 		}
 		else if (attack_choice == 'c')
 		{
@@ -305,7 +310,7 @@ inline int character_attack(int character_attack_level, int creatures_attack)
 		}
 		else
 		{
-			cout << "Invalid input ";
+			cout << "Invalid input " << endl;
 		}
 	}while(attack_choice!='a' && attack_choice != 'b'&& attack_choice != 'c');
 }
