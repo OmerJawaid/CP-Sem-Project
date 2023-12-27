@@ -304,11 +304,64 @@ int main()
 											cin >> quest4_path_choice;
 										if (quest4_path_choice == "a" || quest4_path_choice == "A")
 										{
-
+											cout << character.name << " push the guards in front and start to run but suddenly 3 Frostbane guards came across"<<endl
+												<<creature[0].name<<": Hey you come here! Bloody Intruder!"<<endl
+												<<endl<<character.name<<"Started to fight"<<endl;
+											//Fight with the guards and arrest remaining
+											for (int i = 1; i <= 13; i++)
+											{
+												int characterattack = 0, creature_attack = 0;
+												cout << creature[0].name << i << endl;
+												creature[0].health = 100;
+												if (character.health < 50 / 100 * 400)
+												{
+													cout << character.name << " GOT ARRESTED!" << endl
+														<<"He gets cuffed and one of the Frostbane Guards hit his gun on his head and he gets unconscious.";
+													goto Gail;//goto arrest in path 2
+												}
+												do {
+													creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
+													characterattack = character_attack(25, creature_attack, 0);
+													if (character.health < 1)
+													{
+														cout << "Game Over";
+														goto loop;
+													}
+												} while (creature[0].health > 0 && character.health > 0);
+												character.exp += 10;
+												if (character.exp == 50)
+												{
+													character.level++;
+													character.exp - 50;
+												}
+											}
+											cout << character.name << " escapes and starts to move towards the villagers but in the middle of the pathway.";
 										}
 										else if (quest4_path_choice == "b" || quest4_path_choice=="B")
 										{
+											cout << "The player throws his weapons and surrenders." << endl
+												<< creature[0].name << ": Get down to your knees and backoff." << endl
+												<< creature[0].name << " took him to Eldora's prison" << endl
+												<< "When he get on his knees one of the guards hit is gun on " << character.name << " head and he gets unconscious." << endl;
+											//Beating in prison
+											Gail:
+											cout << "When " << character.name << " gets into his sences. The " << creature[0].name << "s where beating him and asking: " << endl
+												<< creature[0].name << ": Who are you?" << endl
+												<< creature[0].name << ": Who send you?" << endl
+												<< character.name << " again gets unconscious." << endl;
+											//In gail informer
+											cout << "When he came into his sences. He looked around, he was in ball and chain." << endl
+												<< "HE Waited..." << endl
+												<< "After sometime informer came and frees him from the gail, ball and chain." << endl
+												<< "Informer: We have to Hurry up" << endl
+												<< character.name << ": You are here we go again." << endl
+												<< "Informer: Frostbite Yeti is looking for you. Come on hurry up." << endl
+												<< character.name << "Who is this Frostbite Yeti?" << endl
+												<< "The informer did not reply, and they both started running." << endl;
+											//Quest 5: Follow the informer
+											{
 
+											}
 										}
 										else
 											cout << "Wrong path. TRY AGAIN";
