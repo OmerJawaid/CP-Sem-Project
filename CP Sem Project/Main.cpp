@@ -1,11 +1,17 @@
 #include<iostream>
 #include<string>
 #include<time.h>
+
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
+#define RED_TEXT "\033[31m"
+#define GREEN_TEXT "\033[32m"
+#define RESET_COLOR "\033[0m"
+
 using namespace std;
 
 //structure for character creation
+//Quest
 struct {
 	string name;
 }chapter[4];
@@ -390,7 +396,7 @@ int main()
 									} while (quest4_path_choice != "A" || quest4_path_choice != "a" || quest4_path_choice != "B" || quest4_path_choice != "b");
 									//Chapter 3:  The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
 									system("puase");
-									{
+									
 										cout << UNDERLINE << "HERE FROSTBITE YETI COMES AND TAKES THE PLAYER TO HIS MOUNTAIN USING THE ZIPLINE FROM ELDORIA TO HIS MOUNTAIN." << CLOSEUNDERLINE << endl;
 										cout << creature[1].name << ": Oh Hello! You are the savior." << endl
 											<< character.name << "Oh yes! I am" << endl;
@@ -419,7 +425,48 @@ int main()
 												character.level++;
 												character.exp - 50;
 											}
+											//Fight Ends
+											cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
+												<< character.name << ": What is happening here? Who are you and what are you doing here?" << endl
+												<< creature[1].name << ": You don’t know anything what is happening here. He will kill you." << endl
+												<<character.name<<" wipes is neck off and ";
+											//Inventory drops
 										}
+										//Quest 6 Ends
+										cout << character.name << " starts to walk for the zipline but in fog the player ends up going toward the Bilzzard Golem (The Second Boss of Mythical creatures). " << endl
+											<<character.name<<" asks the same : "<< "What is happening here? Who are you and what are you doing here?";
+										//Quest 7: Embark Quest: Kill Bilzzard Golem
+										{
+											cout << creature[2].name << " did not reply and came to attack the player but this time the player got hit badly."<<endl;
+											//Player health drops to 50% as he got hit by Bilzzard Golem 
+											character.health = character.health * 0.5;
+											cout << creature[3].name << ": This was the man whom everyone feared (with a scary laugh to the saviour)."<<endl
+												<< character.name<<" gets angry, stood up and ran for the fight.";
+											//Billzard Fight
+											int characterattack = 0, creature_attack = 0;
+											cout << creature[2].name << endl;
+											do {
+												int attackchoice;
+												attackchoice = attack_choice();
+												creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], characterattack, 2);
+												characterattack = character_attack(25, creature_attack, 2);
+												if (character.health < 1)
+												{
+													cout << "Game Over";
+													goto loop;
+												}
+											} while (creature[2].health > 0 && character.health > 0);
+											character.exp += 10;
+											if (character.exp >= 50)
+											{
+												character.level++;
+												character.exp - 50;
+											}
+											//Billzard Fight Ends and drops inventory
+										}
+										//Quest 7 Ends
+										cout<<"The player then again goes for the zipline but this time he got path. He takes that path and comes back to the Eldoria Kingdom."<<endl
+											<<"Again starts the search of villagers and he reaches them"
 									}
 								}
 
