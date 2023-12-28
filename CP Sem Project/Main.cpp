@@ -34,6 +34,7 @@ void display_character_info();
 void character_creation();
 inline int mythical_creature_attack(int attack_level, int characterattack, int characternumber);
 inline int character_attack(int character_attack_level, int creatures_attack, int creature_number);
+int attack_choice();
 
 //Main
 int main()
@@ -51,40 +52,40 @@ int main()
 				creature[1].name = "Frostbite Yeti";
 				creature[1].health = 300;
 				creature[1].attack[0] = 50;
-				creature[1].attack[1] = 57;
+				creature[1].attack[1] = 75;
 				creature[1].attack[2] = 35;
 				creature[1].combo = 150;
 			}
 			{
 				creature[2].name = "Blizzard Golem";
 				creature[2].health = 250;
-				creature[2].attack[0] = 15;
-				creature[2].attack[1] = 57;
-				creature[2].attack[2] = 35;
+				creature[2].attack[0] = 40;
+				creature[2].attack[1] = 65;
+				creature[2].attack[2] = 30;
 				creature[2].combo = 135;
 			}
 			{
 				creature[3].name = "Snow Shriken Ninja";
 				creature[3].health = 350;
-				creature[3].attack[0] = 15;
-				creature[3].attack[1] = 57;
-				creature[3].attack[2] = 35;
+				creature[3].attack[0] = 60;
+				creature[3].attack[1] = 85;
+				creature[3].attack[2] = 45;
 				creature[3].combo = 160;
 			}
 			{
 				creature[4].name = "Glacius Frostend";
 				creature[4].health = 500;
-				creature[4].attack[0] = 15;
-				creature[4].attack[1] = 57;
-				creature[4].attack[2] = 35;
+				creature[4].attack[0] = 60;
+				creature[4].attack[1] = 85;
+				creature[4].attack[2] = 45;
 				creature[4].combo = 300;
 			}
 			{
 				creature[5].name = "King of Mythical Creatures";
 				creature[5].health = 1000;
-				creature[5].attack[0] = 15;
-				creature[5].attack[1] = 57;
-				creature[5].attack[2] = 35;
+				creature[5].attack[0] = 140;
+				creature[5].attack[1] = 180;
+				creature[5].attack[2] = 200;
 				creature[5].combo = 400;
 			}
 		}
@@ -270,7 +271,7 @@ int main()
 					//End of CHapter 1
 
 						//CHAPTER 2: Infiltrate the Market
-					{
+					
 						string chap2_st_choice;
 						do {
 							cout << character.name << " now had gathered the information required and fixed his path to the market he started moving towards the market but on the way, he encountered multiple ways to reach the market. " << endl
@@ -384,11 +385,9 @@ int main()
 												<< character.name << "Who is this Frostbite Yeti?" << endl
 												<< "The informer did not reply, and they both started running." << endl;
 											//Quest 5: Follow the informer
-											{
 												cout << "They both go through the underground tunnels." << endl
 													<< character.name << ": Where the hell are we?" << endl
 													<< "Through the tunnels they both came out in open.But Frostbite Yeti saw both of them from the mountain top." << endl;
-											}
 										}
 										//Path 2 Ends 
 										else
@@ -465,10 +464,24 @@ int main()
 											//Billzard Fight Ends and drops inventory
 										}
 										//Quest 7 Ends
-										cout<<"The player then again goes for the zipline but this time he got path. He takes that path and comes back to the Eldoria Kingdom."<<endl
-											<<"Again starts the search of villagers and he reaches them"
-									}
+										cout << "The player then again goes for the zipline but this time he got path. He takes that path and comes back to the Eldoria Kingdom." << endl
+											<< "Again starts the search of villagers and he reaches them" << endl;
 								}
+								//Quest 4 ends
+								cout << character.name << ": Oh! you are here." << endl
+									<< "Villager: Thankgod you are here to help us." << endl
+									<< character.name << ": You are not all, where are the remaining people ?" << endl
+									<< "Villager: We have no idea where they would be." << endl
+									<< character.name << ": All of you guys just stay here I will come and set you free." << endl;
+								system("pause");
+								cout << "Meanwhile the informer came, and he talked what to do next and how to set them free." << endl
+									<< "Informer: Come follow me!" << endl
+									<< character.name << ": So now where are we heading towards?" << endl
+									<< "Informer: To your king. " << endl
+									<< character.name << ": Let's go."<<endl;
+								system("pause");
+								cout << "The informer and " << character.name << " headed towards the palace meanwhile the Mythical creature " << creature[3].name << " watched them on the top of mountain. " << creature[3].name << " Jumped from the mountain and attacked both. The informed got a huge injury and " << character.name << " also got hit" << endl;
+								character.health = character.health - character.health * 0.25;
 
 							}
 							else if (chap2_st_choice == "b" || chap2_st_choice == "B")
@@ -478,7 +491,6 @@ int main()
 							else
 								cout << "Incorrect Path! TRY AGAIN";
 						} while (chap2_st_choice != "a" && chap2_st_choice != "b" && chap2_st_choice != "A" && chap2_st_choice != "B");
-					}
 					//End of Chapter 2
 				}
 				else if (choice == "b")
