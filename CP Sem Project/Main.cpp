@@ -2,6 +2,7 @@
 #include<string>
 #include<time.h>
 
+//Styling
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
 #define RED_TEXT "\033[31m"
@@ -279,6 +280,8 @@ int main()
 								<< "\ta) Guards guarding and have to fight.		(Hard)" << endl
 								<< "\tb) Through hub of huts.					(Easy)" << endl;
 							cin >> chap2_st_choice;
+
+							//Path 1
 							if (chap2_st_choice == "a" || chap2_st_choice == "A")
 							{
 								cout << character.name << " moves towards the snowy street inclining him towards the market but unfortunately the 2 guards due to not following the code of instruction set by their management captures him to be intruder" << endl
@@ -482,12 +485,192 @@ int main()
 								system("pause");
 								cout << "The informer and " << character.name << " headed towards the palace meanwhile the Mythical creature " << creature[3].name << " watched them on the top of mountain. " << creature[3].name << " Jumped from the mountain and attacked both. The informed got a huge injury and " << character.name << " also got hit" << endl;
 								character.health = character.health - character.health * 0.25;
-
+								//Quest 8: Kill Snow Shuriken Ninja
+								{
+									//Fight with SNoe Shuriken Ninja
+									int characterattack = 0, creature_attack = 0;
+									cout << creature[3].name << endl;
+									do {
+										int attackchoice;
+										attackchoice = attack_choice();
+										creature_attack = mythical_creature_attack(creature[3].attack[attackchoice], characterattack, 3);
+										characterattack = character_attack(25, creature_attack, 3);
+										if (character.health < 1)
+										{
+											cout << "Game Over";
+											goto loop;
+										}
+									} while (creature[3].health > 0 && character.health > 0);
+									character.exp += 10;
+									if (character.exp >= 50)
+									{
+										character.level++;
+										character.exp - 50;
+									}
+									//Fight ends
+									cout << character.name << " killed " << creature[3].name << "But the informer was hit and due to his hit, he was getting poisoned and was killed gradually." << endl
+										<< "Before he gets kill, he tells the player how to get to the palace. " << endl;
+								}
+								//Quest 8 ends
+								//Chapter 3 ends
 							}
+							//End of path 1
+						
+							//Path 2
 							else if (chap2_st_choice == "b" || chap2_st_choice == "B")
 							{
+								cout << character.name << " follow the bushes and sneakily try to enter the hub of houses" << endl
+									<< character.name << " entered the house... " << endl
+									<< "He searches the house"//Player gets some inventory
+									<< "He finds a map to reach crew of villagers" << endl;
+								//Chapter 3: The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja 
+								{
+									cout << character.name << " followed the map but in the middle of the map he was following he got attacked by first mythical creature's boss Snow Shuriken Ninja. " << endl << endl
+										<< "He took " << character.name << " to his cave on the mountain top. When Snow Shuriken Ninja attack he got unconscious." << endl;
+									//Quest 9: Get out of the Cave.
+									{
+										cout << "When he came back in senses, he was covered in blood and Snow Shuriken Ninja was not there and was tied up with chains. After a while the informer sneakily comes in." << endl
+											<< "Informer: I knew this would happen." << endl
+											<< character.name << ": Who was this?"<<endl
+											<<"Informer: He is the right hand of the king of Mythical Creatures. But I am shocked he did not kill you. "<<endl
+											<<character.name<<": I want to know about your King."<<endl
+											<<"Informer: Not a right time. Let's go, we have to leave. "<<endl
+											<<"The informer set him free. "<<endl
+											<<"Informer: Follow me."<<endl;
+										system("pause");
+										cout << character.name << " and the informer were going out of the cave of the Snow Shuriken Ninja but at the cave’s mouth, he got to know about both of them and he roared. The informer went out of the cave, but the player was stuck in the cave as the mouth got closed by the rocks fallen from the roar." << endl;
+									}
+									//Quest 9 Ends
+
+									//Quest 10: Kill the Snow Shuriken Ninja
+									{
+										cout << creature[3].name << ": Oh poor saviour. You are going to hell." << endl
+											<< character.name << ": Well I guess you should visit it first." << endl
+											<<"Snow Shuriken Ninja get in anger and starts!"<<endl;
+										//Fight with Snow Shuriken Ninja
+										{
+											int characterattack = 0, creature_attack = 0;
+											cout << creature[3].name << endl;
+											do {
+												int attackchoice;
+												attackchoice = attack_choice();
+												creature_attack = mythical_creature_attack(creature[3].attack[attackchoice], characterattack, 3);
+												characterattack = character_attack(25, creature_attack, 3);
+												if (character.health < 1)
+												{
+													cout << "Game Over";
+													goto loop;
+												}
+											} while (creature[3].health > 0 && character.health > 0);
+											character.exp += 10;
+											if (character.exp >= 50)
+											{
+												character.level++;
+												character.exp - 50;
+											}
+										}
+										//Fight ends
+										//Inventory Drop
+										cout << "After the Snow Shuriken Ninja is killed, the informer manages to open the caves mouth and both of them get out." << endl;
+									}
+									//Quest 10 Ends
+
+									//Quest 11: Go to the zipline
+									{
+										cout << "Informer: Hurry up! Let's go." << endl
+											<< character.name << ": Is this the right hand of your King you were talking about?" << endl
+											<< "Informer: Yes! Indeed he was.\tLet's go! Hurry up." << endl;
+										system("pause");
+										cout << "They both went further to the other mountain to catch the zipline but on the way they encounter the Second Boss Mythical Creature FROSTBITE YETI"<<endl;
+										system("pause");
+										cout << character.name << ": Now who the hell is he?" << endl
+											<< "Informer: He is yeti.He got a strong eye on you and now it is." << endl
+											<< character.name << ": What do you mean by strong eye." << endl;
+										cout << character.name << " slides and saves him from the attack of Frostbite Yeti. The informer got hit and fell down." << endl
+											<< creature[1].name << ": So, you are the Saviour." << endl
+											<< character.name << ": Yes, I am the savior." << endl
+											<< creature[1].name << ": Let's see what you have. " << endl
+											<< "In order to save himself and to take the revenge, he have to take a fight.";
+										//Quest 12: Kill The Frostbite Yeti  
+										{
+											int characterattack = 0, creature_attack = 0;
+											cout << creature[1].name << endl;
+											do {
+												int attackchoice;
+												attackchoice = attack_choice();
+												creature_attack = mythical_creature_attack(creature[1].attack[attackchoice], characterattack, 1);
+												characterattack = character_attack(25, creature_attack, 1);
+												if (character.health < 1)
+												{
+													cout << "Game Over";
+													goto loop;
+												}
+											} while (creature[1].health > 0 && character.health > 0);
+											character.exp += 10;
+											if (character.exp >= 50)
+											{
+												character.level++;
+												character.exp - 50;
+											}
+											cout << character.name << " killed Frostbite Yeti but he was confused why everyone is calling him a saviour." << endl;
+										}
+										//Quest 12 Ends
+										cout << "He saw the informer was hardly hit. He took him on his back and started running towards the zipline. He took the zipline and came down with the informer at his back." << endl;
+									}
+									//Quest 11 Ends
+									
+									cout << "He came down back to the kingdom and started moving towards the villagers. He met the villagers, but they were not all of them." << endl
+										<< character.name << ": Oh! you are here." << endl
+										<< "Villager: Thankgod you are here to help us." << endl
+										<< character.name << ": You are not all, where are the remaining people ?" << endl
+										<< "Villager: We have no idea where they would be." << endl
+										<< character.name << ": All of you guys just stay here I will come and set you free." << endl;
+									system("pause");
+									cout << character.name << " then moves towards the king with the informer but in the way to the palace " << character.name << " meets a another Boss Mythical Creature Blizzard Golem. He without giving any gesture start attacking. "<<character.name <<"Got hit and loses his health." << endl;
+									//Character health decreses due to attack by 50%
+									character.health = character.health * 0.5;
+									
+									//Quest 13: Kills the Blizzard Golem 
+									{
+										//Fight with the Billzard Golem
+										{
+											int characterattack = 0, creature_attack = 0, informer_output=0;
+											cout << creature[2].name << endl;
+											do {
+												informer_output++;
+												int attackchoice;
+												attackchoice = attack_choice();
+												creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], characterattack, 2);
+												characterattack = character_attack(25, creature_attack, 2);
+												if (informer_output == 5)
+												{
+													cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
+														<<"and now "<<character.name<<" fights with more dedication"<<endl;
+												}
+												if (character.health < 1)
+												{
+													cout << "Game Over";
+													goto loop;
+												}
+											} while (creature[2].health > 0 && character.health > 0);
+											character.exp += 10;
+											if (character.exp >= 50)
+											{
+												character.level++;
+												character.exp - 50;
+											}
+											//Billzard Fight Ends and drops inventory
+										}
+										//Fight ends
+										cout << "Now " << character.name << " started moving towards the palace to save his king." << endl;
+									}
+									//Quest 13 Ends
+								}
+								//End of Chapter 3
 
 							}
+							//Path 2 ends
+
 							else
 								cout << "Incorrect Path! TRY AGAIN";
 						} while (chap2_st_choice != "a" && chap2_st_choice != "b" && chap2_st_choice != "A" && chap2_st_choice != "B");
@@ -567,9 +750,7 @@ void character_creation()
 }
 
 
-
 //Battle System
-
 //Creatures Attacks
 int mythical_creature_attack(int creature_attack_level, int characterattack, int creature_number)
 {
@@ -581,8 +762,6 @@ int mythical_creature_attack(int creature_attack_level, int characterattack, int
 	cout << creature[creature_number].name << ": " << attack << endl;
 	return attack;
 }
-
-
 //ATTACK CHOICES FOR BOSSES
 int attack_choice()
 {
@@ -591,8 +770,6 @@ int attack_choice()
 	attack_number = rand() % 3;
 	return attack_number;
 }
-
-
 //Character Attacking
 inline int character_attack(int character_attack_level, int creatures_attack, int creature_number)
 {
