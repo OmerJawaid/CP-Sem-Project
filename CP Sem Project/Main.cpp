@@ -129,9 +129,9 @@ int main()
 							cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate." << endl;
 							//Quest 1
 							do {
-								cout << "\ta) The first option caught Jake's eye – the main gate.(Hard)" << endl
-									<< "\tb) Turning his attention to the second path, Jake discovered a watchtower (Medium)" << endl
-									<< "\tc) His gaze then shifted to the third option – a tower on the opposite side (Easy)" << endl
+								cout << "\ta) The first option caught "<<character.name<<" eye – The Main Gate.(Hard)" << endl
+									<< "\tb) Turning his attention to the second path, " << character.name << " discovered a watchtower (Medium)" << endl
+									<< "\tc) He gaze then shifted to the third option – a tower on the opposite side (Easy)" << endl
 									<< "Choose your path: ";
 								cin >> entrancechoice;
 								entrancechoice = tolower(entrancechoice[0]);
@@ -395,7 +395,7 @@ int main()
 										//Path 2 Ends 
 										else
 											cout << "Wrong path. TRY AGAIN";
-									} while (quest4_path_choice != "A" || quest4_path_choice != "a" || quest4_path_choice != "B" || quest4_path_choice != "b");
+									} while (quest4_path_choice != "A" && quest4_path_choice != "a" && quest4_path_choice != "B" && quest4_path_choice != "b");
 									//Chapter 3:  The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
 									system("puase");
 									
@@ -523,6 +523,8 @@ int main()
 									<< character.name << " entered the house... " << endl
 									<< "He searches the house"//Player gets some inventory
 									<< "He finds a map to reach crew of villagers" << endl;
+								//Chapter 2 Ends
+								
 								//Chapter 3: The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja 
 								{
 									cout << character.name << " followed the map but in the middle of the map he was following he got attacked by first mythical creature's boss Snow Shuriken Ninja. " << endl << endl
@@ -571,17 +573,17 @@ int main()
 										}
 										//Fight ends
 										//Inventory Drop
-										cout << "After the Snow Shuriken Ninja is killed, the informer manages to open the caves mouth and both of them get out." << endl;
+cout << "After the Snow Shuriken Ninja is killed, the informer manages to open the caves mouth and both of them get out." << endl;
 									}
 									//Quest 10 Ends
 
-									//Quest 11: Go to the zipline
+									//Quest 11: Go to the zipline with Quest 12 Yeti killing
 									{
 										cout << "Informer: Hurry up! Let's go." << endl
 											<< character.name << ": Is this the right hand of your King you were talking about?" << endl
 											<< "Informer: Yes! Indeed he was.\tLet's go! Hurry up." << endl;
 										system("pause");
-										cout << "They both went further to the other mountain to catch the zipline but on the way they encounter the Second Boss Mythical Creature FROSTBITE YETI"<<endl;
+										cout << "They both went further to the other mountain to catch the zipline but on the way they encounter the Second Boss Mythical Creature FROSTBITE YETI" << endl;
 										system("pause");
 										cout << character.name << ": Now who the hell is he?" << endl
 											<< "Informer: He is yeti.He got a strong eye on you and now it is." << endl
@@ -618,7 +620,7 @@ int main()
 										cout << "He saw the informer was hardly hit. He took him on his back and started running towards the zipline. He took the zipline and came down with the informer at his back." << endl;
 									}
 									//Quest 11 Ends
-									
+
 									cout << "He came down back to the kingdom and started moving towards the villagers. He met the villagers, but they were not all of them." << endl
 										<< character.name << ": Oh! you are here." << endl
 										<< "Villager: Thankgod you are here to help us." << endl
@@ -626,15 +628,15 @@ int main()
 										<< "Villager: We have no idea where they would be." << endl
 										<< character.name << ": All of you guys just stay here I will come and set you free." << endl;
 									system("pause");
-									cout << character.name << " then moves towards the king with the informer but in the way to the palace " << character.name << " meets a another Boss Mythical Creature Blizzard Golem. He without giving any gesture start attacking. "<<character.name <<"Got hit and loses his health." << endl;
+									cout << character.name << " then moves towards the king with the informer but in the way to the palace " << character.name << " meets a another Boss Mythical Creature Blizzard Golem. He without giving any gesture start attacking. " << character.name << "Got hit and loses his health." << endl;
 									//Character health decreses due to attack by 50%
 									character.health = character.health * 0.5;
-									
+
 									//Quest 13: Kills the Blizzard Golem 
 									{
 										//Fight with the Billzard Golem
 										{
-											int characterattack = 0, creature_attack = 0, informer_output=0;
+											int characterattack = 0, creature_attack = 0, informer_output = 0;
 											cout << creature[2].name << endl;
 											do {
 												informer_output++;
@@ -645,7 +647,7 @@ int main()
 												if (informer_output == 5)
 												{
 													cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
-														<<"and now "<<character.name<<" fights with more dedication"<<endl;
+														<< "and now " << character.name << " fights with more dedication" << endl;
 												}
 												if (character.health < 1)
 												{
@@ -667,14 +669,141 @@ int main()
 									//Quest 13 Ends
 								}
 								//End of Chapter 3
-
 							}
 							//Path 2 ends
 
 							else
 								cout << "Incorrect Path! TRY AGAIN";
 						} while (chap2_st_choice != "a" && chap2_st_choice != "b" && chap2_st_choice != "A" && chap2_st_choice != "B");
-					//End of Chapter 2
+						
+						//Chapter 4:  Vanguard's Stand 
+						{
+							cout << character.name << " reaches to the palace. As he enters the inner sanctum of the palace, a chilling presence announces the arrival of " << creature[4].name << " (Frozen Vanguard)" << endl
+								<< "A formidable creature with mastery over frost and ice. Glacius Frostend is the chief commander of the Frostbane guards and a key enforcer for the mythical creatures." << endl;
+
+							//Quest 14: Vangurad's plan
+							{
+								cout << "As " << character.name << " enters the battle. Vanguard deceives him with the aim of weakening him shows his father tide into rope covered with bloods and doing heavy breathes." << endl;
+								cout << character.name << ": Father!!" << endl
+									<< character.name << " takes a step forward." << endl
+									<< creature[4].name << " Oh no you don't" << endl
+									<< creature[4].name << " hits his father." << endl
+									<< character.name << " gets angry and started to run towards him and " << character.name << " fell in a hole." << endl
+									<< creature[4].name << " successful pass in his plan" << character.name << " health reduces 25." << endl;
+								system("pause");
+								cout << character.name << " stood up and went more deeper where the key people of the kingdom were kept." << endl;
+							}
+							//Quest 14 Ends
+
+							cout << character.name << "  finally met his king, and he saw the player with the glimpse of hope and King smiled." << endl
+								<< "The kIng: My child you are here." << endl
+								<< character.name << ": I have no time for this. He is coming after me I need resources." << endl
+								<< "King: Who?" << endl
+								<< character.name << ": A Vanguard" << endl
+								<< "king: You mean Glacius Frostend?" << endl
+								<< character.name << ": Indeed he is. Now where can I find resources to fight him?" << endl
+								<< "King: Beneath the kingdom there is a room which has the inventory to defeat the king and his frozen vanguard you need to access that for killing I made it when I saw them coming from escape world, but things gotten out my hand." << endl;
+						
+							//Quest 15: Suit Yourself Up
+							{
+								cout << character.name << " starts running to the inventory room and jumps into it for accessing the room under the kingdom, " << creature[4].name << " follows him but he pulled the lever and blocked the access which gives extra time to access and get the killing weapons to kill the king and the vanguard." << endl
+									<< character.name << " saw a glimpse of inventory packed in an old architecture shinning to the sky. He sees and his eyes glimpses up with a satisfaction felt by wounds and now he opens the inventory it attracts him as it was meant for him" << endl;
+								system("pause");
+								//Here player have to choose his inventory and have craft healings etc
+								cout << character.name << " feet got up the surface and he came in the fullest potential."<<endl;
+							}
+							//Quest 15 Ends
+
+							cout << "Suddenly the Vanguard enters the room by smashing the door and " << character.name << " defend the door coming to him in the air. Vanguard went to his main move to crush him, but " << character.name << " defends with ease shocking the vanguard and showing his intense move and putting maximum disadvantage to the Vanguard." << endl;
+							creature[4].health = creature[4].health - 100;
+
+							//Quest 16: Kill the Vanguard
+							{
+								cout << "And fight starts" << endl;
+								//Vanguard Fight Starts
+								{
+									int characterattack = 0, creature_attack = 0, informer_output = 0;
+									cout << creature[2].name << endl;
+									do {
+										informer_output++;
+										int attackchoice;
+										attackchoice = attack_choice();
+										creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], characterattack, 2);
+										characterattack = character_attack(25, creature_attack, 2);
+										if (informer_output == 5)
+										{
+											cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
+												<< "and now " << character.name << " fights with more dedication" << endl;
+										}
+										if (character.health < 1)
+										{
+											cout << "Game Over";
+											goto loop;
+										}
+									} while (creature[2].health > 0 && character.health > 0);
+									character.exp += 10;
+									if (character.exp >= 50)
+									{
+										character.level++;
+										character.exp - 50;
+									}
+								}
+								//Vanguard Fight ends
+								//Inventroy Drops
+							}
+							//Quest 16 Ends
+
+							cout << "The defeat of Vanguard felt by the king through magic alerting him that his biggest opponent is here and gears up for the battle." << endl
+								<< character.name << " now feels the sense of maintaining the truth in the kingdom saving the people of the kingdom." << endl
+								<< character.name << " goes through the hole to meet the real king of kingdom, but he was not in the place they met before. Then he ran out from the hole to save his father, but both the King and his father were captured by the king of mythical creature." << endl
+								<< "But The king dropped a note for the him. Which tells him to reach the king without fighting the major chunk of Forestbane Guard." << endl;
+						}
+						//Chapter 4 Ends
+
+						//Chapter 5: The last Act
+						{
+							cout << character.name << " runs towards the place." << endl
+								<< character.name << " sneakily enters the place. Enter the room of throne and followed the path by climbing up which took him to the room of king and successfully found the door where king was." << endl;
+							system("pause");
+							
+							//Quest 17: The final battle with king, giants forestbane and mythical king story
+							{
+								//3 attack system Remaining
+								for (int i = 1; i <= 8; i++)
+								{
+									int characterattack = 0, creature_attack = 0;
+									cout << "Guard" << i << endl;
+									creature[0].health = 100;
+									do {
+										creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
+										characterattack = character_attack(25, creature_attack, 0);
+										if (character.health < 1)
+										{
+											cout << "Game Over";
+											goto loop;
+										}
+									} while (creature[0].health > 0 && character.health > 0);
+									character.exp += 10;
+									if (character.exp >= 50)
+									{
+										character.level++;
+										character.exp - 50;
+									}
+								}
+								system("pause");
+								cout << "\n------------------------------------------------------------" << endl
+									<< "\nThe King\n" << endl
+									<< "------------------------------------------------------------" << endl;
+								cout << character.name << "meets the king of mythical creatures. After battling hard with all the creatures of his land. Facing the King was a relief for him, with the hope of getting the kingdom and pride in the village and life of people." << endl
+									<< character.name << " senses defeating the king of mythical creatures. The king flies in the air pushes him and comes to the ground of the kingdom." << endl
+									<<character.name<<"'s father was on the ground of the kingdom. His hands were tied up, the king of the mythical creature came, put the sword on his neck and told: "<<endl;
+									
+								cout << "\n\nBackstory of King" << endl;
+								cout << "Long ago the King had 2 children and the King gave the kingdom to the elder one. The younger prince got jealous and killed his father and ran to the village he took help from the player's father. He enchanted the younger brother, now the mythical creature king, granting him power but sealing his fate. He helped him to form an army but once the player’s father got to know his mind he ran away. \nYou were born with natural magical resistance, inherits the title of the savior. The elder brother, driven by newfound darkness, unwittingly fulfills the prophecy by imprisoning the rightful king. Now, you must unravel the enchantments, break the curse, and confront their own kin to restore Eldoria's rightful ruler and save the kingdom from the grips of dark magic.\n" << endl;
+							}
+							//Quest 17 Ends
+						}
+						//Chapter 5 Ends
 				}
 				else if (choice == "b")
 					exit(1);
@@ -686,9 +815,9 @@ int main()
 		do {
 			cout << "Do you want to play again?(Y/N): ";
 			cin >> loop_choice;
-			if (loop_choice != "y" || loop_choice != "Y" || loop_choice != "N" || loop_choice != "n")
+			if (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n")
 				cout << "Choose correct option.";
-		} while (loop_choice != "y" || loop_choice != "Y" || loop_choice != "N" || loop_choice != "n");
+		} while (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n");
 	} while (loop_choice == "y" || loop_choice == "Y");
 }
 
