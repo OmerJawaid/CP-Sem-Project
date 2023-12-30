@@ -28,7 +28,7 @@ struct {
 
 struct {
 	string name;
-
+	 
 }quest[16];
 
 void display_character_info();
@@ -36,7 +36,7 @@ void character_creation();
 inline int mythical_creature_attack(int attack_level, int characternumber);
 inline int character_attack(int character_attack_level, int creatures_attack, int creature_number);
 int attack_choice();
-bool battle_system();
+bool battle_system(int creaturenumber, int guard_number);
 
 //Main
 int main()
@@ -91,6 +91,10 @@ int main()
 				creature[5].combo = 400;
 			}
 		}
+		//Quest
+		{
+
+		}
 		{
 			string choice;
 			do {
@@ -100,7 +104,6 @@ int main()
 					<< "b) Quit" << endl
 					<< "What do you want to do (a/b)?" << endl;
 				cin >> choice;
-
 				if (choice == "a")
 				{
 					//Storyline
@@ -126,7 +129,7 @@ int main()
 					{
 						//Contiune the story
 						{
-							string entrancechoice;
+							char entrancechoice;
 							cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate." << endl;
 							//Quest 1
 							do {
@@ -135,9 +138,12 @@ int main()
 									<< "\tc) He gaze then shifted to the third option – a tower on the opposite side (Easy)" << endl
 									<< "Choose your path: ";
 								cin >> entrancechoice;
-								entrancechoice = tolower(entrancechoice[0]);
+								entrancechoice = tolower(entrancechoice);
 								//Path 1
-								if (entrancechoice == "a")
+								switch (entrancechoice)
+								{
+								case'A':
+								case'a':
 								{
 									cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom" << endl
 										<< system("pause")
@@ -147,48 +153,55 @@ int main()
 									//Battle with all 5 guards
 									for (int i = 1; i <= 5; i++)
 									{
-										bool flag;
-										flag=battle_system(1);
-										if (flag == false)
+										bool flag = false;
+										flag = battle_system(0, i);
+										if (flag == true)
 										{
 											goto loop;
 										}
 									}
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
+									break;
 								}
-								//Path 2
-								else if (entrancechoice == "b")
+								case'B':
+								case'b':
 								{
 									cout << "He came out of the bushes and moved slowly towards the watchtower of the kingdom." << endl;
 									system("pause");
 									cout << "There were 3 guards guarding the watchtower. The players check his inventory, he gets a rope out of his inventory and climbs the watch tower. He gets on top of the watchtower and pulls out one guard. " << endl;
 									for (int i = 1; i <= 2; i++)
 									{
-										bool flag;
-										flag = battle_system(1);
-										if (flag == false)
+										bool flag = false;
+										flag = battle_system(0, i);
+										if (flag == true)
 										{
 											goto loop;
 										}
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
+									break;
 								}
-								//Path 3
-								else if (entrancechoice == "c")
+								case'C':
+								case'c':
 								{
 									cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom.\nThere was 1 guard guarding the watchtower." << endl;
 									system("pause");
 									cout << "The player took the rope out of his inventory and climbed the watchtower. The guard watched him and started attacking" << endl;
-									bool flag;
-									flag = battle_system(1);
-									if (flag == false)
+									bool flag = false;
+									flag = battle_system(0, 1);
+									if (flag == true)
 									{
 										goto loop;
 									}
+									break;
 								}
-								else
+								default:
+								{
 									cout << "Choose correct option.";
-							} while (entrancechoice != "a" && entrancechoice != "b" && entrancechoice != "c");
+									break;
+								}
+								}
+							} while (entrancechoice != 'a' && entrancechoice != 'b' && entrancechoice != 'c');
 						}
 						//End of Quest 1
 
@@ -200,9 +213,25 @@ int main()
 								<< "Another " << creature[0].name << ": He is an introdure kill him!" << endl;
 							for (int i = 1; i <= 6; i++)
 							{
-								bool flag;
-								flag = battle_system(1);
-								if (flag == false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								bool flag=false;
+								flag = battle_system(0,i);
+								if (flag == true)
 								{
 									goto loop;
 								}
@@ -213,7 +242,7 @@ int main()
 							system("pause");
 							cout << "Informer: Saviour you are here the people in the prison were hoping you to come to save them you need to access the reach the business market in order to get this info." << endl
 								<< character.name << " gets hesitant after listening the word Saviour. He honors the informer and gratitude and asks him to send his message to the villagers"
-
+									
 								<< character.name << ": Message(Your Saviour is here) " << endl
 								<< character.name << ": I will make sure that you will get a reward for helping in this mission." << endl;
 							cout << "\n HERE " << character.name << " WEARS SUIT OF GUARDS AND CHANGES HIS GETUP" << endl;
@@ -243,9 +272,9 @@ int main()
 								//Fight with the gurads
 								for (int i = 1; i <= 2; i++)
 								{
-									bool flag;
-									flag = battle_system(1);
-									if (flag == false)
+									bool flag=false;
+									flag = battle_system(0,i);
+									if (flag == true)
 									{
 										goto loop;
 									}
@@ -347,9 +376,9 @@ int main()
 										{
 											cout << "Here Frostbite Yeti comes into anger and attacks the player, the player dodges the attack, and the fight begins." << endl;
 											//Frostbite yeti Fight
-											bool flag;
-											flag = battle_system(1);
-											if (flag == false)
+											bool flag=false;
+											flag = battle_system(1,0);
+											if (flag == true)
 											{
 												goto loop;
 											}
@@ -371,9 +400,9 @@ int main()
 											cout << creature[3].name << ": This was the man whom everyone feared (with a scary laugh to the saviour)."<<endl
 												<< character.name<<" gets angry, stood up and ran for the fight.";
 											//Billzard Fight
-											bool flag;
-											flag = battle_system(1);
-											if (flag == false)
+											bool flag=false;
+											flag = battle_system(2,0);
+											if (flag == true)
 											{
 												goto loop;
 											}
@@ -401,9 +430,9 @@ int main()
 								//Quest 8: Kill Snow Shuriken Ninja
 								{
 									//Fight with SNoe Shuriken Ninja
-									bool flag;
-									flag = battle_system(1);
-									if (flag == false)
+									bool flag = false;
+									flag = battle_system(3,0);
+									if (flag == true)
 									{
 										goto loop;
 									}
@@ -451,9 +480,9 @@ int main()
 											<<"Snow Shuriken Ninja get in anger and starts!"<<endl;
 										//Fight with Snow Shuriken Ninja
 										{
-											bool flag;
-											flag = battle_system(1);
-											if (flag == false)
+											bool flag=false;
+											flag = battle_system(3,0);
+											if (flag == true)
 											{
 												goto loop;
 											}
@@ -482,9 +511,9 @@ int main()
 											<< "In order to save himself and to take the revenge, he have to take a fight.";
 										//Quest 12: Kill The Frostbite Yeti  
 										{
-											bool flag;
-											flag = battle_system(1);
-											if (flag == false)
+											bool flag = false;
+											flag = battle_system(1,0);
+											if (flag == true)
 											{
 												goto loop;
 											}
@@ -596,9 +625,9 @@ int main()
 								cout << "And fight starts" << endl;
 								//Vanguard Fight Starts
 								{
-									bool flag;
-									flag = battle_system(1);
-									if (flag == false)
+									bool flag=false;
+									flag = battle_system(4,0);
+									if (flag == true)
 									{
 										goto loop;
 									}
@@ -626,9 +655,9 @@ int main()
 								//3 attack system Remaining
 								for (int i = 1; i <= 8; i++)
 								{
-									bool flag;
-									flag = battle_system(1);
-									if (flag == false)
+									bool flag=false;
+									flag = battle_system(0,i);
+									if (flag == true)
 									{
 										goto loop;
 									}
@@ -665,7 +694,7 @@ int main()
 			if (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n")
 				cout << "Choose correct option.";
 		} while (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n");
-	} while (loop_choice == "y" || loop_choice == "Y");
+	} while (loop_choice == "Y" || loop_choice == "y");
 }
 
 //Character Information
@@ -787,22 +816,24 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
 }
 
-bool battle_system(int creaturenumber)
-{
-	
-	
+bool battle_system(int creaturenumber,int guard_number)
+{	
+	creature[0].health = 100;
 	cout << creature[creaturenumber].name << endl;
-		int characterattack = 0, creature_attack = 0;
+		int characterattack = 0, creature_attack = 0,i=1;
 		bool flag = false;
-		cout << "Guard" << creaturenumber << endl;
+		cout << creature[creaturenumber].name << " "<< guard_number<< endl;
 		do {
-			creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
-			characterattack = character_attack(25, creature_attack, 0);
+			creature_attack = mythical_creature_attack(creature[creaturenumber].attack[creaturenumber], creaturenumber);
+			characterattack = character_attack(25, creature_attack, creaturenumber);
 			if (character.health < 1)
 			{
 				cout << "Game Over";
 				flag = true;
 				return flag;
+			}
+			else {
+				flag = false;
 			}
 		} while (creature[0].health > 0 && character.health > 0);
 		character.exp += 10;
@@ -811,4 +842,5 @@ bool battle_system(int creaturenumber)
 			character.level++;
 			character.exp - 50;
 		}
+		return flag;
 }
