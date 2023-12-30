@@ -33,9 +33,10 @@ struct {
 
 void display_character_info();
 void character_creation();
-inline int mythical_creature_attack(int attack_level, int characterattack, int characternumber);
+inline int mythical_creature_attack(int attack_level, int characternumber);
 inline int character_attack(int character_attack_level, int creatures_attack, int creature_number);
 int attack_choice();
+bool battle_system();
 
 //Main
 int main()
@@ -146,24 +147,11 @@ int main()
 									//Battle with all 5 guards
 									for (int i = 1; i <= 5; i++)
 									{
-										int characterattack = 0, creature_attack = 0;
-										cout << "Guard " << i << endl;
-										creature[0].health = 100;
-										do {
-											creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-											characterattack = character_attack(25, creature_attack, 0);
-											if (character.health < 1)
-											{
-												cout << "Game Over";
-												goto loop;
-											}
-
-										} while (creature[0].health > 0 && character.health > 0);//&&
-										character.exp += 10;
-										if (character.exp >= 50)
+										bool flag;
+										flag=battle_system(1);
+										if (flag == false)
 										{
-											character.level++;
-											character.exp - 50;
+											goto loop;
 										}
 									}
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
@@ -176,23 +164,11 @@ int main()
 									cout << "There were 3 guards guarding the watchtower. The players check his inventory, he gets a rope out of his inventory and climbs the watch tower. He gets on top of the watchtower and pulls out one guard. " << endl;
 									for (int i = 1; i <= 2; i++)
 									{
-										int characterattack = 0, creature_attack = 0;
-										cout << "Guard" << i << endl;
-										creature[0].health = 100;
-										do {
-											creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-											characterattack = character_attack(25, creature_attack, 0);
-											if (character.health < 1)
-											{
-												cout << "Game Over";
-												goto loop;
-											}
-										} while (creature[0].health > 0 && character.health > 0);
-										character.exp += 10;
-										if (character.exp >= 50)
+										bool flag;
+										flag = battle_system(1);
+										if (flag == false)
 										{
-											character.level++;
-											character.exp - 50;
+											goto loop;
 										}
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
@@ -203,23 +179,11 @@ int main()
 									cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom.\nThere was 1 guard guarding the watchtower." << endl;
 									system("pause");
 									cout << "The player took the rope out of his inventory and climbed the watchtower. The guard watched him and started attacking" << endl;
-									int characterattack = 0, creature_attack = 0;
-									cout << "Guard" << 1 << endl;
-									creature[0].health = 100;
-									do {
-										creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-										characterattack = character_attack(25, creature_attack, 0);
-										if (character.health < 1)
-										{
-											cout << "Game Over";
-											goto loop;
-										}
-									} while (creature[0].health > 0 && character.health > 0);
-									character.exp += 10;
-									if (character.exp >= 50)
+									bool flag;
+									flag = battle_system(1);
+									if (flag == false)
 									{
-										character.exp -= 50;
-										character.level++;
+										goto loop;
 									}
 								}
 								else
@@ -236,25 +200,12 @@ int main()
 								<< "Another " << creature[0].name << ": He is an introdure kill him!" << endl;
 							for (int i = 1; i <= 6; i++)
 							{
-								int characterattack = 0, creature_attack = 0;
-								cout << "\nGuard " << i << endl;
-								creature[0].health = 100;
-								do {
-									creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-									characterattack = character_attack(25, creature_attack, 0);
-									if (character.health < 1)
-									{
-										cout << "Game Over";
-										goto loop;
-									}
-									//Leveling not there																																																								//Leveling not there
-								} while (creature[0].health > 0 && character.health > 0);
-								if (character.exp >= 50)
+								bool flag;
+								flag = battle_system(1);
+								if (flag == false)
 								{
-									character.exp -= 50;
-									character.level++;
+									goto loop;
 								}
-								character.exp += 10;
 							}
 							cout << character.name << " listens to a scary Noice coming from a corner ask him to come towards him. He steadily moves towards him but when he reaches" << endl
 								<< "Informer: Saviour! Saviour!" << endl
@@ -292,23 +243,11 @@ int main()
 								//Fight with the gurads
 								for (int i = 1; i <= 2; i++)
 								{
-									int characterattack = 0, creature_attack = 0;
-									cout << creature[0].name << i << endl;
-									creature[0].health = 100;
-									do {
-										creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-										characterattack = character_attack(25, creature_attack, 0);
-										if (character.health < 1)
-										{
-											cout << "Game Over";
-											goto loop;
-										}
-									} while (creature[0].health > 0 && character.health > 0);
-									character.exp += 10;
-									if (character.exp >= 50)
+									bool flag;
+									flag = battle_system(1);
+									if (flag == false)
 									{
-										character.level++;
-										character.exp - 50;
+										goto loop;
 									}
 								}
 								cout << character.name << " successfully defends their attacks and destroys them but just when they got finished asked them about the pathway of the market." << endl;
@@ -346,7 +285,7 @@ int main()
 													goto Gail;//goto arrest in path 2
 												}
 												do {
-													creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
+													creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
 													characterattack = character_attack(25, creature_attack, 0);
 													if (character.health < 1)
 													{
@@ -408,24 +347,11 @@ int main()
 										{
 											cout << "Here Frostbite Yeti comes into anger and attacks the player, the player dodges the attack, and the fight begins." << endl;
 											//Frostbite yeti Fight
-											int characterattack = 0, creature_attack = 0;
-											cout << creature[1].name << endl;
-											do {
-												int attackchoice;
-												attackchoice = attack_choice();
-												creature_attack = mythical_creature_attack(creature[1].attack[attackchoice], characterattack, 1);
-												characterattack = character_attack(25, creature_attack, 1);
-												if (character.health < 1)
-												{
-													cout << "Game Over";
-													goto loop;
-												}
-											} while (creature[1].health > 0 && character.health > 0);
-											character.exp += 10;
-											if (character.exp >= 50)
+											bool flag;
+											flag = battle_system(1);
+											if (flag == false)
 											{
-												character.level++;
-												character.exp - 50;
+												goto loop;
 											}
 											//Fight Ends
 											cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
@@ -445,24 +371,11 @@ int main()
 											cout << creature[3].name << ": This was the man whom everyone feared (with a scary laugh to the saviour)."<<endl
 												<< character.name<<" gets angry, stood up and ran for the fight.";
 											//Billzard Fight
-											int characterattack = 0, creature_attack = 0;
-											cout << creature[2].name << endl;
-											do {
-												int attackchoice;
-												attackchoice = attack_choice();
-												creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], characterattack, 2);
-												characterattack = character_attack(25, creature_attack, 2);
-												if (character.health < 1)
-												{
-													cout << "Game Over";
-													goto loop;
-												}
-											} while (creature[2].health > 0 && character.health > 0);
-											character.exp += 10;
-											if (character.exp >= 50)
+											bool flag;
+											flag = battle_system(1);
+											if (flag == false)
 											{
-												character.level++;
-												character.exp - 50;
+												goto loop;
 											}
 											//Billzard Fight Ends and drops inventory
 										}
@@ -488,24 +401,11 @@ int main()
 								//Quest 8: Kill Snow Shuriken Ninja
 								{
 									//Fight with SNoe Shuriken Ninja
-									int characterattack = 0, creature_attack = 0;
-									cout << creature[3].name << endl;
-									do {
-										int attackchoice;
-										attackchoice = attack_choice();
-										creature_attack = mythical_creature_attack(creature[3].attack[attackchoice], characterattack, 3);
-										characterattack = character_attack(25, creature_attack, 3);
-										if (character.health < 1)
-										{
-											cout << "Game Over";
-											goto loop;
-										}
-									} while (creature[3].health > 0 && character.health > 0);
-									character.exp += 10;
-									if (character.exp >= 50)
+									bool flag;
+									flag = battle_system(1);
+									if (flag == false)
 									{
-										character.level++;
-										character.exp - 50;
+										goto loop;
 									}
 									//Fight ends
 									cout << character.name << " killed " << creature[3].name << "But the informer was hit and due to his hit, he was getting poisoned and was killed gradually." << endl
@@ -551,29 +451,16 @@ int main()
 											<<"Snow Shuriken Ninja get in anger and starts!"<<endl;
 										//Fight with Snow Shuriken Ninja
 										{
-											int characterattack = 0, creature_attack = 0;
-											cout << creature[3].name << endl;
-											do {
-												int attackchoice;
-												attackchoice = attack_choice();
-												creature_attack = mythical_creature_attack(creature[3].attack[attackchoice], characterattack, 3);
-												characterattack = character_attack(25, creature_attack, 3);
-												if (character.health < 1)
-												{
-													cout << "Game Over";
-													goto loop;
-												}
-											} while (creature[3].health > 0 && character.health > 0);
-											character.exp += 10;
-											if (character.exp >= 50)
+											bool flag;
+											flag = battle_system(1);
+											if (flag == false)
 											{
-												character.level++;
-												character.exp - 50;
+												goto loop;
 											}
 										}
 										//Fight ends
 										//Inventory Drop
-cout << "After the Snow Shuriken Ninja is killed, the informer manages to open the caves mouth and both of them get out." << endl;
+										cout << "After the Snow Shuriken Ninja is killed, the informer manages to open the caves mouth and both of them get out." << endl;
 									}
 									//Quest 10 Ends
 
@@ -595,24 +482,11 @@ cout << "After the Snow Shuriken Ninja is killed, the informer manages to open t
 											<< "In order to save himself and to take the revenge, he have to take a fight.";
 										//Quest 12: Kill The Frostbite Yeti  
 										{
-											int characterattack = 0, creature_attack = 0;
-											cout << creature[1].name << endl;
-											do {
-												int attackchoice;
-												attackchoice = attack_choice();
-												creature_attack = mythical_creature_attack(creature[1].attack[attackchoice], characterattack, 1);
-												characterattack = character_attack(25, creature_attack, 1);
-												if (character.health < 1)
-												{
-													cout << "Game Over";
-													goto loop;
-												}
-											} while (creature[1].health > 0 && character.health > 0);
-											character.exp += 10;
-											if (character.exp >= 50)
+											bool flag;
+											flag = battle_system(1);
+											if (flag == false)
 											{
-												character.level++;
-												character.exp - 50;
+												goto loop;
 											}
 											cout << character.name << " killed Frostbite Yeti but he was confused why everyone is calling him a saviour." << endl;
 										}
@@ -642,7 +516,7 @@ cout << "After the Snow Shuriken Ninja is killed, the informer manages to open t
 												informer_output++;
 												int attackchoice;
 												attackchoice = attack_choice();
-												creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], characterattack, 2);
+												creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], 2);
 												characterattack = character_attack(25, creature_attack, 2);
 												if (informer_output == 5)
 												{
@@ -722,30 +596,11 @@ cout << "After the Snow Shuriken Ninja is killed, the informer manages to open t
 								cout << "And fight starts" << endl;
 								//Vanguard Fight Starts
 								{
-									int characterattack = 0, creature_attack = 0, informer_output = 0;
-									cout << creature[2].name << endl;
-									do {
-										informer_output++;
-										int attackchoice;
-										attackchoice = attack_choice();
-										creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], characterattack, 2);
-										characterattack = character_attack(25, creature_attack, 2);
-										if (informer_output == 5)
-										{
-											cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
-												<< "and now " << character.name << " fights with more dedication" << endl;
-										}
-										if (character.health < 1)
-										{
-											cout << "Game Over";
-											goto loop;
-										}
-									} while (creature[2].health > 0 && character.health > 0);
-									character.exp += 10;
-									if (character.exp >= 50)
+									bool flag;
+									flag = battle_system(1);
+									if (flag == false)
 									{
-										character.level++;
-										character.exp - 50;
+										goto loop;
 									}
 								}
 								//Vanguard Fight ends
@@ -771,23 +626,11 @@ cout << "After the Snow Shuriken Ninja is killed, the informer manages to open t
 								//3 attack system Remaining
 								for (int i = 1; i <= 8; i++)
 								{
-									int characterattack = 0, creature_attack = 0;
-									cout << "Guard" << i << endl;
-									creature[0].health = 100;
-									do {
-										creature_attack = mythical_creature_attack(creature[0].attack[0], characterattack, 0);
-										characterattack = character_attack(25, creature_attack, 0);
-										if (character.health < 1)
-										{
-											cout << "Game Over";
-											goto loop;
-										}
-									} while (creature[0].health > 0 && character.health > 0);
-									character.exp += 10;
-									if (character.exp >= 50)
+									bool flag;
+									flag = battle_system(1);
+									if (flag == false)
 									{
-										character.level++;
-										character.exp - 50;
+										goto loop;
 									}
 								}
 								system("pause");
@@ -885,7 +728,7 @@ void character_creation()
 
 //Battle System
 //Creatures Attacks
-int mythical_creature_attack(int creature_attack_level, int characterattack, int creature_number)
+int mythical_creature_attack(int creature_attack_level, int creature_number)
 {
 
 	cout << "\nHealth: " << character.health << endl;
@@ -942,4 +785,30 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 			cout << "Invalid input " << endl;
 		}
 	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
+}
+
+bool battle_system(int creaturenumber)
+{
+	
+	
+	cout << creature[creaturenumber].name << endl;
+		int characterattack = 0, creature_attack = 0;
+		bool flag = false;
+		cout << "Guard" << creaturenumber << endl;
+		do {
+			creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
+			characterattack = character_attack(25, creature_attack, 0);
+			if (character.health < 1)
+			{
+				cout << "Game Over";
+				flag = true;
+				return flag;
+			}
+		} while (creature[0].health > 0 && character.health > 0);
+		character.exp += 10;
+		if (character.exp >= 50)
+		{
+			character.level++;
+			character.exp - 50;
+		}
 }
