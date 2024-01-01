@@ -1,5 +1,4 @@
 #include<iostream>
-#include<string_view>
 #include<time.h>
 #include<string>
 
@@ -50,7 +49,8 @@ int choice_quest_difficulty(int creature_number);
 void creature_initialization();
 void quest_initialization_without_fight();
 void quest_battle_initialization();
-inline int king_fight();
+inline int king_battle();
+inline int character_attack_King(int character_attack_level, int creatures_attack, int creature_health);
 
 //Main
 int main()
@@ -193,7 +193,7 @@ int main()
 								}
 							} while (entrancechoice != 'a' && entrancechoice != 'b' && entrancechoice != 'c');
 							
-							cout<<"Quest 1 End"
+							cout << "Quest 1 End" << endl;
 						}
 						//End of Quest 1
 
@@ -238,7 +238,7 @@ int main()
 					//End of CHapter 1
 
 					//CHAPTER 2: Infiltrate the Market
-					cout << chaoter.name[1] << endl;
+					cout << chapter.name[1] << endl;
 					char chap2_st_choice;
 					do {
 						cout << character.name << " now had gathered the information required and fixed his path to the market he started moving towards the market but on the way, he encountered multiple ways to reach the market. " << endl
@@ -249,7 +249,7 @@ int main()
 
 						switch (chap2_st_choice)
 						{
-							//Path 1
+						//Path 1
 						case'A':
 						case'a':
 						{
@@ -480,7 +480,7 @@ int main()
 							//Chapter 2 Ends
 
 							//Chapter 3: The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
-							cout << chapter->name[2] << endl;
+							cout << chapter.name[2] << endl;
 							{
 								cout << character.name << " followed the map but in the middle of the map he was following he got attacked by first mythical creature's boss Snow Shuriken Ninja. " << endl << endl
 									<< "He took " << character.name << " to his cave on the mountain top. When Snow Shuriken Ninja attack he got unconscious." << endl;
@@ -580,7 +580,7 @@ int main()
 									{
 										int characterattack = 0, creature_attack = 0, informer_output = 0, health = creature[2].health,int difficulty;
 										cout << creature[2].name << endl;
-										difficulty = choice_quest_difficulty();
+										difficulty = choice_quest_difficulty(1);
 										do {
 											informer_output++;
 											creature_attack = mythical_creature_attack(creature[2].attack[difficulty], 2);
@@ -714,7 +714,7 @@ int main()
 							system("pause");
 
 							//Quest 17: The final battle with king, giants forestbane and mythical king story
-							cout << < quest_without_fight[8].name << endl;
+							cout << quest_without_fight[8].name << endl;
 							{
 								//3 attack system Remaining
 								int difficulty;
@@ -746,10 +746,9 @@ int main()
 								cout << king.name << endl;
 								int characterattack = 0, creature_attack = 0;
 								bool flag = false;
-								cout << creature[creaturenumber].name << " " << guard_number << endl;
 								do {
-									creature_attack = king_fight();
-									characterattack = character_attack(25, creature_attack, creaturenumber, health);
+									creature_attack = king_battle();
+									characterattack = character_attack_King(25, creature_attack, health);
 									if (character.health < 1)
 									{
 										cout << "Game Over";
@@ -772,7 +771,7 @@ int main()
 							//Quest 17 Ends
 
 						}
-						cout<<"Chapter 5 End"<<endl
+						cout << "Chapter 5 End" << endl;
 						//Chapter 5 Ends
 					}while (chap2_st_choice != 'A' && chap2_st_choice != 'a' && chap2_st_choice != 'B' && chap2_st_choice != 'b');
 				}
@@ -868,7 +867,7 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 	string attack_choice;//string
 	do {
 
-		cout << "\nCreature Health" << creature[creature_number].health << endl;
+		cout << "\nCreature Health: " << creature[creature_number].health << endl;
 		cout << "Attack Options: " << endl
 			<< "a) Attack" << endl
 			<< "b) Defend" << endl
@@ -903,6 +902,47 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
 }
 //Main battle function
+
+inline int character_attack_King(int character_attack_level, int creatures_attack, int creature_health)
+{
+	string attack_choice;//string
+	do {
+
+		cout << "\nCreature Health: " << king.health << endl;
+		cout << "Attack Options: " << endl
+			<< "a) Attack" << endl
+			<< "b) Defend" << endl
+			<< "c) Healing" << endl
+			<< "Choice: ";
+		cin >> attack_choice;
+		if (attack_choice == "a" || attack_choice == "A")
+		{
+			creature_health = creature_health - creatures_attack;
+			int attack;
+			srand(time(0));
+			attack = rand() % character_attack_level;
+			cout << "Attack: " << attack << endl;
+			king.health = king.health - attack;
+			return attack;
+		}
+		else if (attack_choice == "b" || attack_choice == "B")
+		{
+			cout << "Defended: " << creatures_attack << endl;
+		}
+		else if (attack_choice == "c" || attack_choice == "C")
+		{
+			character.health = character.health + 40;
+			character.health = character.health - creatures_attack;
+			if (character.health > 400)
+				character.health = 400;
+		}
+		else
+		{
+			cout << "Invalid input " << endl;
+		}
+	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
+}
+
 bool battle_system(int creaturenumber,int guard_number, int difficulty)
 {	
 	int health=creature[creaturenumber].health;
@@ -1053,12 +1093,12 @@ void creature_initialization()
 	}
 }
 
-inline int king_fight()
+inline int king_battle()
 {
 	cout << "Character Health: " << character.health;
 	int attack_choice;
 	srand(time(0));
-	attack_choice = rand() % attack;
+	attack_choice = rand() % 4;
 	cout << attack_choice << endl;
 
 	if (attack_choice == 0)
