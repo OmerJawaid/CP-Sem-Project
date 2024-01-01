@@ -1,6 +1,7 @@
 #include<iostream>
-#include<string>
+#include<string_view>
 #include<time.h>
+#include<string>
 
 //Styling
 #define UNDERLINE "\033[4m"
@@ -11,11 +12,9 @@
 
 using namespace std;
 
-//structure for character creation
-//Quest
 struct {
-	string name;
-}chapter[4];
+	string name[5];
+}chapter;
 struct {
 	string name, catagory;
 	int health = 400, exp = 0, level = 1, attack = 25;
@@ -28,19 +27,23 @@ struct {
 
 struct {
 	string name;
-	string difficulty[2];
-	int attack_level[2];
-}quest[16];
+}quest_without_fight[9];
+
+struct {
+	string name;
+	string difficulty[3];
+	int attack_level[3];
+}quest_battle[5];
 
 void display_character_info();
 void character_creation();
 inline int mythical_creature_attack(int attack_level, int characternumber);
-inline int character_attack(int character_attack_level, int creatures_attack, int creature_number);
-int attack_choice();
-bool battle_system(int creaturenumber, int guard_number, int attack_number);
-int quest_difficulty();
-void quest_initialization();
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int creature_health);
+bool battle_system(int creaturenumber, int guard_number, int difficulty);
+int choice_quest_difficulty(int creature_number);
 void creature_initialization();
+void quest_initialization_without_fight();
+void quest_battle_initialization();
 
 //Main
 int main()
@@ -58,19 +61,34 @@ int main()
 				cin >> choice;
 				if (choice == "a")
 				{
-					quest_initialization();
+					quest_battle_initialization();
 					creature_initialization();
+					quest_initialization_without_fight();
+					
+					//Chapters
+					{
+						chapter.name[0] = "Chapter 1: Paths to Eldoria";
+						chapter.name[1] = "Chapter 2: Infiltrate the Market ";
+						chapter.name[2] = "Chapter 3: The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja ";
+						chapter.name[3] = "Chapter 4: Vanguard's Stand ";
+						chapter.name[4] = "Chapter 5: The last Act";
+					}
+					
 					//Storyline
 					cout << "On a calm winter day, Eldoria Kingdom got hit by a surprise snowstorm. Everything turned white as snow covered the kingdom. But then, weird creatures from the nearby jungle showed up and attacked Eldoria. They took the people hostage and took control of the kingdom." << endl;
 					system("pause");
 					cout << "There was a small village nestled beside Eldoria, There were three renowned warriors known for their exceptional fighting skills lived in that village. When they came to know that Eldoria is being attacked by some mythical creatures they decided to help the Eldoria kingdom and set them free from the hands of powerful magical mythical creatures" << endl;
+					
 					//Character Creation with its verification
 					string choice_creation;
 					do {
+						
 						//Character creation
 						character_creation();
+						
 						//Character info
 						display_character_info();
+						
 						cout << "Is the above information correct?(Y/N)";
 						cin >> choice_creation;
 						if (choice_creation != "N" && choice_creation != "n" && choice_creation != "Y" && choice_creation != "y")
@@ -79,20 +97,22 @@ int main()
 							continue;
 						}
 					} while (choice_creation == "N" || choice_creation == "n");
-					//CHAPTER 1: Paths to Eldoria
+					
+					//CHAPTER 1
+					cout << chapter.name[0]<<endl;
 					{
-						//Contiune the story
 						{
 							char entrancechoice;
 							cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate." << endl;
-							//Quest 1
+							
+							//Quest1
+							cout << quest_without_fight[0].name<<endl;
 							do {
-								cout << "\ta) The first option caught " << character.name << " eye – The Main Gate.(Hard)" << endl
-									<< "\tb) Turning his attention to the second path, " << character.name << " discovered a watchtower (Medium)" << endl
-									<< "\tc) He gaze then shifted to the third option – a tower on the opposite side (Easy)" << endl
+								cout << "\ta) The first option caught " << character.name << " eye – The Main Gate. "<<quest_battle[0].difficulty[2] << endl
+									<< "\tb) Turning his attention to the second path, " << character.name << " discovered a watchtower. "<<quest_battle[0].difficulty[1] << endl
+									<< "\tc) He gaze then shifted to the third option – a tower on the opposite side. "<< quest_battle[0].difficulty[0] << endl
 									<< "Choose your path: ";
 								cin >> entrancechoice;
-								entrancechoice = tolower(entrancechoice);
 								//Path 1
 								switch (entrancechoice)
 								{
@@ -105,11 +125,12 @@ int main()
 										<< character.name << ": Lets face the circumstances." << endl;
 									system("pause");
 									//Battle with all 5 guards
-
+									int difficulty;
+									difficulty = choice_quest_difficulty(0);
 									for (int i = 1; i <= 5; i++)
 									{
 										bool flag = false;
-										flag = battle_system(0, i);
+										flag = battle_system(0, i, difficulty);
 										if (flag == true)
 										{
 											goto loop;
@@ -124,10 +145,12 @@ int main()
 									cout << "He came out of the bushes and moved slowly towards the watchtower of the kingdom." << endl;
 									system("pause");
 									cout << "There were 3 guards guarding the watchtower. The players check his inventory, he gets a rope out of his inventory and climbs the watch tower. He gets on top of the watchtower and pulls out one guard. " << endl;
+									int difficulty;
+									difficulty = choice_quest_difficulty(0);
 									for (int i = 1; i <= 2; i++)
 									{
 										bool flag = false;
-										flag = battle_system(0, i);
+										flag = battle_system(0, i,difficulty);
 										if (flag == true)
 										{
 											goto loop;
@@ -142,8 +165,10 @@ int main()
 									cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom.\nThere was 1 guard guarding the watchtower." << endl;
 									system("pause");
 									cout << "The player took the rope out of his inventory and climbed the watchtower. The guard watched him and started attacking" << endl;
+									int difficulty;
+									difficulty = choice_quest_difficulty(0);
 									bool flag = false;
-									flag = battle_system(0, 1);
+									flag = battle_system(0, 1,difficulty);
 									if (flag == true)
 									{
 										goto loop;
@@ -166,10 +191,13 @@ int main()
 							cout << character.name << "Moves to the kingdom second gate while stealth and saving himself from other gueard. \nHe opens the gate and suddenly he sees guards standing and now he had to take the fight." << endl
 								<< creature[0].name << ": Who are you? How did you get in?" << endl
 								<< "Another " << creature[0].name << ": He is an introdure kill him!" << endl;
+							
+							int difficulty;
+							difficulty = choice_quest_difficulty(0);
 							for (int i = 1; i <= 6; i++)
 							{
 								bool flag = false;
-								flag = battle_system(0, i);
+								flag = battle_system(0, i,difficulty);
 								if (flag == true)
 								{
 									goto loop;
@@ -212,22 +240,26 @@ int main()
 								<< creature[0].name << ": Hello sir I am talking to you." << endl;
 
 							//Fight with the gurads
+							int difficulty;
+							difficulty = choice_quest_difficulty(0);
 							for (int i = 1; i <= 2; i++)
 							{
 								bool flag = false;
-								flag = battle_system(0, i);
+								flag = battle_system(0, i,difficulty);
 								if (flag == true)
 								{
 									goto loop;
 								}
 							}
 							cout << character.name << " successfully defends their attacks and destroys them but just when they got finished asked them about the pathway of the market." << endl;
+						
 							//Quest 3: Go to the business market for the information and get out 
 							{
 								cout << "The player goes to the business market while the guards watch him going in. In the business market the player gets a map of the Eldoria kingdom where the villagers were captured. \nWhen the player was coming out of the business market he was surrounded by the guards. " << endl;
 								cout << creature[0].name << ": You are surrounded! Put your weapons down.";
 							}
 							//End of quest 3
+						
 							//Quest 4: Embark Quest: Go to the villagers
 							{
 								string quest4_path_choice;
@@ -246,7 +278,8 @@ int main()
 										//Fight with the guards and arrest remaining
 										for (int i = 1; i <= 13; i++)
 										{
-											int characterattack = 0, creature_attack = 0;
+
+											int characterattack = 0, creature_attack = 0, health = creature[0].health;
 											cout << creature[0].name << i << endl;
 											creature[0].health = 100;
 											if (character.health < 50 / 100 * 400)
@@ -257,7 +290,7 @@ int main()
 											}
 											do {
 												creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
-												characterattack = character_attack(25, creature_attack, 0);
+												characterattack = character_attack(25, creature_attack, 0,health);
 												if (character.health < 1)
 												{
 													cout << "Game Over";
@@ -318,8 +351,10 @@ int main()
 								{
 									cout << "Here Frostbite Yeti comes into anger and attacks the player, the player dodges the attack, and the fight begins." << endl;
 									//Frostbite yeti Fight
+									int difficulty;
+									difficulty = choice_quest_difficulty(0);
 									bool flag = false;
-									flag = battle_system(1, 0);
+									flag = battle_system(1, 0,difficulty);
 									if (flag == true)
 									{
 										goto loop;
@@ -342,8 +377,10 @@ int main()
 									cout << creature[3].name << ": This was the man whom everyone feared (with a scary laugh to the saviour)." << endl
 										<< character.name << " gets angry, stood up and ran for the fight.";
 									//Billzard Fight
+									int difficulty;
+									difficulty = choice_quest_difficulty(0);
 									bool flag = false;
-									flag = battle_system(2, 0);
+									flag = battle_system(2, 0,difficulty);
 									if (flag == true)
 									{
 										goto loop;
@@ -372,8 +409,10 @@ int main()
 							//Quest 8: Kill Snow Shuriken Ninja
 							{
 								//Fight with SNoe Shuriken Ninja
+								int difficulty;
+								difficulty = choice_quest_difficulty(0);
 								bool flag = false;
-								flag = battle_system(3, 0);
+								flag = battle_system(3, 0,difficulty);
 								if (flag == true)
 								{
 									goto loop;
@@ -424,8 +463,10 @@ int main()
 										<< "Snow Shuriken Ninja get in anger and starts!" << endl;
 									//Fight with Snow Shuriken Ninja
 									{
+										int difficulty;
+										difficulty = choice_quest_difficulty(0);
 										bool flag = false;
-										flag = battle_system(3, 0);
+										flag = battle_system(3, 0,difficulty);
 										if (flag == true)
 										{
 											goto loop;
@@ -455,8 +496,10 @@ int main()
 										<< "In order to save himself and to take the revenge, he have to take a fight.";
 									//Quest 12: Kill The Frostbite Yeti  
 									{
+										int difficulty;
+										difficulty = choice_quest_difficulty(0);
 										bool flag = false;
-										flag = battle_system(1, 0);
+										flag = battle_system(1, 0,difficulty);
 										if (flag == true)
 										{
 											goto loop;
@@ -483,14 +526,15 @@ int main()
 								{
 									//Fight with the Billzard Golem
 									{
-										int characterattack = 0, creature_attack = 0, informer_output = 0;
+										int ;
+										int characterattack = 0, creature_attack = 0, informer_output = 0, health = creature[2].health;
 										cout << creature[2].name << endl;
 										do {
 											informer_output++;
 											int attackchoice;
 											attackchoice = attack_choice();
 											creature_attack = mythical_creature_attack(creature[2].attack[attackchoice], 2);
-											characterattack = character_attack(25, creature_attack, 2);
+											characterattack = character_attack(25, creature_attack, 2,health);
 											if (informer_output == 5)
 											{
 												cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
@@ -569,8 +613,10 @@ int main()
 								cout << "And fight starts" << endl;
 								//Vanguard Fight Starts
 								{
+									int difficulty;
+									difficulty = choice_quest_difficulty(0);
 									bool flag = false;
-									flag = battle_system(4, 0);
+									flag = battle_system(4, 0,difficulty);
 									if (flag == true)
 									{
 										goto loop;
@@ -597,10 +643,12 @@ int main()
 							//Quest 17: The final battle with king, giants forestbane and mythical king story
 							{
 								//3 attack system Remaining
+								int difficulty;
+								difficulty = choice_quest_difficulty(0);
 								for (int i = 1; i <= 8; i++)
 								{
 									bool flag = false;
-									flag = battle_system(0, i);
+									flag = battle_system(0, i,difficulty);
 									if (flag == true)
 									{
 										goto loop;
@@ -712,16 +760,8 @@ int mythical_creature_attack(int creature_attack_level, int creature_number)
 	cout << creature[creature_number].name << ": " << attack << endl;
 	return attack;
 }
-//ATTACK CHOICES FOR BOSSES
-int attack_choice()
-{
-	int attack_number;
-	srand(time(0));
-	attack_number = rand() % 3;
-	return attack_number;
-}
 //Character Attacking
-inline int character_attack(int character_attack_level, int creatures_attack, int creature_number)
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int creature_health)
 {
 	string attack_choice;//string
 	do {
@@ -735,7 +775,7 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 		cin >> attack_choice;
 		if (attack_choice == "a" || attack_choice == "A")
 		{
-			character.health = character.health - creatures_attack;
+			creature_health = creature_health - creatures_attack;
 			int attack;
 			srand(time(0));
 			attack = rand() % character_attack_level;
@@ -761,16 +801,16 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
 }
 //Main battle function
-bool battle_system(int creaturenumber,int guard_number, int attack_number)
+bool battle_system(int creaturenumber,int guard_number, int difficulty)
 {	
-	creature[0].health = 100;
+	int health=creature[creaturenumber].health;
 	cout << creature[creaturenumber].name << endl;
 		int characterattack = 0, creature_attack = 0,i=1;
 		bool flag = false;
 		cout << creature[creaturenumber].name << " "<< guard_number<< endl;
 		do {
-			creature_attack = mythical_creature_attack(creature[creaturenumber].attack[creaturenumber], creaturenumber);
-			characterattack = character_attack(25, creature_attack, creaturenumber);
+			creature_attack = mythical_creature_attack(creature[creaturenumber].attack[difficulty], creaturenumber);
+			characterattack = character_attack(25, creature_attack, creaturenumber,health);
 			if (character.health < 1)
 			{
 				cout << "Game Over";
@@ -790,103 +830,86 @@ bool battle_system(int creaturenumber,int guard_number, int attack_number)
 		return flag;
 }
 
-int quest_difficulty()
+int choice_quest_difficulty(int creature_number)
 {
-	int choice,attack_level;
+	int choice;
 	string difficulty_level;
 	do {
 		cout << "How hard would you like to fight: " << endl
-			<< "\t1) " << quest->difficulty[0] << endl
-			<< "\t2) " << quest->difficulty[1]<< endl
-			<< "\t3) " << quest->difficulty[2] << endl
+			<< "\t1) " << quest_battle[creature_number].difficulty[0] << endl
+			<< "\t2) " << quest_battle[creature_number].difficulty[1]<< endl
+			<< "\t3) " << quest_battle[creature_number].difficulty[2] << endl
 			<< "Enter your choice: " << endl;
 		cin >> choice;
-			if (choice != 1 && choice != 2 && choice != 3)
+		if (choice != 1 && choice != 2 && choice != 3)
 				cout << "You Entered Wrong Input. Try Again!"<<endl;
 	} while (choice != 1 && choice != 2 && choice != 3);
-	choice--;
 	switch (choice)
 	{
-		case 1:
+	case 1:
 		{
+			cout << "Easy Selected"<<endl;
 			return choice;
 		}
-		case 2:
+	case 2:
 		{
+			cout << "Medium Selected" << endl;
 			return choice;
 		}
-		case 3:
+	case 3:
 		{
+			cout << "Hard Selected" << endl;
 			return choice;
 		}
+		default:
+			cout << "Try Again!";
 	}
 }
 
-void quest_initialization()
+void quest_battle_initialization()
 {
 	{
-		quest[0].name = "Find a way to Enter the Kingdom";
-		quest[0].difficulty[0] = "Easy";
-		quest[0].difficulty[1] = "Medium";
-		quest[0].difficulty[2] = "Hard";
-	}
-	quest[1].name = "Meet the Informer.";
-	quest[2].name = "Go to the business market for the information and get out.";
-	{
-		quest[3].name = "Find the villagers";
-		quest[3].difficulty[0] = "Eaay";
-		quest[3].difficulty[1] = "Hard";
-	}
-	quest[4].name = "Follow the Informer";
-	{
-		quest[5].name = "Kill Frostbite Yeti";
-		quest[5].difficulty[0] = "Easy";
-		quest[5].difficulty[1] = "Medium";
-		quest[5].difficulty[2] = "Hard";
+		quest_battle[0].name = "Kill Frostbite Yeti";
+		quest_battle[0].difficulty[0] = "Easy";
+		quest_battle[0].difficulty[1] = "Medium";
+		quest_battle[0].difficulty[2] = "Hard";
 	}
 	{
-		quest[6].name = "Kill Bilzzard Golem";
-		quest[6].difficulty[0] = "Easy";
-		quest[6].difficulty[1] = "Medium";
-		quest[6].difficulty[2] = "Hard";
+		quest_battle[1].name = "Kill Bilzzard Golem";
+		quest_battle[1].difficulty[0] = "Easy";
+		quest_battle[1].difficulty[1] = "Medium";
+		quest_battle[1].difficulty[2] = "Hard";
 	}
 	{
-		quest[7].name = "Kill Snow Shuriken Ninja";
-		quest[7].difficulty[0] = "Easy";
-		quest[7].difficulty[1] = "Medium";
-		quest[7].difficulty[2] = "Hard";
-
-	}
-	quest[8].name = "Get out of the Cave.";
-	{
-		quest[9].name = "Kill the Snow Shuriken Ninja";
-		quest[9].difficulty[0] = "Easy";
-		quest[9].difficulty[1] = "Medium";
-		quest[9].difficulty[2] = "Hard";
-	}
-	quest[10].name = "Go to the zipline";
-	{
-		quest[11].name = "Kill The Frostbite Yeti";
-		quest[11].difficulty[0] = "Easy";
-		quest[11].difficulty[1] = "Medium";
-		quest[11].difficulty[2] = "Hard";
+		quest_battle[2].name = "Kill Snow Shuriken Ninja";
+		quest_battle[2].difficulty[0] = "Easy";
+		quest_battle[2].difficulty[1] = "Medium";
+		quest_battle[2].difficulty[2] = "Hard";
 	}
 	{
-		quest[12].name = "Kills the Blizzard Golem";
-		quest[12].difficulty[0] = "Easy";
-		quest[12].difficulty[1] = "Medium";
-		quest[12].difficulty[2] = "Hard";
+		quest_battle[3].name = "Kill the Vanguard";
+		quest_battle[3].difficulty[0] = "Easy";
+		quest_battle[3].difficulty[1] = "Medium";
+		quest_battle[3].difficulty[2] = "Hard";
 	}
-	quest[13].name = "Frozen Vanguard’s plan";
-	quest[14].name = "Selection of inventory.";
 	{
-		quest[15].name = "Kill the Vanguard";
-		quest[15].difficulty[0] = "Easy";
-		quest[15].difficulty[1] = "Medium";
-		quest[15].difficulty[2] = "Hard";
+		quest_battle[4].name = "Kill The King";
+		quest_battle[4].difficulty[0] = "Easy";
+		quest_battle[4].difficulty[1] = "Medium";
+		quest_battle[4].difficulty[2] = "Hard";
 	}
-	quest[16].name = "-The final battle with king, giants forestbane and mythical king story ";
-	//Remaining
+}
+void quest_initialization_without_fight()
+{
+	quest_without_fight[0].name = "Find a way to Enter the Kingdom";
+	quest_without_fight[1].name = "Go meet the Informer.";
+	quest_without_fight[2].name = "Go to the business market for the information and get out ";
+	quest_without_fight[3].name = "Go to the villagers ";
+	quest_without_fight[4].name = "Follow the informer";
+	quest_without_fight[5].name = "Get out of the Cave.";
+	quest_without_fight[6].name = "Go to the zipline ";
+	quest_without_fight[7].name = "Leveling up";
+	quest_without_fight[8].name = "-The final battle with king, giants forestbane and mythical king story ";
 }
 
 void creature_initialization()
@@ -901,41 +924,29 @@ void creature_initialization()
 	{
 		creature[1].name = "Frostbite Yeti";
 		creature[1].health = 300;
-		creature[1].attack[0] = 50;
-		creature[1].attack[1] = 75;
-		creature[1].attack[2] = 35;
-		creature[1].combo = 150;
+		creature[1].attack[0] = 30;
+		creature[1].attack[1] = 50;
+		creature[1].attack[2] = 75;
 	}
 	{
 		creature[2].name = "Blizzard Golem";
 		creature[2].health = 250;
-		creature[2].attack[0] = 40;
-		creature[2].attack[1] = 65;
-		creature[2].attack[2] = 30;
-		creature[2].combo = 135;
+		creature[2].attack[0] = 30;
+		creature[2].attack[1] = 40;
+		creature[2].attack[2] = 65;
 	}
 	{
 		creature[3].name = "Snow Shriken Ninja";
 		creature[3].health = 350;
-		creature[3].attack[0] = 60;
-		creature[3].attack[1] = 85;
-		creature[3].attack[2] = 45;
-		creature[3].combo = 160;
+		creature[3].attack[0] = 45;
+		creature[3].attack[1] = 60;
+		creature[3].attack[2] = 85;
 	}
 	{
 		creature[4].name = "Glacius Frostend";
 		creature[4].health = 500;
-		creature[4].attack[0] = 60;
-		creature[4].attack[1] = 85;
-		creature[4].attack[2] = 45;
-		creature[4].combo = 300;
-	}
-	{
-		creature[5].name = "King of Mythical Creatures";
-		creature[5].health = 1000;
-		creature[5].attack[0] = 140;
-		creature[5].attack[1] = 180;
-		creature[5].attack[2] = 200;
-		creature[5].combo = 400;
+		creature[4].attack[0] = 80;
+		creature[4].attack[1] = 90;
+		creature[4].attack[2] = 100;
 	}
 }
