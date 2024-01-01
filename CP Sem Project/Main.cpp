@@ -578,7 +578,7 @@ int main()
 								{
 									//Fight with the Billzard Golem
 									{
-										int characterattack = 0, creature_attack = 0, informer_output = 0, health = creature[2].health,int difficulty;
+										int characterattack = 0, creature_attack = 0, informer_output = 0, health = creature[2].health, difficulty;
 										cout << creature[2].name << endl;
 										difficulty = choice_quest_difficulty(1);
 										do {
