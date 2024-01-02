@@ -784,7 +784,8 @@ void display_character_info()
 		<< "Character Name: " << character.name << endl
 		<< "Character catagory: " << character.catagory << endl
 		<< "Health: " << character.health << endl
-		<< "Experience Points: " << character.exp << endl;
+		<< "Experience Points: " << character.exp << endl
+		<<"Attack: "<<character.attack<<endl;
 }
 
 //Character creation
@@ -966,7 +967,7 @@ bool battle_system(int creaturenumber,int guard_number, int difficulty)
 
 int choice_quest_difficulty(int creature_number)
 {
-	int choice;
+	string choice;
 	string difficulty_level;
 	do {
 		cout << "How hard would you like to fight: " << endl
@@ -975,29 +976,27 @@ int choice_quest_difficulty(int creature_number)
 			<< "\t3) " << quest_battle[creature_number].difficulty[2] << endl
 			<< "Enter your choice: " << endl;
 		cin >> choice;
-		if (choice != 1 && choice != 2 && choice != 3)
+		if (choice != "a" && choice != "A" && choice != "b"&& choice != "B" && choice != "c" && choice != "C")
 				cout << "You Entered Wrong Input. Try Again!"<<endl;
-	} while (choice != 1 && choice != 2 && choice != 3);
-	switch (choice)
+	} while (choice != "a" && choice != "A" && choice != "b" && choice != "B" && choice != "c" && choice != "C");
+	
+	if(choice=="a"|| choice == "A")
 	{
-	case 1:
-		{
 			cout << "Easy Selected"<<endl;
-			return choice;
+			return 0;
 		}
-	case 2:
+	else if (choice == "b" || choice == "B")
 		{
 			cout << "Medium Selected" << endl;
-			return choice;
+			return 1;
 		}
-	case 3:
+	else if (choice == "C" || choice == "c")
 		{
 			cout << "Hard Selected" << endl;
-			return choice;
+			return 2;
 		}
-		default:
+	else
 			cout << "Try Again!";
-	}
 }
 
 void quest_battle_initialization()
