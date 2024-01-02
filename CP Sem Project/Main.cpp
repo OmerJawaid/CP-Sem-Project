@@ -22,12 +22,12 @@ struct {
 
 struct {
 	string name, catagory;
-	int health, exp, level, attack;
+	int health, exp, level, attack,score;
 	}character;
 
 struct {
 	string name;
-	int health, attack[2], combo;
+	int health, attack[3], combo;
 }creature[5];
 
 struct {
@@ -43,14 +43,16 @@ struct {
 void display_character_info();
 void character_creation();
 inline int mythical_creature_attack(int attack_level, int characternumber);
-inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int& creature_health);
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number, int& creature_health, int& total_character_attack);
 bool battle_system(int creaturenumber, int guard_number, int difficulty);
 int choice_quest_difficulty(int creature_number);
 void creature_initialization();
 void quest_initialization_without_fight();
 void quest_battle_initialization();
-inline int king_battle(int character_catagory_number);
+inline int king_battle();
 inline int character_attack_King(int character_attack_level, int creatures_attack);
+void scoring(int totalattack);
+void leveling_up();
 
 //Main
 int main()
@@ -301,7 +303,7 @@ int main()
 										for (int i = 1; i <= 13; i++)
 										{
 
-											int characterattack = 0, creature_attack = 0, health = creature[0].health;
+											int characterattack = 0, creature_attack = 0, health = creature[0].health,total_character_attack=0;
 											cout << creature[0].name << i << endl;
 											creature[0].health = 100;
 											if (character.health < 50 / 100 * 400)
@@ -312,19 +314,16 @@ int main()
 											}
 											do {
 												creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
-												characterattack = character_attack(25, creature_attack, 0,health);
+												characterattack = character_attack(25, creature_attack, 0,health, total_character_attack);
 												if (character.health < 1)
 												{
 													cout << "Game Over";
 													goto loop;
 												}
 											} while (creature[0].health > 0 && character.health > 0);
-											character.exp += 10;
-											if (character.exp >= 50)
-											{
-												character.level++;
-												character.exp - 50;
-											}
+											character.exp += 50;
+											scoring(total_character_attack);
+											leveling_up();
 										}
 										cout << character.name << " escapes and starts to move towards the villagers but in the middle of the pathway."<<endl;
 										cout << UNDERLINE << "HERE FROSTBITE YETI COMES AND TAKES THE PLAYER TO HIS MOUNTAIN USING THE ZIPLINE FROM ELDORIA TO HIS MOUNTAIN." << CLOSEUNDERLINE << endl;
@@ -578,13 +577,13 @@ int main()
 								{
 									//Fight with the Billzard Golem
 									{
-										int characterattack = 0, creature_attack = 0, informer_output = 0, health = creature[2].health, difficulty;
+										int characterattack = 0, creature_attack = 0, informer_output = 0, health = creature[2].health, difficulty, total_character_attack=0;
 										cout << creature[2].name << endl;
 										difficulty = choice_quest_difficulty(1);
 										do {
 											informer_output++;
 											creature_attack = mythical_creature_attack(creature[2].attack[difficulty], 2);
-											characterattack = character_attack(25, creature_attack, 2,health);
+											characterattack = character_attack(25, creature_attack, 2,health, total_character_attack);
 											if (informer_output == 5)
 											{
 												cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
@@ -596,12 +595,9 @@ int main()
 												goto loop;
 											}
 										} while (creature[2].health > 0 && character.health > 0);
-										character.exp += 10;
-										if (character.exp >= 50)
-										{
-											character.level++;
-											character.exp - 50;
-										}
+										character.exp += 50;
+										scoring(total_character_attack);
+										leveling_up();
 										//Billzard Fight Ends and drops inventory
 									}
 									//Fight ends
@@ -627,7 +623,7 @@ int main()
 								<< "A formidable creature with mastery over frost and ice. Glacius Frostend is the chief commander of the Frostbane guards and a key enforcer for the mythical creatures." << endl;
 
 							//Quest 14: Vangurad's plan
-							cout << quest_battle[6].name << endl;
+							cout << quest_without_fight[6].name << endl;
 							{
 								cout << "As " << character.name << " enters the battle. Vanguard deceives him with the aim of weakening him shows his father tide into rope covered with bloods and doing heavy breathes." << endl;
 								cout << character.name << ": Father!!" << endl
@@ -791,7 +787,7 @@ int main()
 }
 
 //Character Information
-void display_character_info(int character_catagory_number)
+void display_character_info()
 {
 	cout << "Character Information" << endl
 		<< "Character Name: " << character.name << endl
@@ -869,7 +865,7 @@ int mythical_creature_attack(int creature_attack_level, int creature_number)
 	return attack;
 }
 //Character Attacking
-inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int &creature_health)
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int &creature_health, int &total_character_attack)
 {
 	string attack_choice;//string
 	do {
@@ -889,6 +885,7 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 			attack = rand() % character_attack_level;
 			cout << "Attack: " << attack << endl;
 			creature_health = creature_health - attack;
+			total_character_attack += attack;
 			return attack;
 		}
 		else if (attack_choice == "b" || attack_choice == "B")
@@ -953,13 +950,13 @@ inline int character_attack_King(int character_attack_level, int creatures_attac
 bool battle_system(int creaturenumber,int guard_number, int difficulty)
 {	
 	int health = creature[creaturenumber].health;
-		int characterattack = 0, creature_attack = 0;
+		int characterattack = 0, creature_attack = 0,total_character_attack=0;
 		bool flag = false;
 		
 		cout << creature[creaturenumber].name << " "<< guard_number<< endl;
 		do {
 			creature_attack = mythical_creature_attack(creature[creaturenumber].attack[difficulty], creaturenumber);
-			characterattack = character_attack(25, creature_attack, creaturenumber,health);
+			characterattack = character_attack(character.attack, creature_attack, creaturenumber,health, total_character_attack);
 			if (character.health < 1)
 			{
 				cout << "Game Over";
@@ -970,12 +967,9 @@ bool battle_system(int creaturenumber,int guard_number, int difficulty)
 				flag = false;
 			}
 		} while (health > 0 && character.health > 0);
-		character.exp += 10;
-		if (character.exp >= 50)
-		{
-			character.level++;
-			character.exp - 50;
-		}
+		character.exp += 50;
+		scoring(total_character_attack);
+		leveling_up();
 		return flag;
 }
 
@@ -1148,4 +1142,37 @@ inline int king_battle()
 		cout << "The combo effect: " << attack_power << endl;
 		return attack_power;
 	}
+}
+
+void scoring(int totalattack)
+{
+	character.score = rand() % totalattack;
+	character.exp = totalattack - character.score;
+}
+
+void leveling_up()
+{
+
+	if (character.exp >= 200)
+	{
+		string choice;
+		do
+		{
+			cout << "Your experience points reaches 50. Do you want to level up(y/n) : ";
+			cin >> choice;
+			if (choice == "y" || choice == "Y")
+			{
+				character.level++;
+				character.health += 100;
+				character.attack += 5;
+				character.exp = character.exp - 50;
+				break;
+			}
+			else if(choice=="n"||choice=="N")
+				break;
+			else
+				cout << "Invalid input Try Again!" << endl;
+		} while (choice != "y" && choice != "Y" && choice != "N" && choice != "n");
+	}
+
 }
