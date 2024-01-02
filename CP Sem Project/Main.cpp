@@ -314,7 +314,7 @@ int main()
 											}
 											do {
 												creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
-												characterattack = character_attack(25, creature_attack, 0,health, total_character_attack);
+												characterattack = character_attack(character.attack, creature_attack, 0,health, total_character_attack);
 												if (character.health < 1)
 												{
 													cout << "Game Over";
@@ -583,7 +583,7 @@ int main()
 										do {
 											informer_output++;
 											creature_attack = mythical_creature_attack(creature[2].attack[difficulty], 2);
-											characterattack = character_attack(25, creature_attack, 2,health, total_character_attack);
+											characterattack = character_attack(character.attack, creature_attack, 2,health, total_character_attack);
 											if (informer_output == 5)
 											{
 												cout << "The Informer tried to help him but due to a massive hit by creature lose his life." << endl
