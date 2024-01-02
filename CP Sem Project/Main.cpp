@@ -43,14 +43,14 @@ struct {
 void display_character_info();
 void character_creation();
 inline int mythical_creature_attack(int attack_level, int characternumber);
-inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int creature_health);
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int& creature_health);
 bool battle_system(int creaturenumber, int guard_number, int difficulty);
 int choice_quest_difficulty(int creature_number);
 void creature_initialization();
 void quest_initialization_without_fight();
 void quest_battle_initialization();
 inline int king_battle();
-inline int character_attack_King(int character_attack_level, int creatures_attack, int creature_health);
+inline int character_attack_King(int character_attack_level, int creatures_attack);
 
 //Main
 int main()
@@ -742,13 +742,12 @@ int main()
 									<< character.name << " become shocked to see such reality and his father dying in front of his eyes he begins to fight with king with the aim to save the kingdom and take revenge of his father." << endl;
 								
 								//King fight
-								int health = king.health = 1000;
 								cout << king.name << endl;
 								int characterattack = 0, creature_attack = 0;
 								bool flag = false;
 								do {
 									creature_attack = king_battle();
-									characterattack = character_attack_King(25, creature_attack, health);
+									characterattack = character_attack_King(25, creature_attack);
 									if (character.health < 1)
 									{
 										cout << "Game Over";
@@ -862,12 +861,12 @@ int mythical_creature_attack(int creature_attack_level, int creature_number)
 	return attack;
 }
 //Character Attacking
-inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int creature_health)
+inline int character_attack(int character_attack_level, int creatures_attack, int creature_number,int &creature_health)
 {
 	string attack_choice;//string
 	do {
 
-		cout << "\nCreature Health: " << creature[creature_number].health << endl;
+		cout << "\nCreature Health: " << creature_health << endl;
 		cout << "Attack Options: " << endl
 			<< "a) Attack" << endl
 			<< "b) Defend" << endl
@@ -876,12 +875,12 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 		cin >> attack_choice;
 		if (attack_choice == "a" || attack_choice == "A")
 		{
-			creature_health = creature_health - creatures_attack;
+			character.health = character.health - creatures_attack;
 			int attack;
 			srand(time(0));
 			attack = rand() % character_attack_level;
 			cout << "Attack: " << attack << endl;
-			creature[creature_number].health = creature[creature_number].health - attack;
+			creature_health = creature_health - attack;
 			return attack;
 		}
 		else if (attack_choice == "b" || attack_choice == "B")
@@ -903,7 +902,7 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 }
 //Main battle function
 
-inline int character_attack_King(int character_attack_level, int creatures_attack, int creature_health)
+inline int character_attack_King(int character_attack_level, int creatures_attack)
 {
 	string attack_choice;//string
 	do {
@@ -917,7 +916,7 @@ inline int character_attack_King(int character_attack_level, int creatures_attac
 		cin >> attack_choice;
 		if (attack_choice == "a" || attack_choice == "A")
 		{
-			creature_health = creature_health - creatures_attack;
+			character.health = character.health - creatures_attack;
 			int attack;
 			srand(time(0));
 			attack = rand() % character_attack_level;
@@ -945,10 +944,10 @@ inline int character_attack_King(int character_attack_level, int creatures_attac
 
 bool battle_system(int creaturenumber,int guard_number, int difficulty)
 {	
-	int health=creature[creaturenumber].health;
-	cout << creature[creaturenumber].name << endl;
-		int characterattack = 0, creature_attack = 0,i=1;
+	int health = creature[creaturenumber].health;
+		int characterattack = 0, creature_attack = 0;
 		bool flag = false;
+		
 		cout << creature[creaturenumber].name << " "<< guard_number<< endl;
 		do {
 			creature_attack = mythical_creature_attack(creature[creaturenumber].attack[difficulty], creaturenumber);
@@ -962,7 +961,7 @@ bool battle_system(int creaturenumber,int guard_number, int difficulty)
 			else {
 				flag = false;
 			}
-		} while (creature[0].health > 0 && character.health > 0);
+		} while (health > 0 && character.health > 0);
 		character.exp += 10;
 		if (character.exp >= 50)
 		{
