@@ -53,6 +53,7 @@ inline int king_battle();
 inline int character_attack_King(int character_attack_level, int creatures_attack);
 void scoring(int totalattack);
 void leveling_up();
+void gameover(string loop_choice);
 
 //Main
 int main()
@@ -143,7 +144,7 @@ int main()
 										flag = battle_system(0, i, difficulty);
 										if (flag == true)
 										{
-											goto loop;
+											gameover(loop_choice);
 										}
 									}
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
@@ -164,7 +165,7 @@ int main()
 										flag = battle_system(0, i,difficulty);
 										if (flag == true)
 										{
-											goto loop;
+											gameover(loop_choice);
 										}
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
@@ -183,7 +184,7 @@ int main()
 									flag = battle_system(0, 1,difficulty);
 									if (flag == true)
 									{
-										goto loop;
+										gameover(loop_choice);
 									}
 									break;
 								}
@@ -216,7 +217,7 @@ int main()
 								flag = battle_system(0, i,difficulty);
 								if (flag == true)
 								{
-									goto loop;
+									gameover(loop_choice);
 								}
 							}
 							//End Fight
@@ -269,7 +270,7 @@ int main()
 								flag = battle_system(0, i,difficulty);
 								if (flag == true)
 								{
-									goto loop;
+									gameover(loop_choice);
 								}
 							}
 							cout << character.name << " successfully defends their attacks and destroys them but just when they got finished asked them about the pathway of the market." << endl;
@@ -318,7 +319,7 @@ int main()
 												if (character.health < 1)
 												{
 													cout << "Game Over";
-													goto loop;
+													gameover(loop_choice);
 												}
 											} while (creature[0].health > 0 && character.health > 0);
 											character.exp += 50;
@@ -386,7 +387,7 @@ int main()
 									flag = battle_system(1, 0,difficulty);
 									if (flag == true)
 									{
-										goto loop;
+										gameover(loop_choice);
 									}
 									//Fight Ends
 									cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
@@ -416,7 +417,7 @@ int main()
 									flag = battle_system(2, 0,difficulty);
 									if (flag == true)
 									{
-										goto loop;
+										gameover(loop_choice);
 									}
 									//Billzard Fight Ends and drops inventory
 								}
@@ -453,7 +454,7 @@ int main()
 								flag = battle_system(3, 0,difficulty);
 								if (flag == true)
 								{
-									goto loop;
+									gameover(loop_choice);
 								}
 								//Fight ends
 								cout << character.name << " killed " << creature[3].name << "But the informer was hit and due to his hit, he was getting poisoned and was killed gradually." << endl
@@ -514,7 +515,7 @@ int main()
 										flag = battle_system(3, 0,difficulty);
 										if (flag == true)
 										{
-											goto loop;
+											gameover(loop_choice);
 										}
 									}
 									//Fight ends
@@ -550,7 +551,7 @@ int main()
 										flag = battle_system(1, 0,difficulty);
 										if (flag == true)
 										{
-											goto loop;
+											gameover(loop_choice);
 										}
 										cout << character.name << " killed Frostbite Yeti but he was confused why everyone is calling him a saviour." << endl;
 									}
@@ -592,7 +593,7 @@ int main()
 											if (character.health < 1)
 											{
 												cout << "Game Over";
-												goto loop;
+												gameover(loop_choice);
 											}
 										} while (creature[2].health > 0 && character.health > 0);
 										character.exp += 50;
@@ -674,7 +675,7 @@ int main()
 									flag = battle_system(4, 0,difficulty);
 									if (flag == true)
 									{
-										goto loop;
+										gameover(loop_choice);
 									}
 								}
 								//Vanguard Fight ends
@@ -721,7 +722,7 @@ int main()
 									flag = battle_system(0, i,difficulty);
 									if (flag == true)
 									{
-										goto loop;
+										gameover(loop_choice);
 									}
 								}
 								system("pause");
@@ -740,17 +741,13 @@ int main()
 								//King fight
 								cout << king.name << endl;
 								int characterattack = 0, creature_attack = 0;
-								bool flag = false;
 								do {
 									creature_attack = king_battle();
 									characterattack = character_attack_King(25, creature_attack);
 									if (character.health < 1)
 									{
 										cout << "Game Over";
-										flag = true;
-									}
-									else {
-										flag = false;
+										gameover(loop_choice);
 									}
 								} while (creature[0].health > 0 && character.health > 0);
 								character.exp += 10;
@@ -776,13 +773,7 @@ int main()
 					cout << "Choose the correct option" << endl;
 			} while (choice != "a" && choice != "b");
 		}
-	loop:
-		do {
-			cout << "Do you want to play again?(Y/N): ";
-			cin >> loop_choice;
-			if (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n")
-				cout << "Choose correct option.";
-		} while (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n");
+
 	} while (loop_choice == "Y" || loop_choice == "y");
 }
 
@@ -1175,4 +1166,16 @@ void leveling_up()
 		} while (choice != "y" && choice != "Y" && choice != "N" && choice != "n");
 	}
 
+}
+
+void gameover(string loop_choice)
+{
+	do {
+		cout << "Do you want to play again?(Y/N): ";
+		cin >> loop_choice;
+		if (loop_choice == "y" || loop_choice == "Y")
+			main();
+		if (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n")
+			cout << "Choose correct option.";
+	} while (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n");
 }
