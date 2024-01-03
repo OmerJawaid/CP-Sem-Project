@@ -46,8 +46,8 @@ struct {
 }Inventory_under_Vanguard;
 
 struct {
-	string name;
-	int number;
+	string name="";
+	int number=0;
 }inventory_storage[30];
 
 void display_character_info();
@@ -65,12 +65,12 @@ void scoring(int totalattack);
 void leveling_up();
 void gameover();
 void inventory_king();
+void inventory_display();
 
 //Main
 int main()
 {
-
-			string choice;
+		string choice;
 			do {
 				//Main Page for start and quit
 				cout << "Welcome to the mythical land of Eldoria" << endl
@@ -153,6 +153,9 @@ int main()
 										{
 											gameover();
 										}
+										inventory_storage[0].name = "Starlight Elixir";
+										inventory_storage[0].number += 10;
+										invnetory_display();
 									}
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
 									break;
@@ -173,6 +176,9 @@ int main()
 										{
 											gameover();
 										}
+										inventory_storage[0].name = "Starlight Elixir";
+										inventory_storage[0].number += 10;
+										invnetory_display();
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
 								}
@@ -190,6 +196,9 @@ int main()
 									{
 										gameover();
 									}
+									inventory_storage[0].name = "Starlight Elixir";
+									inventory_storage[0].number += 10;
+									invnetory_display();
 								}
 								else
 								{
@@ -220,6 +229,9 @@ int main()
 								{
 									gameover();
 								}
+								inventory_storage[0].name = "Starlight Elixir";
+								inventory_storage[0].number += 10;
+								cout << "Inventory: " << endl;
 							}
 							//End Fight
 
@@ -273,6 +285,9 @@ int main()
 								{
 									gameover();
 								}
+								inventory_storage[0].name = "Starlight Elixir";
+								inventory_storage[0].number += 10;
+								invnetory_display();
 							}
 							cout << character.name << " successfully defends their attacks and destroys them but just when they got finished asked them about the pathway of the market." << endl;
 						
@@ -325,6 +340,9 @@ int main()
 											character.exp += 50;
 											scoring(total_character_attack);
 											leveling_up();
+											inventory_storage[0].name = "Starlight Elixir";
+											inventory_storage[0].number += 10;
+											invnetory_display();
 										}
 										cout << character.name << " escapes and starts to move towards the villagers but in the middle of the pathway."<<endl;
 										cout << UNDERLINE << "HERE FROSTBITE YETI COMES AND TAKES THE PLAYER TO HIS MOUNTAIN USING THE ZIPLINE FROM ELDORIA TO HIS MOUNTAIN." << CLOSEUNDERLINE << endl;
@@ -389,6 +407,13 @@ int main()
 									{
 										gameover();
 									}
+									inventory_storage[1].name = "Stormcaller Staff ";
+									inventory_storage[1].number = 1;
+									inventory_storage[2].name = "Nightshade Potion (Invisibility Potion)";
+									inventory_storage[2].number = 3;
+									inventory_storage[3].name = "Phoenix Feather Talisman (Talisman)";
+									inventory_storage[3].number = 1;
+									invnetory_display();
 									//Fight Ends
 									cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
 										<< character.name << ": What is happening here? Who are you and what are you doing here?" << endl
@@ -419,6 +444,13 @@ int main()
 									{
 										gameover();
 									}
+									inventory_storage[4].name = "Frostbane Blade";
+									inventory_storage[4].number = 1;
+									inventory_storage[5].name = "Whispering Dagger";
+									inventory_storage[5].number = 1;
+									inventory_storage[0].name = "Starlight Elixir";
+									inventory_storage[0].number += 40;
+									invnetory_display();
 									//Billzard Fight Ends and drops inventory
 								}
 								//Quest 7 Ends
@@ -456,6 +488,13 @@ int main()
 								{
 									gameover();
 								}
+								inventory_storage[6].name = "Enchanted Grappling Hook (Upgraded)";
+								inventory_storage[6].number = 1;
+								inventory_storage[7].name = "Moonstone Key (Enhanced)";
+								inventory_storage[7].number = 1;
+								inventory_storage[8].name = "Rune-infused Gauntlets (Upgraded)";
+								inventory_storage[8].number = 1;
+								invnetory_display();
 								//Fight ends
 								cout << character.name << " killed " << creature[3].name << "But the informer was hit and due to his hit, he was getting poisoned and was killed gradually." << endl
 									<< "Before he gets kill, he tells the player how to get to the palace. " << endl;
@@ -517,6 +556,13 @@ int main()
 										{
 											gameover();
 										}
+										inventory_storage[6].name = "Enchanted Grappling Hook (Upgraded)";
+										inventory_storage[6].number = 1;
+										inventory_storage[7].name = "Moonstone Key (Enhanced)";
+										inventory_storage[7].number = 1;
+										inventory_storage[8].name = "Rune-infused Gauntlets (Upgraded)";
+										inventory_storage[8].number = 1;
+										invnetory_display();
 									}
 									//Fight ends
 									//Inventory Drop
@@ -554,6 +600,13 @@ int main()
 											gameover();
 										}
 										cout << character.name << " killed Frostbite Yeti but he was confused why everyone is calling him a saviour." << endl;
+										inventory_storage[1].name = "Stormcaller Staff ";
+										inventory_storage[1].number = 1;
+										inventory_storage[2].name = "Nightshade Potion (Invisibility Potion)";
+										inventory_storage[2].number = 3;
+										inventory_storage[3].name = "Phoenix Feather Talisman (Talisman)";
+										inventory_storage[3].number = 1;
+										invnetory_display();
 									}
 									cout << "Quest 12 End" << endl;
 									//Quest 12 Ends
@@ -599,6 +652,13 @@ int main()
 										character.exp += 50;
 										scoring(total_character_attack);
 										leveling_up();
+										inventory_storage[4].name = "Frostbane Blade";
+										inventory_storage[4].number = 1;
+										inventory_storage[5].name = "Whispering Dagger";
+										inventory_storage[5].number = 1;
+										inventory_storage[0].name = "Starlight Elixir";
+										inventory_storage[0].number += 40;
+										invnetory_display();
 										//Billzard Fight Ends and drops inventory
 									}
 									//Fight ends
@@ -679,6 +739,13 @@ int main()
 									{
 										gameover();
 									}
+									inventory_storage[9].name = "Frostwind Amulet (Empowered)";
+									inventory_storage[9].number = 1;
+									inventory_storage[1].name = "Stormcaller Staff (Empowered)";
+									inventory_storage[1].number += 1;
+									inventory_storage[10].name = "Frostbite Arrows (Empowered)";
+									inventory_storage[10].number += 30;
+									invnetory_display();
 								}
 								//Vanguard Fight ends
 								//Inventroy Drops
@@ -1239,4 +1306,11 @@ void inventory_king()
 		else
 			cout << "Wrong Selection Try Again!" << endl;
 	} while (sword_selection == "a" && sword_selection == "A" && sword_selection == "b" && sword_selection == "B" && sword_selection == "c" && sword_selection == "C");
+}
+
+void invnetory_display()
+{
+	cout << "Inventory: " << endl;
+	for (int i = 0; i < 30; i++)
+		cout<<i+1 <<" " << inventory_storage[i].name<< inventory_storage[i].number<<endl;
 }
