@@ -595,7 +595,7 @@ int main()
 												cout << "Game Over";
 												gameover();
 											}
-										} while (creature[2].health > 0 && character.health > 0);
+										} while (health > 0 && character.health > 0);
 										character.exp += 50;
 										scoring(total_character_attack);
 										leveling_up();
