@@ -291,7 +291,7 @@ int main()
 								string quest4_path_choice;
 								do {
 									cout << "HERE " << character.name << " GETS 2 PATHS: " << endl
-										<< "\ta) Fight all 10 Guards and run" << endl
+										<< "\ta) Fight all 13 Guards and run" << endl
 										<< "\tb) Throws his weapon and gets arrested." << endl
 										<< "\t Enter your CHOICE: ";
 									cin >> quest4_path_choice;
@@ -307,7 +307,6 @@ int main()
 
 											int characterattack = 0, creature_attack = 0, health = creature[0].health,total_character_attack=0;
 											cout << creature[0].name << i << endl;
-											creature[0].health = 100;
 											if (character.health < 50 / 100 * 400)
 											{
 												cout << character.name << " GOT ARRESTED!" << endl
@@ -322,7 +321,7 @@ int main()
 													cout << "Game Over";
 													gameover();
 												}
-											} while (creature[0].health > 0 && character.health > 0);
+											} while (health > 0 && character.health > 0);
 											character.exp += 50;
 											scoring(total_character_attack);
 											leveling_up();
