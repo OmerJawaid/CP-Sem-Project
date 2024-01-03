@@ -65,7 +65,7 @@ void scoring(int totalattack);
 void leveling_up();
 void gameover();
 void inventory_king();
-void inventory_display();
+void invnetory_display();
 
 //Main
 int main()
