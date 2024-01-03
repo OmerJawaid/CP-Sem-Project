@@ -96,7 +96,7 @@ int main()
 					//Storyline
 					cout << "On a calm winter day, Eldoria Kingdom got hit by a surprise snowstorm. Everything turned white as snow covered the kingdom. But then, weird creatures from the nearby jungle showed up and attacked Eldoria. They took the people hostage and took control of the kingdom." << endl;
 					system("pause");
-					cout << "There was a small village nestled beside Eldoria, There were three renowned warriors known for their exceptional fighting skills lived in that village. When they came to know that Eldoria is being attacked by some mythical creatures they decided to help the Eldoria kingdom and set them free from the hands of powerful magical mythical creatures" << endl;
+					cout << "There was a small village nestled beside Eldoria, There were three renowned warriors known for their exceptional fighting skills lived in that village. When they came to know that Eldoria is being attacked by some mythical creatures they decided to help the Eldoria kingdom and set them free from the hands of powerful magical mythicalï¿½creatures" << endl;
 					
 					//Character Creation with its verification
 					string choice_creation;
@@ -128,9 +128,9 @@ int main()
 							//Quest1
 							cout <<GREEN_TEXT<< quest_without_fight[0].name<< RESET_COLOR<<endl;
 							do {
-								cout << "\ta) The first option caught " << character.name << " eye – The Main Gate. " << quest_battle[0].difficulty[2] << endl
+								cout << "\ta) The first option caught " << character.name << " eye ï¿½ The Main Gate. " << quest_battle[0].difficulty[2] << endl
 									<< "\tb) Turning his attention to the second path, " << character.name << " discovered a watchtower. " << quest_battle[0].difficulty[1] << endl
-									<< "\tc) He gaze then shifted to the third option – a tower on the opposite side. "<< quest_battle[0].difficulty[0] << endl
+									<< "\tc) He gaze then shifted to the third option ï¿½ a tower on the opposite side. "<< quest_battle[0].difficulty[0] << endl
 									<< "Choose your path: ";
 								cin >> entrancechoice;
 								//Path 1
@@ -157,7 +157,7 @@ int main()
 										inventory_storage[0].number += 10;
 										inventory_display();
 									}
-									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
+									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdomï¿½s first gate" << endl;
 									break;
 								}
 								/*Path 2:*/
@@ -181,7 +181,7 @@ int main()
 										inventory_storage[0].number += 10;
 										inventory_display();
 									}
-									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
+									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdomï¿½s first gate. ";
 								}
 								/*Path 3:*/
 								else if(entrancechoice == "C"|| entrancechoice == "c")
@@ -429,7 +429,7 @@ int main()
 									//Fight Ends
 									cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
 										<< character.name << ": What is happening here? Who are you and what are you doing here?" << endl
-										<< creature[1].name << ": You don’t know anything what is happening here. He will kill you." << endl
+										<< creature[1].name << ": You donï¿½t know anything what is happening here. He will kill you." << endl
 										<< character.name << " wipes his neck off and ";
 									//Inventory drops
 								}
@@ -551,7 +551,7 @@ int main()
 										<< "The informer set him free. " << endl
 										<< "Informer: Follow me." << endl;
 									system("pause");
-									cout << character.name << " and the informer were going out of the cave of the Snow Shuriken Ninja but at the cave’s mouth, he got to know about both of them and he roared. The informer went out of the cave, but the player was stuck in the cave as the mouth got closed by the rocks fallen from the roar." << endl;
+									cout << character.name << " and the informer were going out of the cave of the Snow Shuriken Ninja but at the caveï¿½s mouth, he got to know about both of them and he roared. The informer went out of the cave, but the player was stuck in the cave as the mouth got closed by the rocks fallen from the roar." << endl;
 								}
 								cout << GREEN_TEXT<<"Quest 9 End" <<RESET_COLOR<< endl;
 								//Quest 9 Ends
@@ -728,7 +728,7 @@ int main()
 							//Quest 15: Suit Yourself Up Inventory Remaining
 							cout << GREEN_TEXT<<quest_without_fight[7].name<<RESET_COLOR<<endl;
 							{
-								cout << character.name << " starts running to the inventory room and jumps into it for accessing the room under the kingdom, " << creature[4].name << " follows him but he pulled the lever and blocked the access which gives extra time to access and get the killing weapons to kill the king and the vanguard." << endl
+								cout << character.name << " starts running to the inventory roomï¿½and jumps into it for accessing the room under the kingdom, " << creature[4].name << " follows him but he pulled the lever and blocked the access which gives extra time to access and get the killing weapons to kill the king and the vanguard." << endl
 									<< character.name << " saw a glimpse of inventory packed in an old architecture shinning to the sky. He sees and his eyes glimpses up with a satisfaction felt by wounds and now he opens the inventory it attracts him as it was meant for him" << endl;
 								system("pause");
 								//Here player have to choose his inventory and have craft healings etc
@@ -793,7 +793,7 @@ int main()
 								king.combo = 400;
 							}
 
-							cout << character.name << " runs towards the place." << endl
+							cout << character.name << " runsï¿½towards the place." << endl
 								<< character.name << " sneakily enters the place. Enter the room of throne and followed the path by climbing up which took him to the room of king and successfully found the door where king was." << endl;
 							system("pause");
 
@@ -821,7 +821,7 @@ int main()
 									<< character.name << "'s father was on the ground of the kingdom. His hands were tied up, the king of the mythical creature came, put the sword on his neck and told: " << endl;
 
 								cout << "\n\nBackstory of King" << endl;
-								cout << "Long ago the King had 2 children and the King gave the kingdom to the elder one. The younger prince got jealous and killed his father and ran to the village he took help from the player's father. He enchanted the younger brother, now the mythical creature king, granting him power but sealing his fate. He helped him to form an army but once the player’s father got to know his mind he ran away. \nYou were born with natural magical resistance, inherits the title of the savior. The elder brother, driven by newfound darkness, unwittingly fulfills the prophecy by imprisoning the rightful king. Now, you must unravel the enchantments, break the curse, and confront their own kin to restore Eldoria's rightful ruler and save the kingdom from the grips of dark magic.\n" << endl
+								cout << "Long ago the King had 2 children and the King gave the kingdom to the elder one. The younger prince got jealous and killed his father and ran to the village he took help from the player's father. He enchanted the younger brother, now the mythical creature king, granting him power but sealing his fate. He helped him to form an army but once the playerï¿½s father got to know his mind he ran away. \nYou were born with natural magical resistance, inherits the title of the savior. The elder brother, driven by newfound darkness, unwittingly fulfills the prophecy by imprisoning the rightful king. Now, you must unravel the enchantments, break the curse, and confront their own kin to restore Eldoria's rightful ruler and save the kingdom from the grips of dark magic.\n" << endl
 									<< character.name << "'s Father tells his side of the story about how he can defeat the king of a mythical creature and due to this the king kills the " << character.name << "father" << endl
 									<< character.name << " become shocked to see such reality and his father dying in front of his eyes he begins to fight with king with the aim to save the kingdom and take revenge of his father." << endl;
 								
@@ -841,7 +841,7 @@ int main()
 								scoring(total_character_attack);
 								leveling_up();
 								//Fight Ends
-								cout << character.name << " conquered the battle with his fullest aims and won the battle and bow the king of mythical creature on the foot  and finally ended the oppressed and lustful era of the  mythical king  the player sense the pride of the victory taking revenge of his father and saving the kingdom and raising the pride of village where he belongs to and where his father too.The player finally met with the king and handed his power to him, and the king thanked and gave him some huge rewards as a sign of thankfulness" << endl;
+								cout << character.name << " conquered the battle with his fullest aims and won the battle and bow the king of mythical creature on the footï¿½ and finally ended the oppressed and lustful era of theï¿½ mythical kingï¿½ the player sense the pride of the victory taking revenge of his father and saving the kingdom and raising the pride of village where he belongs to and where his father too.The player finally met with the king and handed his power to him, and the king thanked and gave him some huge rewards as a sign of thankfulness" << endl;
 							}
 							cout <<GREEN_TEXT<< "Quest 17 End"<<RESET_COLOR<<endl;
 							//Quest 17 Ends
@@ -1002,9 +1002,11 @@ bool battle_system(int creaturenumber,int guard_number, int difficulty)
 				flag = false;
 			}
 		} while (health > 0 && character.health > 0);
-		character.exp += 50;
 		scoring(total_character_attack);
+		if(character.exp >=200)
+		{
 		leveling_up();
+		}
 		return flag;
 }
 
@@ -1224,8 +1226,6 @@ void scoring(int totalattack)
 void leveling_up()
 {
 
-	if (character.exp >= 200)
-	{
 		string choice;
 		do
 		{
@@ -1245,8 +1245,6 @@ void leveling_up()
 				cout << "Invalid input Try Again!" << endl;
 		} while (choice != "y" && choice != "Y" && choice != "N" && choice != "n");
 	}
-
-}
 
 void gameover()
 {
@@ -1293,7 +1291,7 @@ void inventory_king()
 		}
 		else
 			cout << "Wrong Selection Try Again!" << endl;
-	} while (armour_selection == "a" && armour_selection == "A" && armour_selection == "b" && armour_selection == "B" && armour_selection == "c" && armour_selection == "C");
+	} while (armour_selection != "a" && armour_selection != "A" && armour_selection != "b" && armour_selection != "B" && armour_selection != "c" && armour_selection != "C");
 
 	Inventory_under_Vanguard.sword_name[0] = "Abyssal Frostblade (100)";
 	Inventory_under_Vanguard.sword_name[1] = "Chillwind Scimitar (150)";
@@ -1314,17 +1312,17 @@ void inventory_king()
 		}
 		else if (sword_selection == "b" || sword_selection == "B")
 		{
-			cout << Inventory_under_Vanguard.sword_name[0] << "\tSelected!";
+			cout << Inventory_under_Vanguard.sword_name[1] << "\tSelected!";
 			character.attack =150 ;
 		}
 		else if (sword_selection == "c" || sword_selection == "C")
 		{
-			cout << Inventory_under_Vanguard.sword_name[0] << "\tSelected!";
+			cout << Inventory_under_Vanguard.sword_name[2] << "\tSelected!";
 			character.attack = 110;
 		}
 		else
 			cout << "Wrong Selection Try Again!" << endl;
-	} while (sword_selection == "a" && sword_selection == "A" && sword_selection == "b" && sword_selection == "B" && sword_selection == "c" && sword_selection == "C");
+	} while (sword_selection != "a" && sword_selection != "A" && sword_selection != "b" && sword_selection != "B" && sword_selection != "c" && sword_selection != "C");
 }
 
 void inventory_display()
