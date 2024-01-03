@@ -21,7 +21,7 @@ struct {
 }king;
 
 struct {
-	string name, catagory;
+	string name, category;
 	int health, exp, level, attack,score;
 }character;
 
@@ -65,7 +65,7 @@ void scoring(int totalattack);
 void leveling_up();
 void gameover();
 void inventory_king();
-void invnetory_display();
+void inventory_display();
 
 //Main
 int main()
@@ -126,7 +126,7 @@ int main()
 							cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate." << endl;
 							
 							//Quest1
-							cout << quest_without_fight[0].name<<endl;
+							cout <<GREEN_TEXT<< quest_without_fight[0].name<< RESET_COLOR<<endl;
 							do {
 								cout << "\ta) The first option caught " << character.name << " eye – The Main Gate. " << quest_battle[0].difficulty[2] << endl
 									<< "\tb) Turning his attention to the second path, " << character.name << " discovered a watchtower. " << quest_battle[0].difficulty[1] << endl
@@ -155,11 +155,12 @@ int main()
 										}
 										inventory_storage[0].name = "Starlight Elixir";
 										inventory_storage[0].number += 10;
-										invnetory_display();
+										inventory_display();
 									}
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
 									break;
 								}
+								/*Path 2:*/
 								else if(entrancechoice=="b"|| entrancechoice == "B")
 								{
 									cout << "Path 2 : Selected" << endl;
@@ -178,10 +179,11 @@ int main()
 										}
 										inventory_storage[0].name = "Starlight Elixir";
 										inventory_storage[0].number += 10;
-										invnetory_display();
+										inventory_display();
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
 								}
+								/*Path 3:*/
 								else if(entrancechoice == "C"|| entrancechoice == "c")
 								{
 									cout << "Path 3 : Selected" << endl;
@@ -198,7 +200,7 @@ int main()
 									}
 									inventory_storage[0].name = "Starlight Elixir";
 									inventory_storage[0].number += 10;
-									invnetory_display();
+									inventory_display();
 								}
 								else
 								{
@@ -206,17 +208,17 @@ int main()
 								}
 						} while (entrancechoice != "a" && entrancechoice != "b" && entrancechoice != "c");
 							
-							cout << "Quest 1 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 1 End" <<RESET_COLOR<< endl;
 						}
 						//End of Quest 1
 
 
 						//Quest 2:Continue the story
-						cout << quest_without_fight[1].name << endl;
+						cout <<GREEN_TEXT<< quest_without_fight[1].name <<RESET_COLOR<< endl;
 						{
-							cout << character.name << "Moves to the kingdom second gate while stealth and saving himself from other gueard. \nHe opens the gate and suddenly he sees guards standing and now he had to take the fight." << endl
+							cout << character.name << "Moves to the kingdom second gate while stealth and saving himself from other guard. \nHe opens the gate and suddenly he sees guards standing and now he had to take the fight." << endl
 								<< creature[0].name << ": Who are you? How did you get in?" << endl
-								<< "Another " << creature[0].name << ": He is an introdure kill him!" << endl;
+								<< "Another " << creature[0].name << ": He is an intruder kill him!" << endl;
 							
 							//Fight 6 guards
 							int difficulty;
@@ -246,19 +248,21 @@ int main()
 								<< character.name << ": I will make sure that you will get a reward for helping in this mission." << endl;
 							cout << "\n HERE " << character.name << " WEARS SUIT OF GUARDS AND CHANGES HIS GETUP" << endl;
 							
-							cout << "Quest 2 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 2 End" <<RESET_COLOR<< endl;
 						}
 						
 						//Quest 2 Ends
 					}
+					cout <<RED_TEXT<< "End of Chapter 1" << RESET_COLOR << endl;
+					system("cls");
 					//End of CHapter 1
 
 					//CHAPTER 2: Infiltrate the Market
-					cout << chapter.name[1] << endl;
+					cout << RED_TEXT<<chapter.name[1] << RESET_COLOR<<endl;
 					char chap2_st_choice;
 					do {
 						cout << character.name << " now had gathered the information required and fixed his path to the market he started moving towards the market but on the way, he encountered multiple ways to reach the market. " << endl
-							<< "Bussiness Market Paths: " << endl
+							<< "Business Market Paths: " << endl
 							<< "\ta) Guards guarding and have to fight.		(Hard)" << endl
 							<< "\tb) Through hub of huts.					(Easy)" << endl;
 						cin >> chap2_st_choice;
@@ -271,7 +275,7 @@ int main()
 						{
 							cout << character.name << " moves towards the snowy street inclining him towards the market but unfortunately the 2 guards due to not following the code of instruction set by their management captures him to be intruder" << endl
 								<< creature[0].name << ": Where is you badge" << endl
-								<< character.name << " Does not replys" << endl
+								<< character.name << " Does not replies" << endl
 								<< creature[0].name << ": Hello sir I am talking to you." << endl;
 
 							//Fight with the gurads
@@ -287,21 +291,21 @@ int main()
 								}
 								inventory_storage[0].name = "Starlight Elixir";
 								inventory_storage[0].number += 10;
-								invnetory_display();
+								inventory_display();
 							}
 							cout << character.name << " successfully defends their attacks and destroys them but just when they got finished asked them about the pathway of the market." << endl;
 						
 							//Quest 3: Go to the business market for the information and get out
-							cout << quest_without_fight[2].name;
+							cout <<GREEN_TEXT<< quest_without_fight[2].name<<RESET_COLOR<<endl;
 							{
 								cout << "The player goes to the business market while the guards watch him going in. In the business market the player gets a map of the Eldoria kingdom where the villagers were captured. \nWhen the player was coming out of the business market he was surrounded by the guards. " << endl;
 								cout << creature[0].name << ": You are surrounded! Put your weapons down.";
 							}
-							cout << "Quest 3 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 3 End" <<RESET_COLOR<< endl;
 							//End of quest 3
 						
 							//Quest 4: Embark Quest: Go to the villagers
-							cout << quest_without_fight[3].name;
+							cout << GREEN_TEXT << quest_without_fight[3].name << RESET_COLOR << endl;
 							{
 								string quest4_path_choice;
 								do {
@@ -326,7 +330,7 @@ int main()
 											{
 												cout << character.name << " GOT ARRESTED!" << endl
 													<< "He gets cuffed and one of the Frostbane Guards hit his gun on his head and he gets unconscious.";
-												goto Gail;//goto arrest in path 2 line 334
+												goto Jail;//goto arrest in path 2 line 361
 											}
 											do {
 												creature_attack = mythical_creature_attack(creature[0].attack[0], 0);
@@ -337,12 +341,12 @@ int main()
 													gameover();
 												}
 											} while (health > 0 && character.health > 0);
-											character.exp += 50;
+										
 											scoring(total_character_attack);
 											leveling_up();
 											inventory_storage[0].name = "Starlight Elixir";
 											inventory_storage[0].number += 10;
-											invnetory_display();
+											inventory_display();
 										}
 										cout << character.name << " escapes and starts to move towards the villagers but in the middle of the pathway."<<endl;
 										cout << UNDERLINE << "HERE FROSTBITE YETI COMES AND TAKES THE PLAYER TO HIS MOUNTAIN USING THE ZIPLINE FROM ELDORIA TO HIS MOUNTAIN." << CLOSEUNDERLINE << endl;
@@ -356,18 +360,18 @@ int main()
 									{
 										cout << "The player throws his weapons and surrenders." << endl
 											<< creature[0].name << ": Get down to your knees and backoff." << endl
-											<< creature[0].name << " took him to Eldora's prison" << endl
+											<< creature[0].name << " took him to Eldoria's prison" << endl
 											<< "When he get on his knees one of the guards hit is gun on " << character.name << " head and he gets unconscious." << endl;
 										//Beating in prison
-									Gail:
-										cout << "When " << character.name << " gets into his sences. The " << creature[0].name << "s where beating him and asking: " << endl
+									Jail:
+										cout << "When " << character.name << " gets into his senses. The " << creature[0].name << "s where beating him and asking: " << endl
 											<< creature[0].name << ": Who are you?" << endl
 											<< creature[0].name << ": Who send you?" << endl
 											<< character.name << " again gets unconscious." << endl;
-										//In gail informer
-										cout << "When he came into his sences. He looked around, he was in ball and chain." << endl
+										//In jail informer
+										cout << "When he came into his senses. He looked around, he was in ball and chain." << endl
 											<< "HE Waited..." << endl
-											<< "After sometime informer came and frees him from the gail, ball and chain." << endl
+											<< "After sometime informer came and frees him from the jail, ball and chain." << endl
 											<< "Informer: We have to Hurry up" << endl
 											<< character.name << ": You are here we go again." << endl
 											<< "Informer: Frostbite Yeti is looking for you. Come on hurry up." << endl
@@ -375,7 +379,7 @@ int main()
 											<< "The informer did not reply, and they both started running." << endl;
 										
 										//Quest 5: Follow the informer
-										cout << quest_without_fight[4].name;
+										cout <<GREEN_TEXT<< quest_without_fight[4].name<<RESET_COLOR<<endl;
 										cout << "They both go through the underground tunnels." << endl
 											<< character.name << ": Where the hell are we?" << endl
 											<< "Through the tunnels they both came out in open.But Frostbite Yeti saw both of them from the mountain top." << endl;
@@ -383,19 +387,27 @@ int main()
 										cout << creature[1].name << ": Oh Hello! You are the savior." << endl
 											<< character.name << "Oh yes! I am" << endl;
 										//Quest 5 End
-										cout << "Quest 5 End" << endl;
+										cout <<GREEN_TEXT<< "Quest 5 End" <<RESET_COLOR<< endl;
+										
 									}
 									//Path 2 Ends 
+									
+							
 									else
 										cout << "Wrong path. TRY AGAIN";
 								} while (quest4_path_choice != "A" && quest4_path_choice != "a" && quest4_path_choice != "B" && quest4_path_choice != "b");
+								cout << RED_TEXT << " Chapter 2 ends " << RESET_COLOR << endl;
+								system("cls");
+								
+
+
 								
 								//Chapter 3:  The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
-								cout << chapter.name[2] << endl;
+								cout <<RED_TEXT<< chapter.name[2] <<RESET_COLOR<< endl;
 								system("pause");
 
 								//Quest 6: Kill Frostbite Yeti
-								cout << quest_battle[0].name << endl;
+								cout <<GREEN_TEXT<< quest_battle[0].name <<RESET_COLOR<< endl;
 								{
 									cout << "Here Frostbite Yeti comes into anger and attacks the player, the player dodges the attack, and the fight begins." << endl;
 									//Frostbite yeti Fight
@@ -413,22 +425,22 @@ int main()
 									inventory_storage[2].number = 3;
 									inventory_storage[3].name = "Phoenix Feather Talisman (Talisman)";
 									inventory_storage[3].number = 1;
-									invnetory_display();
+									inventory_display();
 									//Fight Ends
 									cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
 										<< character.name << ": What is happening here? Who are you and what are you doing here?" << endl
 										<< creature[1].name << ": You don’t know anything what is happening here. He will kill you." << endl
-										<< character.name << " wipes is neck off and ";
+										<< character.name << " wipes his neck off and ";
 									//Inventory drops
 								}
-								cout << "Quest 6 End" << endl;
+								cout << GREEN_TEXT<<"Quest 6 End" <<RESET_COLOR <<endl;
 								//Quest 6 Ends
 								
 								cout << character.name << " starts to walk for the zipline but in fog the player ends up going toward the Bilzzard Golem (The Second Boss of Mythical creatures). " << endl
 									<< character.name << " asks the same : " << "What is happening here? Who are you and what are you doing here?";
 								
 								//Quest 7: Embark Quest: Kill Bilzzard Golem
-								cout << quest_battle[1].name << endl;
+								cout << GREEN_TEXT<<quest_battle[1].name <<RESET_COLOR<< endl;
 								{
 									cout << creature[2].name << " did not reply and came to attack the player but this time the player got hit badly." << endl;
 									//Player health drops to 50% as he got hit by Bilzzard Golem 
@@ -450,16 +462,16 @@ int main()
 									inventory_storage[5].number = 1;
 									inventory_storage[0].name = "Starlight Elixir";
 									inventory_storage[0].number += 40;
-									invnetory_display();
+									inventory_display();
 									//Billzard Fight Ends and drops inventory
 								}
 								//Quest 7 Ends
-								cout << "Quest 7 End" << endl;
+								cout << GREEN_TEXT<<"Quest 7 End" <<RESET_COLOR<< endl;
 
 								cout << "The player then again goes for the zipline but this time he got path. He takes that path and comes back to the Eldoria Kingdom." << endl
 									<< "Again starts the search of villagers and he reaches them" << endl;
 							}
-							cout << "Quest 4 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 4 End" <<RESET_COLOR <<endl;
 								//Quest 4 ends
 
 							cout << character.name << ": Oh! you are here." << endl
@@ -477,9 +489,9 @@ int main()
 							cout << "The informer and " << character.name << " headed towards the palace meanwhile the Mythical creature " << creature[3].name << " watched them on the top of mountain. " << creature[3].name << " Jumped from the mountain and attacked both. The informed got a huge injury and " << character.name << " also got hit" << endl;
 							character.health = character.health - character.health * 0.25;
 							//Quest 8: Kill Snow Shuriken Ninja
-							cout << quest_battle[2].name << endl;
+							cout <<GREEN_TEXT <<quest_battle[2].name <<RESET_COLOR<< endl;
 							{
-								//Fight with SNoe Shuriken Ninja
+								//Fight with SNOW Shuriken Ninja
 								int difficulty;
 								difficulty = choice_quest_difficulty(0);
 								bool flag = false;
@@ -494,15 +506,18 @@ int main()
 								inventory_storage[7].number = 1;
 								inventory_storage[8].name = "Rune-infused Gauntlets (Upgraded)";
 								inventory_storage[8].number = 1;
-								invnetory_display();
+								inventory_display();
 								//Fight ends
 								cout << character.name << " killed " << creature[3].name << "But the informer was hit and due to his hit, he was getting poisoned and was killed gradually." << endl
 									<< "Before he gets kill, he tells the player how to get to the palace. " << endl;
 							}
-							cout << "Quest 8 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 8 End" <<RESET_COLOR<< endl;
+							
 							//Quest 8 ends
+					
 							//Chapter 3 ends
-							cout << "Chapter 3 End" << endl;
+							cout <<RED_TEXT<< "Chapter 3 End" <<RESET_COLOR<< endl;
+							system("cls");
 							break;
 						}
 						//End of path 1
@@ -515,16 +530,17 @@ int main()
 								<< character.name << " entered the house... " << endl
 								<< "He searches the house"//Player gets some inventory
 								<< "He finds a map to reach crew of villagers" << endl;
-							cout << "Chapter 2 End" << endl;
+							cout <<RED_TEXT "Chapter 2 End" <<RESET_COLOR<< endl;
+							system("cls");
 							//Chapter 2 Ends
 
 							//Chapter 3: The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
-							cout << chapter.name[2] << endl;
+							cout <<RED_TEXT<< chapter.name[2] <<RESET_COLOR<< endl;
 							{
 								cout << character.name << " followed the map but in the middle of the map he was following he got attacked by first mythical creature's boss Snow Shuriken Ninja. " << endl << endl
 									<< "He took " << character.name << " to his cave on the mountain top. When Snow Shuriken Ninja attack he got unconscious." << endl;
 								//Quest 9: Get out of the Cave.
-								cout << quest_without_fight->name[4]<<endl;
+								cout <<GREEN_TEXT<< quest_without_fight[4].name<<RESET_COLOR<<endl;
 								{
 									cout << "When he came back in senses, he was covered in blood and Snow Shuriken Ninja was not there and was tied up with chains. After a while the informer sneakily comes in." << endl
 										<< "Informer: I knew this would happen." << endl
@@ -537,11 +553,11 @@ int main()
 									system("pause");
 									cout << character.name << " and the informer were going out of the cave of the Snow Shuriken Ninja but at the cave’s mouth, he got to know about both of them and he roared. The informer went out of the cave, but the player was stuck in the cave as the mouth got closed by the rocks fallen from the roar." << endl;
 								}
-								cout << "QUest 9 End" << endl;
+								cout << GREEN_TEXT<<"Quest 9 End" <<RESET_COLOR<< endl;
 								//Quest 9 Ends
 
 								//Quest 10: Kill the Snow Shuriken Ninja
-								cout << quest_battle->name[2];
+								cout << GREEN_TEXT << quest_battle[2].name << RESET_COLOR << endl;
 								{
 									cout << creature[3].name << ": Oh poor saviour. You are going to hell." << endl
 										<< character.name << ": Well I guess you should visit it first." << endl
@@ -562,17 +578,17 @@ int main()
 										inventory_storage[7].number = 1;
 										inventory_storage[8].name = "Rune-infused Gauntlets (Upgraded)";
 										inventory_storage[8].number = 1;
-										invnetory_display();
+										inventory_display();
 									}
 									//Fight ends
 									//Inventory Drop
 									cout << "After the Snow Shuriken Ninja is killed, the informer manages to open the caves mouth and both of them get out." << endl;
 								}
-								cout << "Quest 10 End";
+								cout <<GREEN_TEXT "Quest 10 End"<<RESET_COLOR<<endl;
 								//Quest 10 Ends
 
 								//Quest 11: Go to the zipline with Quest 12 Yeti killing
-								cout << quest_without_fight[5].name;
+								cout << GREEN_TEXT<<quest_without_fight[5].name<<RESET_COLOR<<endl;
 								{
 									cout << "Informer: Hurry up! Let's go." << endl
 										<< character.name << ": Is this the right hand of your King you were talking about?" << endl
@@ -589,7 +605,7 @@ int main()
 										<< creature[1].name << ": Let's see what you have. " << endl
 										<< "In order to save himself and to take the revenge, he have to take a fight.";
 									//Quest 12: Kill The Frostbite Yeti  
-									cout << quest_battle[0].name;
+									cout <<GREEN_TEXT<< quest_battle[0].name<<RESET_COLOR<<endl;
 									{
 										int difficulty;
 										difficulty = choice_quest_difficulty(0);
@@ -606,13 +622,13 @@ int main()
 										inventory_storage[2].number = 3;
 										inventory_storage[3].name = "Phoenix Feather Talisman (Talisman)";
 										inventory_storage[3].number = 1;
-										invnetory_display();
+										inventory_display();
 									}
-									cout << "Quest 12 End" << endl;
+									cout <<GREEN_TEXT<< "Quest 12 End" <<RESET_COLOR<< endl;
 									//Quest 12 Ends
 									cout << "He saw the informer was hardly hit. He took him on his back and started running towards the zipline. He took the zipline and came down with the informer at his back." << endl;
 								}
-								cout << "Quest 11 End" << endl;
+								cout <<GREEN_TEXT<< "Quest 11 End" <<RESET_COLOR<<endl;
 								//Quest 11 Ends
 
 								cout << "He came down back to the kingdom and started moving towards the villagers. He met the villagers, but they were not all of them." << endl
@@ -627,7 +643,7 @@ int main()
 								character.health = character.health * 0.5;
 
 								//Quest 13: Kills the Blizzard Golem 
-								cout << quest_battle[1].name << endl;
+								cout << GREEN_TEXT<<quest_battle[1].name <<RESET_COLOR<< endl;
 								{
 									//Fight with the Billzard Golem
 									{
@@ -649,7 +665,7 @@ int main()
 												gameover();
 											}
 										} while (health > 0 && character.health > 0);
-										character.exp += 50;
+										
 										scoring(total_character_attack);
 										leveling_up();
 										inventory_storage[4].name = "Frostbane Blade";
@@ -658,18 +674,19 @@ int main()
 										inventory_storage[5].number = 1;
 										inventory_storage[0].name = "Starlight Elixir";
 										inventory_storage[0].number += 40;
-										invnetory_display();
+										inventory_display();
 										//Billzard Fight Ends and drops inventory
 									}
 									//Fight ends
 									cout << "Now " << character.name << " started moving towards the palace to save his king." << endl;
 								}
-								cout << "Quest 13 End" << endl;
+								cout <<GREEN_TEXT<< "Quest 13 End" <<RESET_COLOR<< endl;
 								//Quest 13 Ends
 							}
 							//End of Chapter 3
 
-							cout << "Chapter 3 End" << endl;
+							cout <<RED_TEXT<< "Chapter 3 End" <<RESET_COLOR<< endl;
+							system("cls");
 						}
 						//Path 2 ends
 
@@ -678,13 +695,13 @@ int main()
 						} while (chap2_st_choice != 'a' && chap2_st_choice != 'b' && chap2_st_choice != 'A' && chap2_st_choice != 'B');
 
 						//Chapter 4:  Vanguard's Stand 
-						cout << chapter.name[3] << endl;
+						cout <<RED_TEXT<< chapter.name[3] << RESET_COLOR<<endl;
 						{
 							cout << character.name << " reaches to the palace. As he enters the inner sanctum of the palace, a chilling presence announces the arrival of " << creature[4].name << " (Frozen Vanguard)" << endl
 								<< "A formidable creature with mastery over frost and ice. Glacius Frostend is the chief commander of the Frostbane guards and a key enforcer for the mythical creatures." << endl;
 
 							//Quest 14: Vangurad's plan
-							cout << quest_without_fight[6].name << endl;
+							cout << GREEN_TEXT<<quest_without_fight[6].name <<RESET_COLOR<< endl;
 							{
 								cout << "As " << character.name << " enters the battle. Vanguard deceives him with the aim of weakening him shows his father tide into rope covered with bloods and doing heavy breathes." << endl;
 								cout << character.name << ": Father!!" << endl
@@ -697,7 +714,7 @@ int main()
 								cout << character.name << " stood up and went more deeper where the key people of the kingdom were kept." << endl;
 							}
 							//Quest 14 Ends
-							cout << "Quest 14 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 14 End" <<RESET_COLOR<< endl;
 
 							cout << character.name << "  finally met his king, and he saw the player with the glimpse of hope and King smiled." << endl
 								<< "The kIng: My child you are here." << endl
@@ -709,7 +726,7 @@ int main()
 								<< "King: Beneath the kingdom there is a room which has the inventory to defeat the king and his frozen vanguard you need to access that for killing I made it when I saw them coming from escape world, but things gotten out my hand." << endl;
 
 							//Quest 15: Suit Yourself Up Inventory Remaining
-							cout << quest_without_fight[7].name;
+							cout << GREEN_TEXT<<quest_without_fight[7].name<<RESET_COLOR<<endl;
 							{
 								cout << character.name << " starts running to the inventory room and jumps into it for accessing the room under the kingdom, " << creature[4].name << " follows him but he pulled the lever and blocked the access which gives extra time to access and get the killing weapons to kill the king and the vanguard." << endl
 									<< character.name << " saw a glimpse of inventory packed in an old architecture shinning to the sky. He sees and his eyes glimpses up with a satisfaction felt by wounds and now he opens the inventory it attracts him as it was meant for him" << endl;
@@ -719,14 +736,14 @@ int main()
 								inventory_king();
 								cout << character.name << " feet got up the surface and he came in the fullest potential." << endl;
 							}
-							cout << "Quest 15 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 15 End" <<RESET_COLOR<< endl;
 							//Quest 15 Ends
 
 							cout << "Suddenly the Vanguard enters the room by smashing the door and " << character.name << " defend the door coming to him in the air. Vanguard went to his main move to crush him, but " << character.name << " defends with ease shocking the vanguard and showing his intense move and putting maximum disadvantage to the Vanguard." << endl;
 							creature[4].health = creature[4].health - 100;
 
 							//Quest 16: Kill the Vanguard
-							cout << quest_battle[3].name<<endl;
+							cout << GREEN_TEXT<<quest_battle[3].name<<RESET_COLOR<<endl;
 							{
 								cout << "And fight starts" << endl;
 								//Vanguard Fight Starts
@@ -745,12 +762,12 @@ int main()
 									inventory_storage[1].number += 1;
 									inventory_storage[10].name = "Frostbite Arrows (Empowered)";
 									inventory_storage[10].number += 30;
-									invnetory_display();
+									inventory_display();
 								}
 								//Vanguard Fight ends
-								//Inventroy Drops
+								//Inventory Drops
 							}
-							cout << "Quest 16 End" << endl;
+							cout <<GREEN_TEXT<< "Quest 16 End" <<RESET_COLOR<< endl;
 							//Quest 16 Ends
 
 							cout << "The defeat of Vanguard felt by the king through magic alerting him that his biggest opponent is here and gears up for the battle." << endl
@@ -758,11 +775,12 @@ int main()
 								<< character.name << " goes through the hole to meet the real king of kingdom, but he was not in the place they met before. Then he ran out from the hole to save his father, but both the King and his father were captured by the king of mythical creature." << endl
 								<< "But The king dropped a note for the him. Which tells him to reach the king without fighting the major chunk of Forestbane Guard." << endl;
 						}
-						cout << "Chapter 4 End" << endl;
+						cout <<RED_TEXT<< "Chapter 4 End" <<RESET_COLOR<< endl;
 						//Chapter 4 Ends
+						system("cls");
 
 						//Chapter 5: The last Act
-						cout << chapter.name[4] << endl;
+						cout <<RED_TEXT<< chapter.name[4] <<RESET_COLOR<< endl;
 						{
 							{
 								king.name = "King of mythical creature";
@@ -780,7 +798,7 @@ int main()
 							system("pause");
 
 							//Quest 17: The final battle with king, giants forestbane and mythical king story
-							cout << quest_without_fight[8].name << endl;
+							cout <<GREEN_TEXT<< quest_without_fight[8].name <<RESET_COLOR<< endl;
 							{
 								//3 attack system Remaining
 								int difficulty;
@@ -819,17 +837,18 @@ int main()
 										gameover();
 									}
 								} while (creature[0].health > 0 && character.health > 0);
-								character.exp += 50;
+			
 								scoring(total_character_attack);
 								leveling_up();
 								//Fight Ends
 								cout << character.name << " conquered the battle with his fullest aims and won the battle and bow the king of mythical creature on the foot  and finally ended the oppressed and lustful era of the  mythical king  the player sense the pride of the victory taking revenge of his father and saving the kingdom and raising the pride of village where he belongs to and where his father too.The player finally met with the king and handed his power to him, and the king thanked and gave him some huge rewards as a sign of thankfulness" << endl;
 							}
-							cout << "Quest 17 End"<<endl;
+							cout <<GREEN_TEXT<< "Quest 17 End"<<RESET_COLOR<<endl;
 							//Quest 17 Ends
 
 						}
-						cout << "Chapter 5 End" << endl;
+						cout <<RED_TEXT<< "Chapter 5 End" <<RESET_COLOR<< endl;
+						system("cls");
 						//Chapter 5 Ends
 					}while (chap2_st_choice != 'A' && chap2_st_choice != 'a' && chap2_st_choice != 'B' && chap2_st_choice != 'b');
 				}
@@ -846,7 +865,7 @@ void display_character_info()
 {
 	cout << "Character Information" << endl
 		<< "Character Name: " << character.name << endl
-		<< "Character catagory: " << character.catagory << endl
+		<< "Character category: " << character.category << endl
 		<< "Health: " << character.health << endl
 		<< "Experience Points: " << character.exp << endl
 		<<"Attack: "<<character.attack<<endl;
@@ -856,7 +875,7 @@ void display_character_info()
 void character_creation()
 {
 	string name,choice;
-	int character_catagory_number;
+	int character_category_number;
 	bool flag = true;
 	cout << "\nAccount Creation!" << endl;
 	//Player Name
@@ -864,9 +883,9 @@ void character_creation()
 	cin.ignore();
 	getline(cin, character.name);
 
-	//Player catagory
+	//Player category
 	do {
-		cout << "Choose the player catagory " << endl
+		cout << "Choose the player category " << endl
 			<< "a) Warrior" << endl
 			<< "b) Mage" << endl
 			<< "c) Rogue" << endl
@@ -874,25 +893,25 @@ void character_creation()
 		cin >> choice;
 		if (choice == "a" || choice == "A")
 		{
-			character.catagory = "Warrior";
+			character.category = "Warrior";
 			flag = true;
-			character_catagory_number = 0;
+			character_category_number = 0;
 			character.health = 600;
 			character.attack = 50;
 		}
 		else if (choice == "b" || choice == "B")
 		{
-			character.catagory = "Mage";
+			character.category = "Mage";
 			flag = true;
-			character_catagory_number = 1;
+			character_category_number = 1;
 			character.health = 450;
 			character.attack = 30;
 		}
 		else if (choice == "c" || choice == "C")
 		{
-			character.catagory = "Rogue";
+			character.category = "Rogue";
 			flag = true;
-			character_catagory_number = 2;
+			character_category_number = 2;
 			character.health = 500;
 			character.attack = 60;
 		}
@@ -1092,7 +1111,7 @@ void creature_initialization()
 		creature[2].attack[2] = 65;
 	}
 	{
-		creature[3].name = "Snow Shriken Ninja";
+		creature[3].name = "Snow Shuriken Ninja";
 		creature[3].health = 350;
 		creature[3].attack[0] = 45;
 		creature[3].attack[1] = 60;
@@ -1264,12 +1283,12 @@ void inventory_king()
 		}
 		else if (armour_selection == "b"||armour_selection == "B")
 		{
-			cout << Inventory_under_Vanguard.armour_name[0] << "\tSelected!";
+			cout << Inventory_under_Vanguard.armour_name[1] << "\tSelected!";
 			character.health = 800;
 		}
 		else if (armour_selection == "c"|| armour_selection == "C")
 		{
-			cout << Inventory_under_Vanguard.armour_name[0] << "\tSelected!";
+			cout << Inventory_under_Vanguard.armour_name[2] << "\tSelected!";
 			character.health = 1000;
 		}
 		else
@@ -1277,8 +1296,8 @@ void inventory_king()
 	} while (armour_selection == "a" && armour_selection == "A" && armour_selection == "b" && armour_selection == "B" && armour_selection == "c" && armour_selection == "C");
 
 	Inventory_under_Vanguard.sword_name[0] = "Abyssal Frostblade (100)";
-	Inventory_under_Vanguard.sword_name[0] = "Chillwind Scimitar (150)";
-	Inventory_under_Vanguard.sword_name[0] = "Frozen Phoenix Slicer (110)";
+	Inventory_under_Vanguard.sword_name[1] = "Chillwind Scimitar (150)";
+	Inventory_under_Vanguard.sword_name[2] = "Frozen Phoenix Slicer (110)";
 
 	string sword_selection;
 	do {
@@ -1308,9 +1327,9 @@ void inventory_king()
 	} while (sword_selection == "a" && sword_selection == "A" && sword_selection == "b" && sword_selection == "B" && sword_selection == "c" && sword_selection == "C");
 }
 
-void invnetory_display()
+void inventory_display()
 {
 	cout << "Inventory: " << endl;
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 11; i++)
 		cout<<i+1 <<" " << inventory_storage[i].name<< inventory_storage[i].number<<endl;
 }
