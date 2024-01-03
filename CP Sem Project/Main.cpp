@@ -48,7 +48,7 @@ struct {
 struct {
 	string name="";
 	int number=0;
-}inventory_storage[30];
+}inventory_storage[10];
 
 void display_character_info();
 void character_creation();
