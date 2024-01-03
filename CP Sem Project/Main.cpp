@@ -978,7 +978,7 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 		{
 			cout << "Invalid input " << endl;
 		}
-	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
+	} while (attack_choice != "a" && attack_choice != "A" && attack_choice != "b" && attack_choice != "B" && attack_choice != "c" && attack_choice != "C");
 }
 //Main battle function
 
@@ -1244,7 +1244,7 @@ void leveling_up()
 			else
 				cout << "Invalid input Try Again!" << endl;
 		} while (choice != "y" && choice != "Y" && choice != "N" && choice != "n");
-	}
+}
 
 void gameover()
 {
