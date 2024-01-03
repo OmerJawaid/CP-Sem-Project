@@ -1229,14 +1229,14 @@ void leveling_up()
 		string choice;
 		do
 		{
-			cout << "Your experience points reaches 50. Do you want to level up(y/n) : ";
+			cout << "Your experience points reaches 200. Do you want to level up(y/n) : ";
 			cin >> choice;
 			if (choice == "y" || choice == "Y")
 			{
 				character.level++;
 				character.health += 100;
 				character.attack += 5;
-				character.exp = character.exp - 50;
+				character.exp = character.exp - 200;
 				break;
 			}
 			else if(choice=="n"||choice=="N")
