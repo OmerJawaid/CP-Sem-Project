@@ -122,7 +122,7 @@ int main()
 					cout << chapter.name[0]<<endl;
 					{
 						{
-							char entrancechoice;
+							string entrancechoice;
 							cout << character.name << " inched closer to the kingdom, blending into the snowy bushes for cover. As he observed the kingdom," << character.name << "  spotted three potential paths to infiltrate." << endl;
 							
 							//Quest1
@@ -134,10 +134,7 @@ int main()
 									<< "Choose your path: ";
 								cin >> entrancechoice;
 								//Path 1
-								switch (entrancechoice)
-								{
-								case'A':
-								case'a':
+								if(entrancechoice=="a"|| entrancechoice == "A")
 								{
 									cout << "Path 1 : Selected" << endl;
 									cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom" << endl
@@ -160,8 +157,7 @@ int main()
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
 									break;
 								}
-								case'B':
-								case'b':
+								else if(entrancechoice=="b"|| entrancechoice == "B")
 								{
 									cout << "Path 2 : Selected" << endl;
 									cout << "He came out of the bushes and moved slowly towards the watchtower of the kingdom." << endl;
@@ -179,10 +175,8 @@ int main()
 										}
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
-									break;
 								}
-								case'C':
-								case'c':
+								else if(entrancechoice == "C"|| entrancechoice == "c")
 								{
 									cout << "Path 3 : Selected" << endl;
 									cout << "He came out of the bushes and moved slowly towards the main gate of the kingdom.\nThere was 1 guard guarding the watchtower." << endl;
@@ -196,15 +190,12 @@ int main()
 									{
 										gameover();
 									}
-									break;
 								}
-								default:
+								else
 								{
 									cout << "Choose correct option.";
-									break;
 								}
-								}
-							} while (entrancechoice != 'a' && entrancechoice != 'b' && entrancechoice != 'c');
+						} while (entrancechoice != "a" && entrancechoice != "b" && entrancechoice != "c");
 							
 							cout << "Quest 1 End" << endl;
 						}
