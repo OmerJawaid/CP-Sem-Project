@@ -119,7 +119,7 @@ int main()
 					} while (choice_creation == "n" && choice_creation == "N");
 					
 					//CHAPTER 1
-					cout << chapter.name[0]<<endl;
+					cout << RED_TEXT << chapter.name[0]<< RESET_COLOR <<endl;
 					{
 						{
 							string entrancechoice;

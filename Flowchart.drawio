@@ -1,9 +1,24 @@
-<mxfile host="app.diagrams.net" modified="2024-01-01T16:09:46.346Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" version="22.1.16" etag="xKacXM-L-nMYiYKAN82p" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-03T11:13:07.292Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="scxcGTYWBo7sW3GZ_dxt" version="22.1.16" type="device">
   <diagram name="Page-1" id="doVVnvdTJjGotJRXpp_x">
-    <mxGraphModel>
+    <mxGraphModel dx="880" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="MPLpCx93JBw2socFuWgA-1" value="&lt;div&gt;king.name = &quot;King of mythical creature&quot;;&lt;/div&gt;&lt;div&gt;king.health = 1000;&lt;/div&gt;&lt;div&gt;king.attack[0] = 140;&lt;/div&gt;&lt;div&gt;king.attack[1] = 180;&lt;/div&gt;&lt;div&gt;king.attack[2] = 200;&lt;/div&gt;&lt;div&gt;king.attack[3] = 195;&lt;/div&gt;&lt;div&gt;king.attack[4] = 210;&lt;/div&gt;&lt;div&gt;king.combo = 400;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="52.5" y="170" width="195" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="MPLpCx93JBw2socFuWgA-2" value="Initializing Structure" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="25" y="140" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MPLpCx93JBw2socFuWgA-3" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;Dsiplay Chapter Name&lt;br&gt;chapter.name[4]&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="180" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="MPLpCx93JBw2socFuWgA-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="MPLpCx93JBw2socFuWgA-3" target="MPLpCx93JBw2socFuWgA-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="200" as="sourcePoint" />
+            <mxPoint x="450" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
