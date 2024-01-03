@@ -373,8 +373,8 @@ int main()
 								} while (quest4_path_choice != "A" && quest4_path_choice != "a" && quest4_path_choice != "B" && quest4_path_choice != "b");
 								
 								//Chapter 3:  The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
-								cout << chapter.name[0] << endl;
-								system("puase");
+								cout << chapter.name[2] << endl;
+								system("pause");
 
 								//Quest 6: Kill Frostbite Yeti
 								cout << quest_battle[0].name << endl;
