@@ -1080,7 +1080,7 @@ inline int king_battle()
 		cout << "The lock attack: " << attack_power << endl;
 		return attack_power;
 	}
-	else if (attack_choice == 4)
+	else
 	{
 		int attack_power;
 		srand(time(0));
