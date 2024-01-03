@@ -107,16 +107,15 @@ int main()
 						
 						//Character info
 						display_character_info();
-						do {
-							cout << "Is the above information correct?(Y/N)";
-							cin >> choice_creation;
-							if (choice_creation != "N" && choice_creation != "n" && choice_creation != "Y" && choice_creation != "y")
-							{
-								cout << "Choose the correct option.";
-								continue;
-							}
-						} while (choice_creation != "N" && choice_creation != "n" && choice_creation != "Y" && choice_creation != "y");
-					} while (choice_creation == "n" && choice_creation == "N");
+						
+						cout << "Is the above information correct?(Y/N)";
+						cin >> choice_creation;
+						if (choice_creation != "N" && choice_creation != "n" && choice_creation != "Y" && choice_creation != "y")
+						{
+							cout << "Choose the correct option.";
+							continue;
+						}
+					} while (choice_creation != "y" && choice_creation != "y");
 					
 					//CHAPTER 1
 					cout << chapter.name[0]<<endl;
@@ -1248,5 +1247,5 @@ void inventory_king()
 		}
 		else
 			cout << "Wrong Selection Try Again!" << endl;
-	} while (sword_selection == "a" && sword_selection == "A" && sword_selection == "b" && sword_selection == "B" && sword_selection == "c" && sword_selection == "C");
+	}while (sword_selection == "a" && sword_selection == "A" && sword_selection == "b" && sword_selection == "B" && sword_selection == "c" && sword_selection == "C");
 }
