@@ -40,6 +40,11 @@ struct {
 	int attack_level[3];
 }quest_battle[5];
 
+struct {
+	string armour_name[3];
+	string sword_name[3];
+}Inventory_under_Vanguard;
+
 void display_character_info();
 void character_creation();
 inline int mythical_creature_attack(int attack_level, int characternumber);
@@ -50,17 +55,16 @@ void creature_initialization();
 void quest_initialization_without_fight();
 void quest_battle_initialization();
 inline int king_battle();
-inline int character_attack_King(int character_attack_level, int creatures_attack);
+inline int character_attack_King(int character_attack_level, int creatures_attack, int& total_character_attack);
 void scoring(int totalattack);
 void leveling_up();
-void gameover(string loop_choice);
+void gameover();
+void inventory_king();
 
 //Main
 int main()
 {
-	string loop_choice;
-	do {
-		{
+
 			string choice;
 			do {
 				//Main Page for start and quit
@@ -144,7 +148,7 @@ int main()
 										flag = battle_system(0, i, difficulty);
 										if (flag == true)
 										{
-											gameover(loop_choice);
+											gameover();
 										}
 									}
 									cout << "He moves on to the first gate of kingdom by hiding himself from the mythical creatures guarding the endure. Once the player reaches the kingdom’s first gate" << endl;
@@ -165,7 +169,7 @@ int main()
 										flag = battle_system(0, i,difficulty);
 										if (flag == true)
 										{
-											gameover(loop_choice);
+											gameover();
 										}
 									}
 									cout << "He goes through the wall top and while fighting the guard on top reaches the kingdom’s first gate. ";
@@ -184,7 +188,7 @@ int main()
 									flag = battle_system(0, 1,difficulty);
 									if (flag == true)
 									{
-										gameover(loop_choice);
+										gameover();
 									}
 									break;
 								}
@@ -217,7 +221,7 @@ int main()
 								flag = battle_system(0, i,difficulty);
 								if (flag == true)
 								{
-									gameover(loop_choice);
+									gameover();
 								}
 							}
 							//End Fight
@@ -270,7 +274,7 @@ int main()
 								flag = battle_system(0, i,difficulty);
 								if (flag == true)
 								{
-									gameover(loop_choice);
+									gameover();
 								}
 							}
 							cout << character.name << " successfully defends their attacks and destroys them but just when they got finished asked them about the pathway of the market." << endl;
@@ -319,7 +323,7 @@ int main()
 												if (character.health < 1)
 												{
 													cout << "Game Over";
-													gameover(loop_choice);
+													gameover();
 												}
 											} while (creature[0].health > 0 && character.health > 0);
 											character.exp += 50;
@@ -387,7 +391,7 @@ int main()
 									flag = battle_system(1, 0,difficulty);
 									if (flag == true)
 									{
-										gameover(loop_choice);
+										gameover();
 									}
 									//Fight Ends
 									cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
@@ -417,7 +421,7 @@ int main()
 									flag = battle_system(2, 0,difficulty);
 									if (flag == true)
 									{
-										gameover(loop_choice);
+										gameover();
 									}
 									//Billzard Fight Ends and drops inventory
 								}
@@ -454,7 +458,7 @@ int main()
 								flag = battle_system(3, 0,difficulty);
 								if (flag == true)
 								{
-									gameover(loop_choice);
+									gameover();
 								}
 								//Fight ends
 								cout << character.name << " killed " << creature[3].name << "But the informer was hit and due to his hit, he was getting poisoned and was killed gradually." << endl
@@ -515,7 +519,7 @@ int main()
 										flag = battle_system(3, 0,difficulty);
 										if (flag == true)
 										{
-											gameover(loop_choice);
+											gameover();
 										}
 									}
 									//Fight ends
@@ -551,7 +555,7 @@ int main()
 										flag = battle_system(1, 0,difficulty);
 										if (flag == true)
 										{
-											gameover(loop_choice);
+											gameover();
 										}
 										cout << character.name << " killed Frostbite Yeti but he was confused why everyone is calling him a saviour." << endl;
 									}
@@ -593,7 +597,7 @@ int main()
 											if (character.health < 1)
 											{
 												cout << "Game Over";
-												gameover(loop_choice);
+												gameover();
 											}
 										} while (creature[2].health > 0 && character.health > 0);
 										character.exp += 50;
@@ -655,6 +659,8 @@ int main()
 									<< character.name << " saw a glimpse of inventory packed in an old architecture shinning to the sky. He sees and his eyes glimpses up with a satisfaction felt by wounds and now he opens the inventory it attracts him as it was meant for him" << endl;
 								system("pause");
 								//Here player have to choose his inventory and have craft healings etc
+								//Inventory
+								inventory_king();
 								cout << character.name << " feet got up the surface and he came in the fullest potential." << endl;
 							}
 							cout << "Quest 15 End" << endl;
@@ -675,7 +681,7 @@ int main()
 									flag = battle_system(4, 0,difficulty);
 									if (flag == true)
 									{
-										gameover(loop_choice);
+										gameover();
 									}
 								}
 								//Vanguard Fight ends
@@ -722,7 +728,7 @@ int main()
 									flag = battle_system(0, i,difficulty);
 									if (flag == true)
 									{
-										gameover(loop_choice);
+										gameover();
 									}
 								}
 								system("pause");
@@ -740,22 +746,19 @@ int main()
 								
 								//King fight
 								cout << king.name << endl;
-								int characterattack = 0, creature_attack = 0;
+								int characterattack = 0, creature_attack = 0,total_character_attack=0;
 								do {
 									creature_attack = king_battle();
-									characterattack = character_attack_King(25, creature_attack);
+									characterattack = character_attack_King(character.attack, creature_attack,total_character_attack);
 									if (character.health < 1)
 									{
 										cout << "Game Over";
-										gameover(loop_choice);
+										gameover();
 									}
 								} while (creature[0].health > 0 && character.health > 0);
-								character.exp += 10;
-								if (character.exp >= 50)
-								{
-									character.level++;
-									character.exp - 50;
-								}
+								character.exp += 50;
+								scoring(total_character_attack);
+								leveling_up();
 								//Fight Ends
 								cout << character.name << " conquered the battle with his fullest aims and won the battle and bow the king of mythical creature on the foot  and finally ended the oppressed and lustful era of the  mythical king  the player sense the pride of the victory taking revenge of his father and saving the kingdom and raising the pride of village where he belongs to and where his father too.The player finally met with the king and handed his power to him, and the king thanked and gave him some huge rewards as a sign of thankfulness" << endl;
 							}
@@ -772,9 +775,7 @@ int main()
 				else
 					cout << "Choose the correct option" << endl;
 			} while (choice != "a" && choice != "b");
-		}
-
-	} while (loop_choice == "Y" || loop_choice == "y");
+			gameover();
 }
 
 //Character Information
@@ -899,46 +900,6 @@ inline int character_attack(int character_attack_level, int creatures_attack, in
 }
 //Main battle function
 
-inline int character_attack_King(int character_attack_level, int creatures_attack)
-{
-	string attack_choice;//string
-	do {
-
-		cout << "\nCreature Health: " << king.health << endl;
-		cout << "Attack Options: " << endl
-			<< "a) Attack" << endl
-			<< "b) Defend" << endl
-			<< "c) Healing" << endl
-			<< "Choice: ";
-		cin >> attack_choice;
-		if (attack_choice == "a" || attack_choice == "A")
-		{
-			character.health = character.health - creatures_attack;
-			int attack;
-			srand(time(0));
-			attack = rand() % character_attack_level;
-			cout << "Attack: " << attack << endl;
-			king.health = king.health - attack;
-			return attack;
-		}
-		else if (attack_choice == "b" || attack_choice == "B")
-		{
-			cout << "Defended: " << creatures_attack << endl;
-		}
-		else if (attack_choice == "c" || attack_choice == "C")
-		{
-			character.health = character.health + 40;
-			character.health = character.health - creatures_attack;
-			if (character.health > 400)
-				character.health = 400;
-		}
-		else
-		{
-			cout << "Invalid input " << endl;
-		}
-	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
-}
-
 bool battle_system(int creaturenumber,int guard_number, int difficulty)
 {	
 	int health = creature[creaturenumber].health;
@@ -971,9 +932,9 @@ int choice_quest_difficulty(int creature_number)
 	string difficulty_level;
 	do {
 		cout << "How hard would you like to fight: " << endl
-			<< "\t1) " << quest_battle[creature_number].difficulty[0] << endl
-			<< "\t2) " << quest_battle[creature_number].difficulty[1]<< endl
-			<< "\t3) " << quest_battle[creature_number].difficulty[2] << endl
+			<< "\ta) " << quest_battle[creature_number].difficulty[0] << endl
+			<< "\tb) " << quest_battle[creature_number].difficulty[1]<< endl
+			<< "\tc) " << quest_battle[creature_number].difficulty[2] << endl
 			<< "Enter your choice: " << endl;
 		cin >> choice;
 		if (choice != "a" && choice != "A" && choice != "b"&& choice != "B" && choice != "c" && choice != "C")
@@ -998,7 +959,6 @@ int choice_quest_difficulty(int creature_number)
 	else
 			cout << "Try Again!";
 }
-
 void quest_battle_initialization()
 {
 	{
@@ -1133,13 +1093,52 @@ inline int king_battle()
 		return attack_power;
 	}
 }
+inline int character_attack_King(int character_attack_level, int creatures_attack,int& total_character_attack)
+{
+	string attack_choice;//string
+	do {
+
+		cout << "\nCreature Health: " << king.health << endl;
+		cout << "Attack Options: " << endl
+			<< "a) Attack" << endl
+			<< "b) Defend" << endl
+			<< "c) Healing" << endl
+			<< "Choice: ";
+		cin >> attack_choice;
+		if (attack_choice == "a" || attack_choice == "A")
+		{
+			character.health = character.health - creatures_attack;
+			int attack;
+			srand(time(0));
+			attack = rand() % character_attack_level;
+			cout << "Attack: " << attack << endl;
+			king.health = king.health - attack;
+			total_character_attack += attack;
+			return attack;
+		}
+		else if (attack_choice == "b" || attack_choice == "B")
+		{
+			cout << "Defended: " << creatures_attack << endl;
+		}
+		else if (attack_choice == "c" || attack_choice == "C")
+		{
+			character.health = character.health + 40;
+			character.health = character.health - creatures_attack;
+			if (character.health > 400)
+				character.health = 400;
+		}
+		else
+		{
+			cout << "Invalid input " << endl;
+		}
+	} while (attack_choice != "a" && attack_choice != "b" && attack_choice != "c");
+}
 
 void scoring(int totalattack)
 {
 	character.score = rand() % totalattack;
 	character.exp = totalattack - character.score;
 }
-
 void leveling_up()
 {
 
@@ -1167,14 +1166,81 @@ void leveling_up()
 
 }
 
-void gameover(string loop_choice)
+void gameover()
 {
+	string loop_choice;
 	do {
 		cout << "Do you want to play again?(Y/N): ";
 		cin >> loop_choice;
 		if (loop_choice == "y" || loop_choice == "Y")
 			main();
+		else if (loop_choice == "n" || loop_choice == "N")
+			exit(1);
 		if (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n")
 			cout << "Choose correct option.";
 	} while (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n");
+}
+
+void inventory_king()
+{
+	string armour_selection;
+	Inventory_under_Vanguard.armour_name[0] = "Icicle Vanguard Gear    (1100)";
+	Inventory_under_Vanguard.armour_name[1] = "Winter's Embrace Armor  (800)";
+	Inventory_under_Vanguard.armour_name[2] = "Crystal Frostplate Set  (1000)";
+	do {
+		cout << "Select your Armour." << endl
+			<< "\ta) " << Inventory_under_Vanguard.armour_name[0] << endl
+			<< "\tb) " << Inventory_under_Vanguard.armour_name[1] << endl
+			<< "\tc) " << Inventory_under_Vanguard.armour_name[2] << endl
+			<< "Select the Armour Set: ";
+		cin >> armour_selection;
+		if (armour_selection == "a"|| armour_selection == "A")
+		{
+			cout << Inventory_under_Vanguard.armour_name[0] << "\tSelected!";
+			character.health = 1100;
+		}
+		else if (armour_selection == "b"||armour_selection == "B")
+		{
+			cout << Inventory_under_Vanguard.armour_name[0] << "\tSelected!";
+			character.health = 800;
+		}
+		else if (armour_selection == "c"|| armour_selection == "C")
+		{
+			cout << Inventory_under_Vanguard.armour_name[0] << "\tSelected!";
+			character.health = 1000;
+		}
+		else
+			cout << "Wrong Selection Try Again!" << endl;
+	} while (armour_selection == "a" && armour_selection == "A" && armour_selection == "b" && armour_selection == "B" && armour_selection == "c" && armour_selection == "C");
+
+	Inventory_under_Vanguard.sword_name[0] = "Abyssal Frostblade (100)";
+	Inventory_under_Vanguard.sword_name[0] = "Chillwind Scimitar (150)";
+	Inventory_under_Vanguard.sword_name[0] = "Frozen Phoenix Slicer (110)";
+
+	string sword_selection;
+	do {
+		cout << "Select your Sword." << endl
+			<< "\ta) " << Inventory_under_Vanguard.sword_name[0] << endl
+			<< "\tb) " << Inventory_under_Vanguard.sword_name[1] << endl
+			<< "\tc) " << Inventory_under_Vanguard.sword_name[2] << endl
+			<< "Select the Sword Set: ";
+		cin >> sword_selection;
+		if (sword_selection == "a" || sword_selection == "A")
+		{
+			cout << Inventory_under_Vanguard.sword_name[0] << "\tSelected!";
+			character.attack = 100;
+		}
+		else if (sword_selection == "b" || sword_selection == "B")
+		{
+			cout << Inventory_under_Vanguard.sword_name[0] << "\tSelected!";
+			character.attack =150 ;
+		}
+		else if (sword_selection == "c" || sword_selection == "C")
+		{
+			cout << Inventory_under_Vanguard.sword_name[0] << "\tSelected!";
+			character.attack = 110;
+		}
+		else
+			cout << "Wrong Selection Try Again!" << endl;
+	}while (sword_selection == "a" && sword_selection == "A" && sword_selection == "b" && sword_selection == "B" && sword_selection == "c" && sword_selection == "C");
 }
