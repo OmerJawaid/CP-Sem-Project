@@ -898,6 +898,7 @@ int main()
 
 						}
 						cout << RED_TEXT << "Chapter 5 End" << RESET_COLOR << endl;
+						cout << GREEN_TEXT << "GAME END!" << RESET_COLOR << endl;
 						system("cls");
 						//Chapter 5 Ends
 				}
