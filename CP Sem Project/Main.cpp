@@ -329,7 +329,7 @@ int main()
 									if (quest4_path_choice == "a" || quest4_path_choice == "A")
 									{
 										cout << character.name << " push the guards in front and start to run but suddenly 3 Frostbane guards came across" << endl
-											<< creature[0].name << ": Hey you come here! Bloody Intruder!" << endl
+											<< "\t" << creature[0].name << ": Hey you come here! Bloody Intruder!" << endl
 											<< endl << character.name << "Started to fight" << endl;
 										//Fight with the guards and arrest remaining
 										for (int i = 1; i <= 13; i++)
@@ -361,8 +361,8 @@ int main()
 										}
 										cout << character.name << " escapes and starts to move towards the villagers but in the middle of the pathway." << endl;
 										cout << UNDERLINE << "HERE FROSTBITE YETI COMES AND TAKES THE PLAYER TO HIS MOUNTAIN USING THE ZIPLINE FROM ELDORIA TO HIS MOUNTAIN." << CLOSEUNDERLINE << endl;
-										cout << creature[1].name << ": Oh Hello! You are the savior." << endl
-											<< character.name << "Oh yes! I am" << endl;
+										cout <<"\t" << creature[1].name << ": Oh Hello! You are the savior." << endl
+											<< "\t" << character.name << "Oh yes! I am" << endl;
 									}
 									//Path 1 Ends
 
@@ -370,24 +370,28 @@ int main()
 									else if (quest4_path_choice == "b" || quest4_path_choice == "B")
 									{
 										cout << "The player throws his weapons and surrenders." << endl
-											<< creature[0].name << ": Get down to your knees and backoff." << endl
+											<<"\t" << creature[0].name << ": Get down to your knees and backoff." << endl
 											<< creature[0].name << " took him to Eldoria's prison" << endl
 											<< "When he get on his knees one of the guards hit is gun on " << character.name << " head and he gets unconscious." << endl;
 										//Beating in prison
+										system("pause");
+										cout << endl;
 									Jail:
 										cout << "When " << character.name << " gets into his senses. The " << creature[0].name << "s where beating him and asking: " << endl
-											<< creature[0].name << ": Who are you?" << endl
-											<< creature[0].name << ": Who send you?" << endl
+											<< "\t" << creature[0].name << ": Who are you?" << endl
+											<< "\t" << creature[0].name << ": Who send you?" << endl
 											<< character.name << " again gets unconscious." << endl;
 										//In jail informer
 										cout << "When he came into his senses. He looked around, he was in ball and chain." << endl
 											<< "HE Waited..." << endl
 											<< "After sometime informer came and frees him from the jail, ball and chain." << endl
-											<< "Informer: We have to Hurry up" << endl
-											<< character.name << ": You are here we go again." << endl
-											<< "Informer: Frostbite Yeti is looking for you. Come on hurry up." << endl
-											<< character.name << "Who is this Frostbite Yeti?" << endl
+											<< "\tInformer: We have to Hurry up" << endl
+											<< "\t" << character.name << ": You are here we go again." << endl
+											<< "\tInformer: Frostbite Yeti is looking for you. Come on hurry up." << endl
+											<< "\t" << character.name << ": Who is this Frostbite Yeti?" << endl
 											<< "The informer did not reply, and they both started running." << endl;
+										system("pause");
+										cout << endl;
 
 										//Quest 5: Follow the informer
 										cout << GREEN_TEXT << quest_without_fight[4].name << RESET_COLOR << endl;
@@ -398,8 +402,8 @@ int main()
 											<< character.name << ": Where the hell are we?" << endl
 											<< "Through the tunnels they both came out in open.But Frostbite Yeti saw both of them from the mountain top." << endl;
 										cout << UNDERLINE << "HERE FROSTBITE YETI COMES AND TAKES THE PLAYER TO HIS MOUNTAIN USING THE ZIPLINE FROM ELDORIA TO HIS MOUNTAIN." << CLOSEUNDERLINE << endl;
-										cout << creature[1].name << ": Oh Hello! You are the savior." << endl
-											<< character.name << "Oh yes! I am" << endl;
+										cout <<"\t" << creature[1].name << ": Oh Hello! You are the savior." << endl
+											<<"\t" << character.name << ": Oh yes! I am" << endl;
 										//Quest 5 End
 										cout << GREEN_TEXT << "Quest 5 End" << RESET_COLOR << endl;
 
@@ -409,9 +413,8 @@ int main()
 										cout << "Wrong path. TRY AGAIN";
 								} while (quest4_path_choice != "A" && quest4_path_choice != "a" && quest4_path_choice != "B" && quest4_path_choice != "b");
 								cout << RED_TEXT << " Chapter 2 ends " << RESET_COLOR << endl;
+								system("pause");
 								system("cls");
-
-
 
 
 								//Chapter 3:  The Bosses - Yeti's Challenge - Blizzard Golem - Snow Shuriken Ninja
@@ -436,10 +439,10 @@ int main()
 									}
 
 									//Fight Ends
-									cout << creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
-										<< character.name << ": What is happening here? Who are you and what are you doing here?" << endl
-										<< creature[1].name << ": You don't know anything what is happening here. He will kill you." << endl
-										<< character.name << " wipes his neck off";
+									cout << "\t"<<creature[1].name << " fells and " << character.name << " puts his sword on his neck and asks: " << endl
+										<< "\t"<<character.name << ": What is happening here? Who are you and what are you doing here?" << endl
+										<< "\t"<<creature[1].name << ": You don't know anything what is happening here. He will kill you." << endl
+										<<character.name << " wipes his neck off";
 									//Inventory drops
 									inventory_storage[1].name = "Stormcaller Staff ";
 									inventory_storage[1].number = 1;
@@ -453,7 +456,7 @@ int main()
 								//Quest 6 Ends
 
 								cout << character.name << " starts to walk for the zipline but in fog the player ends up going toward the Bilzzard Golem (The Second Boss of Mythical creatures). " << endl
-									<< character.name << " asks the same : " << "What is happening here? Who are you and what are you doing here?";
+									<< "\t" << character.name << " asks the same : " << "What is happening here? Who are you and what are you doing here?";
 
 								//Quest 7: Embark Quest: Kill Bilzzard Golem
 								cout << GREEN_TEXT << quest_battle[1].name << RESET_COLOR << endl;
@@ -666,11 +669,11 @@ int main()
 								//Quest 11 Ends
 
 								cout << "He came down back to the kingdom and started moving towards the villagers. He met the villagers, but they were not all of them." << endl
-									<< character.name << ": Oh! you are here." << endl
-									<< "Villager: Thankgod you are here to help us." << endl
-									<< character.name << ": You are not all, where are the remaining people ?" << endl
-									<< "Villager: We have no idea where they would be." << endl
-									<< character.name << ": All of you guys just stay here I will come and set you free." << endl;
+									<<"\t" << character.name << ": Oh! you are here." << endl
+									<< "\t" << "Villager: Thankgod you are here to help us." << endl
+									<< "\t" << character.name << ": You are not all, where are the remaining people ?" << endl
+									<< "\t" << "Villager: We have no idea where they would be." << endl
+									<< "\t" << character.name << ": All of you guys just stay here I will come and set you free." << endl;
 								system("pause");
 								cout << character.name << " then moves towards the king with the informer but in the way to the palace " << character.name << " meets a another Boss Mythical Creature Blizzard Golem. He without giving any gesture start attacking. " << character.name << "Got hit and loses his health." << endl;
 								//Character health decreses due to attack by 50%
@@ -745,7 +748,7 @@ int main()
 							cout << "----------------------------------------------------" << endl;
 							{
 								cout << "As " << character.name << " enters the battle. Vanguard deceives him with the aim of weakening him shows his father tide into rope covered with bloods and doing heavy breathes." << endl;
-								cout << character.name << ": Father!!" << endl
+								cout << "\t" << character.name << ": Father!!" << endl
 									<< character.name << " takes a step forward." << endl
 									<< creature[4].name << " Oh no you don't" << endl
 									<< creature[4].name << " hits his father." << endl
@@ -757,14 +760,14 @@ int main()
 							//Quest 14 Ends
 							cout << GREEN_TEXT << "Quest 14 End" << RESET_COLOR << endl;
 
-							cout << character.name << "  finally met his king, and he saw the player with the glimpse of hope and King smiled." << endl
-								<< "The kIng: My child you are here." << endl
-								<< character.name << ": I have no time for this. He is coming after me I need resources." << endl
-								<< "King: Who?" << endl
-								<< character.name << ": A Vanguard" << endl
-								<< "king: You mean Glacius Frostend?" << endl
-								<< character.name << ": Indeed he is. Now where can I find resources to fight him?" << endl
-								<< "King: Beneath the kingdom there is a room which has the inventory to defeat the king and his frozen vanguard you need to access that for killing I made it when I saw them coming from escape world, but things gotten out my hand." << endl;
+							cout <<"\t"<< character.name << "  finally met his king, and he saw the player with the glimpse of hope and King smiled." << endl
+								<<"\t" << "The kIng: My child you are here." << endl
+								<<"\t" << character.name << ": I have no time for this. He is coming after me I need resources." << endl
+								<<"\t" << "King: Who?" << endl
+								<<"\t" << character.name << ": A Vanguard" << endl
+								<<"\t" << "king: You mean Glacius Frostend?" << endl
+								<<"\t" << character.name << ": Indeed he is. Now where can I find resources to fight him?" << endl
+								<<"\t" << "King: Beneath the kingdom there is a room which has the inventory to defeat the king and his frozen vanguard you need to access that for killing I made it when I saw them coming from escape world, but things gotten out my hand." << endl;
 
 							//Quest 15: Suit Yourself Up Inventory Remaining
 							cout << GREEN_TEXT << quest_without_fight[7].name << RESET_COLOR << endl;
@@ -840,7 +843,7 @@ int main()
 								king.combo = 400;
 							}
 
-							cout << character.name << " runs�towards the place." << endl
+							cout << character.name << " runs towards the place." << endl
 								<< character.name << " sneakily enters the place. Enter the room of throne and followed the path by climbing up which took him to the room of king and successfully found the door where king was." << endl;
 							system("pause");
 
@@ -983,7 +986,7 @@ void character_creation()
 //Creatures Attacks
 int mythical_creature_attack(int creature_attack_level, int creature_number)
 {
-	cout <<character.name<<" " << "\nHealth: " << character.health << endl;
+	cout <<character.name<<" " << "Health: " << character.health << endl;
 	int attack;
 	srand(time(0));
 	attack = rand() % creature_attack_level;
@@ -1276,6 +1279,8 @@ void scoring(int totalattack)
 {
 	character.score = rand() % totalattack;
 	character.exp = totalattack - character.score;
+	if (character.exp < 1)
+		character.exp = 0;
 }
 void leveling_up()
 {
@@ -1307,11 +1312,14 @@ void gameover()
 		cout << "Do you want to play again?(Y/N): ";
 		cin >> loop_choice;
 		if (loop_choice == "y" || loop_choice == "Y")
+		{
+			system("cls");
 			main();
+		}
 		else if (loop_choice == "n" || loop_choice == "N")
 			exit(1);
 		if (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n")
-			cout << "Choose correct option.";
+			cout << "Choose correct option."<<endl;
 	} while (loop_choice != "y" && loop_choice != "Y" && loop_choice != "N" && loop_choice != "n");
 }
 
