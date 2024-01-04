@@ -264,7 +264,7 @@ int main()
 
 					//CHAPTER 2: Infiltrate the Market
 					cout << RED_TEXT<<chapter.name[1] << RESET_COLOR<<endl;
-					char chap2_st_choice;
+					string chap2_st_choice;
 					do {
 						cout <<endl<< character.name << " now had gathered the information required and fixed his path to the market he started moving towards the market but on the way, he encountered multiple ways to reach the market. " << endl
 							<< "Business Market Paths: " << endl
@@ -272,11 +272,8 @@ int main()
 							<< "\tb) Through hub of huts.				(Easy)" << endl;
 						cin >> chap2_st_choice;
 
-						switch (chap2_st_choice)
-						{
-							//Path 1
-						case'A':
-						case'a':
+						//Path 1
+						if(chap2_st_choice=="a"|| chap2_st_choice == "A")
 						{
 							cout << character.name << " moves towards the snowy street inclining him towards the market but unfortunately the 2 guards due to not following the code of instruction set by their management captures him to be intruder" << endl
 								<< creature[0].name << ": Where is you badge" << endl
@@ -548,8 +545,7 @@ int main()
 						//End of path 1
 
 						//Path 2
-						case 'B':
-						case'b':
+						else if(chap2_st_choice=="b"|| chap2_st_choice == "B")
 						{
 							cout << character.name << " follow the bushes and sneakily try to enter the hub of houses" << endl
 								<< character.name << " entered the house... " << endl
@@ -730,10 +726,9 @@ int main()
 						}
 						//Path 2 ends
 
-						default:
+						else
 							cout << "Incorrect Path! TRY AGAIN";
-						}
-					} while (chap2_st_choice != 'a' && chap2_st_choice != 'b' && chap2_st_choice != 'A' && chap2_st_choice != 'B');
+					} while (chap2_st_choice != "a" && chap2_st_choice != "b" && chap2_st_choice != "A" && chap2_st_choice != "B");
 
 						//Chapter 4:  Vanguard's Stand 
 						cout << RED_TEXT << chapter.name[3] << RESET_COLOR << endl;
