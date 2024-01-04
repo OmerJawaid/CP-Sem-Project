@@ -17,7 +17,7 @@ struct {
 
 struct {
 	string name;
-	int health, attack[5];
+	int health, attack[5],combo;
 }king;
 
 struct {
