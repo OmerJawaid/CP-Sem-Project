@@ -17,7 +17,7 @@ struct {
 
 struct {
 	string name;
-	int health, combo, attack[5];
+	int health, attack[5];
 }king;
 
 struct {
@@ -126,6 +126,9 @@ int main()
 							
 							//Quest1
 							cout <<endl<<GREEN_TEXT<< quest_without_fight[0].name<< RESET_COLOR<<endl;
+							cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 							do {
 								cout << "\ta) The first option caught " << character.name << " eye - The Main Gate. " << quest_battle[0].difficulty[2] << endl
 									<< "\tb) Turning his attention to the second path, " << character.name << " discovered a watchtower. " << quest_battle[0].difficulty[1] << endl
@@ -214,6 +217,9 @@ int main()
 
 						//Quest 2:Continue the story
 						cout <<endl<<GREEN_TEXT<< quest_without_fight[1].name <<RESET_COLOR<< endl;
+						cout << "----------------------------------------------------";
+						display_character_info();
+						cout << "----------------------------------------------------" << endl;
 						{
 							cout << character.name << " moves to the kingdom second gate while stealth and saving himself from other guard. \nHe opens the gate and suddenly he sees guards standing and now he had to take the fight." << endl
 								<< creature[0].name << ": Who are you? How did you get in?" << endl
@@ -242,8 +248,7 @@ int main()
 							system("pause");
 							cout << "Informer: Saviour you are here the people in the prison were hoping you to come to save them you need to access the reach the business market in order to get this info." << endl
 								<< character.name << " gets hesitant after listening the word Saviour. He honors the informer and gratitude and asks him to send his message to the villagers"
-
-								<< character.name << ": Message(Your Saviour is here) " << endl
+								<<"\n"<< character.name << ": Message(Your Saviour is here) " << endl
 								<< character.name << ": I will make sure that you will get a reward for helping in this mission." << endl;
 							cout << "\n HERE " << character.name << " WEARS SUIT OF GUARDS AND CHANGES HIS GETUP" << endl;
 							
@@ -297,6 +302,9 @@ int main()
 
 							//Quest 3: Go to the business market for the information and get out
 							cout << GREEN_TEXT << quest_without_fight[2].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								cout << "The player goes to the business market while the guards watch him going in. In the business market the player gets a map of the Eldoria kingdom where the villagers were captured. \nWhen the player was coming out of the business market he was surrounded by the guards. " << endl;
 								cout << creature[0].name << ": You are surrounded! Put your weapons down."<<endl;
@@ -306,6 +314,9 @@ int main()
 
 							//Quest 4: Embark Quest: Go to the villagers
 							cout << GREEN_TEXT << quest_without_fight[3].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								string quest4_path_choice;
 								do {
@@ -380,6 +391,9 @@ int main()
 
 										//Quest 5: Follow the informer
 										cout << GREEN_TEXT << quest_without_fight[4].name << RESET_COLOR << endl;
+										cout << "----------------------------------------------------";
+										display_character_info();
+										cout << "----------------------------------------------------" << endl;
 										cout << "They both go through the underground tunnels." << endl
 											<< character.name << ": Where the hell are we?" << endl
 											<< "Through the tunnels they both came out in open.But Frostbite Yeti saw both of them from the mountain top." << endl;
@@ -406,6 +420,9 @@ int main()
 
 								//Quest 6: Kill Frostbite Yeti
 								cout << GREEN_TEXT << quest_battle[0].name << RESET_COLOR << endl;
+								cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 								{
 									cout << "Here Frostbite Yeti comes into anger and attacks the player, the player dodges the attack, and the fight begins." << endl;
 									//Frostbite yeti Fight
@@ -440,6 +457,9 @@ int main()
 
 								//Quest 7: Embark Quest: Kill Bilzzard Golem
 								cout << GREEN_TEXT << quest_battle[1].name << RESET_COLOR << endl;
+								cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 								{
 									cout << creature[2].name << " did not reply and came to attack the player but this time the player got hit badly." << endl;
 									//Player health drops to 50% as he got hit by Bilzzard Golem 
@@ -489,6 +509,9 @@ int main()
 							character.health = character.health - character.health * 0.25;
 							//Quest 8: Kill Snow Shuriken Ninja
 							cout << GREEN_TEXT << quest_battle[2].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								//Fight with SNOW Shuriken Ninja
 								int difficulty;
@@ -540,6 +563,9 @@ int main()
 									<< "He took " << character.name << " to his cave on the mountain top. When Snow Shuriken Ninja attack he got unconscious." << endl;
 								//Quest 9: Get out of the Cave.
 								cout << GREEN_TEXT << quest_without_fight[4].name << RESET_COLOR << endl;
+								cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 								{
 									cout << "When he came back in senses, he was covered in blood and Snow Shuriken Ninja was not there and was tied up with chains. After a while the informer sneakily comes in." << endl
 										<< "Informer: I knew this would happen." << endl
@@ -557,6 +583,9 @@ int main()
 
 								//Quest 10: Kill the Snow Shuriken Ninja
 								cout << GREEN_TEXT << quest_battle[2].name << RESET_COLOR << endl;
+								cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 								{
 									cout << creature[3].name << ": Oh poor saviour. You are going to hell." << endl
 										<< character.name << ": Well I guess you should visit it first." << endl
@@ -588,6 +617,9 @@ int main()
 
 								//Quest 11: Go to the zipline with Quest 12 Yeti killing
 								cout << GREEN_TEXT << quest_without_fight[5].name << RESET_COLOR << endl;
+								cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 								{
 									cout << "Informer: Hurry up! Let's go." << endl
 										<< character.name << ": Is this the right hand of your King you were talking about?" << endl
@@ -605,6 +637,9 @@ int main()
 										<< "In order to save himself and to take the revenge, he have to take a fight.";
 									//Quest 12: Kill The Frostbite Yeti  
 									cout << GREEN_TEXT << quest_battle[0].name << RESET_COLOR << endl;
+									cout << "----------------------------------------------------";
+									display_character_info();
+									cout << "----------------------------------------------------" << endl;
 									{
 										int difficulty;
 										difficulty = choice_quest_difficulty(0);
@@ -643,6 +678,9 @@ int main()
 
 								//Quest 13: Kills the Blizzard Golem 
 								cout << GREEN_TEXT << quest_battle[1].name << RESET_COLOR << endl;
+								cout << "----------------------------------------------------";
+								display_character_info();
+								cout << "----------------------------------------------------" << endl;
 								{
 									//Fight with the Billzard Golem
 									{
@@ -702,6 +740,9 @@ int main()
 
 							//Quest 14: Vangurad's plan
 							cout << GREEN_TEXT << quest_without_fight[6].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								cout << "As " << character.name << " enters the battle. Vanguard deceives him with the aim of weakening him shows his father tide into rope covered with bloods and doing heavy breathes." << endl;
 								cout << character.name << ": Father!!" << endl
@@ -727,6 +768,9 @@ int main()
 
 							//Quest 15: Suit Yourself Up Inventory Remaining
 							cout << GREEN_TEXT << quest_without_fight[7].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								cout << character.name << " starts running to the inventory room�and jumps into it for accessing the room under the kingdom, " << creature[4].name << " follows him but he pulled the lever and blocked the access which gives extra time to access and get the killing weapons to kill the king and the vanguard." << endl
 									<< character.name << " saw a glimpse of inventory packed in an old architecture shinning to the sky. He sees and his eyes glimpses up with a satisfaction felt by wounds and now he opens the inventory it attracts him as it was meant for him" << endl;
@@ -744,6 +788,9 @@ int main()
 
 							//Quest 16: Kill the Vanguard
 							cout << GREEN_TEXT << quest_battle[3].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								cout << "And fight starts" << endl;
 								//Vanguard Fight Starts
@@ -799,6 +846,9 @@ int main()
 
 							//Quest 17: The final battle with king, giants forestbane and mythical king story
 							cout << GREEN_TEXT << quest_without_fight[8].name << RESET_COLOR << endl;
+							cout << "----------------------------------------------------";
+							display_character_info();
+							cout << "----------------------------------------------------" << endl;
 							{
 								//3 attack system Remaining
 								int difficulty;
@@ -1004,9 +1054,11 @@ bool battle_system(int creaturenumber,int guard_number, int difficulty)
 			}
 		} while (health > 0 && character.health > 0);
 		scoring(total_character_attack);
+		cout << endl;
 		if(character.exp >=200)
 		{
 		leveling_up();
+		cout << endl;
 		}
 		return flag;
 }
@@ -1087,7 +1139,7 @@ void quest_initialization_without_fight()
 	quest_without_fight[5].name = "Get out of the Cave.";
 	quest_without_fight[6].name = "Go to the zipline ";
 	quest_without_fight[7].name = "Leveling up";
-	quest_without_fight[8].name = "-The final battle with king, giants forestbane and mythical king story ";
+	quest_without_fight[8].name = "The final battle with king, giants forestbane and mythical king story ";
 }
 
 void creature_initialization()
@@ -1222,7 +1274,6 @@ inline int character_attack_King(int character_attack_level, int creatures_attac
 void scoring(int totalattack)
 {
 	character.score = rand() % totalattack;
-	cout << "Score: " << character.score;
 	character.exp = totalattack - character.score;
 }
 void leveling_up()
