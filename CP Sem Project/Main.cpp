@@ -351,7 +351,10 @@ int main()
 											} while (health > 0 && character.health > 0);
 
 											scoring(total_character_attack);
-											leveling_up();
+											if (character.exp > 199)
+											{
+												leveling_up();
+											}
 											inventory_storage[0].name = "Starlight Elixir";
 											inventory_storage[0].number += 10;
 											inventory_display();
@@ -703,7 +706,10 @@ int main()
 										} while (health > 0 && character.health > 0);
 
 										scoring(total_character_attack);
-										leveling_up();
+										if (character.exp > 199)
+										{
+											leveling_up();
+										}
 										inventory_storage[4].name = "Frostbane Blade";
 										inventory_storage[4].number = 1;
 										inventory_storage[5].name = "Whispering Dagger";
@@ -887,7 +893,10 @@ int main()
 								} while (creature[0].health > 0 && character.health > 0);
 
 								scoring(total_character_attack);
-								leveling_up();
+								if (character.exp > 199)
+								{
+									leveling_up();
+								}
 								//Fight Ends
 								cout << character.name << " conquered the battle with his fullest aims and won the battle and bow the king of mythical creature on the foot� and finally ended the oppressed and lustful era of the� mythical king� the player sense the pride of the victory taking revenge of his father and saving the kingdom and raising the pride of village where he belongs to and where his father too.The player finally met with the king and handed his power to him, and the king thanked and gave him some huge rewards as a sign of thankfulness" << endl;
 							}
